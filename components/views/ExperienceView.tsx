@@ -1,36 +1,26 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 import { experiencePage, experiences } from '@/lib/content';
-import { ui } from '@/lib/i18n';
 import { useT } from '@/lib/store';
-import { Body, Container, cx } from '@/components/ui/primitives';
-import { Reveal } from '@/components/ui/Reveal';
+import { ArrowCircle, Container, cx } from '@/components/ui/primitives';
 import { Polaroid } from '@/components/decor/Decor';
 import { TulipCorner } from '@/components/decor/TulipCluster';
 import SectionHero from '@/components/sections/SectionHero';
 import FooterCTA from '@/components/layout/FooterCTA';
 
+const ease = [0.22, 0.61, 0.36, 1] as const;
+
 const COLLAGE = [
-  { i: 0, rot: 4, cls: 'left-[42%] top-0 z-[1]', img: 'h-[150px] w-[200px] sm:h-[190px] sm:w-[260px]' },
-  { i: 1, rot: -5, cls: 'left-[10%] top-[8%] z-[2]', img: 'h-[110px] w-[150px] sm:h-[140px] sm:w-[190px]' },
-  { i: 2, rot: -3, cls: 'left-[2%] top-[44%] z-[3]', img: 'h-[170px] w-[130px] sm:h-[220px] sm:w-[170px]' },
-  { i: 3, rot: 3, cls: 'left-[36%] top-[46%] z-[4]', img: 'h-[170px] w-[130px] sm:h-[220px] sm:w-[170px]' },
+  { i: 0, rot: -4, cls: 'left-[4%] top-[2%] z-[3]', img: 'h-[190px] w-[150px] sm:h-[250px] sm:w-[200px]' },
+  { i: 1, rot: 5, cls: 'left-[44%] top-0 z-[2]', img: 'h-[170px] w-[130px] sm:h-[220px] sm:w-[170px]' },
+  { i: 2, rot: -3, cls: 'left-[30%] top-[48%] z-[4]', img: 'h-[130px] w-[150px] sm:h-[170px] sm:w-[200px]' },
+  { i: 3, rot: 6, cls: 'right-[2%] top-[38%] z-[1]', img: 'h-[150px] w-[110px] sm:h-[200px] sm:w-[140px]' },
 ];
 
-/** A tulip bud marker for each stop along the path. */
-function Bud() {
-  return (
-    <svg aria-hidden viewBox="0 0 40 52" className="animate-sway h-12 w-10">
-      <path d="M20 52 V30" stroke="#6E9B5A" strokeWidth="2.5" />
-      <path d="M20 46 C10 42 8 34 10 28 C14 36 18 40 20 42" fill="#9CC285" />
-      <path d="M10 6 C12 18 16 24 20 28 C24 24 28 18 30 6 C29 22 26 30 20 32 C14 30 11 22 10 6 Z" fill="#F3B3BE" />
-      <path d="M20 2 C16 10 16 20 20 28 C24 20 24 10 20 2 Z" fill="#FCE0E4" />
-    </svg>
-  );
-}
-
-/** Concept: a garden path — each role is a stop along a winding trail marked by a tulip bud. */
+/** Reference layout: polaroid collage hero → list of role cards (thumbnail, title, summary, arrow). */
 export default function ExperienceView() {
   const { t } = useT();
 
@@ -40,52 +30,67 @@ export default function ExperienceView() {
         reverse
         eyebrow={t(experiencePage.eyebrow)}
         title={[t(experiencePage.title[0]), t(experiencePage.title[1])]}
+        accent
         desc={t(experiencePage.desc)}
-        cta={{ label: t(experiencePage.cta), href: '#path' }}
+        cta={{ label: t(experiencePage.cta), href: '#roles' }}
         visualClassName="h-[420px] sm:h-[540px]"
         visual={
           <div className="relative h-full">
             {COLLAGE.map((c) => {
               const e = experiences[c.i];
-              return <Polaroid key={e.slug} src={e.cover.src} alt={t(e.cover.alt)} rotate={c.rot} className={cx('absolute', c.cls)} imgClassName={c.img} />;
+              return (
+                <motion.div
+                  key={e.slug}
+                  className={cx('absolute', c.cls)}
+                  initial={{ opacity: 0, y: -80, rotate: c.rot * 4 }}
+                  animate={{ opacity: 1, y: 0, rotate: 0 }}
+                  transition={{ type: 'spring', stiffness: 90, damping: 14, delay: 0.7 + c.i * 0.15 }}
+                >
+                  <Polaroid src={e.cover.src} alt={t(e.cover.alt)} rotate={c.rot} drift={c.i * 1.7} imgClassName={c.img} />
+                </motion.div>
+              );
             })}
-            <TulipCorner side="left" scale={0.42} className="-bottom-10 left-[58%] z-10" />
+            <TulipCorner side="right" scale={0.42} className="-bottom-10 right-[-6%] z-10" gustDelay={1.4} />
           </div>
         }
       />
 
-      <Container id="path" className="relative scroll-mt-28 py-10">
-        {/* the winding trail */}
-        <svg aria-hidden viewBox="0 0 200 1000" preserveAspectRatio="none" className="absolute left-1/2 top-0 hidden h-full w-40 -translate-x-1/2 lg:block">
-          <path d="M100 0 C20 120 180 240 100 360 S20 600 100 720 S180 900 100 1000" stroke="var(--color-rose)" strokeOpacity="0.55" strokeWidth="3" strokeDasharray="2 14" strokeLinecap="round" fill="none" />
-        </svg>
-        {experiences.map((e, i) => {
-          const flip = i % 2 === 1;
-          return (
-            <Reveal key={e.slug} className="relative mb-16 grid items-center gap-8 lg:grid-cols-2 lg:gap-24">
-              <div className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 lg:block">
-                <Bud />
-              </div>
-              <div className={cx('flex justify-center', flip && 'lg:order-2')}>
-                <Link href={`/experience/${e.slug}`} aria-label={t(e.role)}>
-                  <Polaroid src={e.cover.src} alt={t(e.cover.alt)} rotate={flip ? -4 : 4} imgClassName="h-[220px] w-[300px] sm:h-[250px] sm:w-[360px]" />
-                </Link>
-              </div>
-              <div className={cx('flex max-w-[440px] flex-col gap-1.5', flip ? 'lg:order-1 lg:justify-self-end lg:text-right' : '')}>
-                <p className="font-serif text-lg italic text-rose">0{i + 1}</p>
-                <Link href={`/experience/${e.slug}`} className="font-serif text-3xl italic hover:text-rose">
-                  {t(e.role)}
-                </Link>
-                <p className="text-sm text-muted">{t(e.org)}</p>
-                <p className="text-sm text-muted">{t(e.period)}</p>
-                <Body className={cx('mt-1.5', flip && 'lg:ml-auto')}>{t(e.summary)}</Body>
-                <Link href={`/experience/${e.slug}`} className="mt-2 text-sm font-medium text-ink underline decoration-rose underline-offset-4">
-                  {t(ui.common.viewDetails)} →
-                </Link>
-              </div>
-            </Reveal>
-          );
-        })}
+      <Container id="roles" className="scroll-mt-28 pb-8">
+        <ul className="mx-auto flex max-w-[920px] flex-col gap-5">
+          {experiences.map((e, i) => (
+            <motion.li
+              key={e.slug}
+              initial={{ opacity: 0, x: i % 2 ? 70 : -70 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.9, ease }}
+            >
+              <Link
+                href={`/experience/${e.slug}`}
+                className="group grid grid-cols-[96px_1fr_auto] items-center gap-4 rounded-[22px] border border-white/70 bg-card p-3 pr-5 shadow-[var(--shadow-soft)] backdrop-blur-md transition-[transform,box-shadow] duration-500 hover:-translate-y-1 hover:shadow-[var(--shadow-photo)] dark:border-white/10 sm:grid-cols-[180px_1fr_auto] sm:gap-6"
+              >
+                <span className="relative block h-[96px] overflow-hidden rounded-2xl sm:h-[120px]">
+                  <Image
+                    src={e.cover.src}
+                    alt={t(e.cover.alt)}
+                    fill
+                    sizes="180px"
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    style={e.cover.pos ? { objectPosition: e.cover.pos } : undefined}
+                  />
+                </span>
+                <span className="flex flex-col gap-1">
+                  <span className="text-[12px] text-muted">
+                    {t(e.period)} · {t(e.type)}
+                  </span>
+                  <span className="font-serif text-2xl italic leading-tight text-ink transition-colors group-hover:text-rose sm:text-[28px]">{t(e.role)}</span>
+                  <span className="hidden text-sm leading-relaxed text-muted sm:block">{t(e.summary)}</span>
+                </span>
+                <ArrowCircle />
+              </Link>
+            </motion.li>
+          ))}
+        </ul>
       </Container>
 
       <FooterCTA />

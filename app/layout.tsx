@@ -4,6 +4,7 @@ import './globals.css';
 import Providers from '@/components/providers/Providers';
 import Background from '@/components/layout/Background';
 import Navbar from '@/components/layout/Navbar';
+import { ScrollProgress } from '@/components/ui/Reveal';
 import { site } from '@/lib/content';
 import { personJsonLd } from '@/lib/seo';
 import { noFlashScript } from '@/lib/theme-script';
@@ -21,7 +22,7 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'sw
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: 'Rizka Amelia — Operations, Makeup Artist & Speaker | Bandung',
+    default: 'Rizka Amelia — Makeup Artist, Model & Speaker | Bandung',
     template: '%s · Rizka Amelia',
   },
   description: site.description.en,
@@ -74,12 +75,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script dangerouslySetInnerHTML={{ __html: noFlashScript }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }} />
       </head>
-      <body className="min-h-screen overflow-x-hidden bg-blush text-ink antialiased">
+      <body className="min-h-screen overflow-x-hidden text-ink antialiased">
         <Providers>
           <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[80] focus:rounded-full focus:bg-ink focus:px-4 focus:py-2 focus:text-on-ink">
             Skip to content
           </a>
           <Background />
+          <ScrollProgress />
           <Navbar />
           <main id="main">{children}</main>
         </Providers>
