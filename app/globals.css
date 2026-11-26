@@ -1,0 +1,102 @@
+@import 'tailwindcss';
+
+/* `dark:` follows the Redux-controlled data-theme attribute, not the OS setting. */
+@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
+
+/* ---------- Design tokens: Blush Atelier — Tulip Garden ---------- */
+@theme {
+  --color-blush: #fbefed;
+  --color-surface: #f6e1df;
+  --color-rose: #e48a9a;
+  --color-ink: #5b2c3a;
+  --color-muted: #7d5f66;
+  --color-line: rgb(91 44 58 / 0.15);
+  --color-card: rgb(255 255 255 / 0.62);
+  --color-paper: #ffffff; /* polaroid frames */
+  --color-on-ink: #fbefed; /* text on primary (ink) buttons */
+  --color-glow: rgb(255 255 255 / 0.75);
+  --color-petal: #efa3b0;
+
+  --font-serif: var(--font-cormorant), 'Cormorant Garamond', Georgia, serif;
+  --font-sans: var(--font-inter), Inter, system-ui, sans-serif;
+
+  --shadow-soft: 0 20px 40px -20px rgb(91 44 58 / 0.25);
+  --shadow-photo: 0 40px 70px -30px rgb(91 44 58 / 0.35);
+  --ease-soft: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* ---------- Night theme ("latar malam"): same token names, new values ---------- */
+[data-theme='dark'] {
+  --color-blush: #1e1418;
+  --color-surface: #2b1d23;
+  --color-rose: #eba3b1;
+  --color-ink: #f7e4e2;
+  --color-muted: #cdb3b9;
+  --color-line: rgb(247 228 226 / 0.16);
+  --color-card: rgb(43 29 35 / 0.72);
+  --color-paper: #fdf6f5;
+  --color-on-ink: #1e1418;
+  --color-glow: rgb(235 163 177 / 0.14);
+  --color-petal: #c9798a;
+  color-scheme: dark;
+}
+
+@layer base {
+  html {
+    transition: background-color 0.4s ease, color 0.4s ease;
+    background: var(--color-blush);
+    color: var(--color-ink);
+    scroll-behavior: smooth;
+  }
+  body {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection {
+    background: var(--color-rose);
+    color: #fff;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-rose);
+    outline-offset: 3px;
+  }
+}
+
+/* ---------- Ambient motion (CSS, GPU transforms only) ---------- */
+@keyframes sway {
+  0%, 100% { transform: rotate(-2deg); }
+  50% { transform: rotate(2deg); }
+}
+@keyframes fall {
+  0% { transform: translate3d(0, -40px, 0) rotate(0deg); opacity: 0; }
+  10% { opacity: 0.85; }
+  100% { transform: translate3d(120px, 105vh, 0) rotate(260deg); opacity: 0; }
+}
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+
+@utility animate-sway {
+  transform-origin: 50% 100%;
+  animation: sway 6s ease-in-out infinite;
+}
+@utility animate-fall {
+  animation: fall 18s linear infinite;
+}
+@utility animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-sway,
+  .animate-fall,
+  .animate-spin-slow {
+    animation: none !important;
+  }
+  .animate-fall {
+    display: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
