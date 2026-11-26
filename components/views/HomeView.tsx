@@ -76,7 +76,7 @@ export default function HomeView() {
             {home.works.map((w, i) => (
               <Reveal key={w.href} delay={i * 0.08}>
                 <Link href={w.href} className="group relative block h-[200px] overflow-hidden rounded-2xl shadow-[0_20px_40px_-24px_rgb(91_44_58/0.35)] md:h-[220px]">
-                  <Image src={w.photo.src} alt={t(w.photo.alt)} fill sizes="(min-width: 768px) 25vw, 50vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <Image src={w.photo.src} alt={t(w.photo.alt)} fill sizes="(min-width: 768px) 25vw, 50vw" className="object-cover transition-transform duration-700 group-hover:scale-105" style={w.photo.pos ? { objectPosition: w.photo.pos } : undefined} />
                 </Link>
               </Reveal>
             ))}

@@ -2,48 +2,71 @@
 
 import { speakingPage as s } from '@/lib/content';
 import { useT } from '@/lib/store';
-import { Card, Container } from '@/components/ui/primitives';
+import { Container } from '@/components/ui/primitives';
 import { Reveal } from '@/components/ui/Reveal';
-import { Halo, MaskedImage } from '@/components/decor/Decor';
-import { TulipCorner } from '@/components/decor/TulipCluster';
+import { MaskedImage } from '@/components/decor/Decor';
+import { CurtainSwag, Microphone, Spotlight, Ticket } from '@/components/decor/Illustrations';
 import { PhotoGrid } from '@/components/sections/Gallery';
 import SectionHero from '@/components/sections/SectionHero';
 import FooterCTA from '@/components/layout/FooterCTA';
 
+/** Concept: on stage — velvet curtains, a spotlight on the speaker, events as admission tickets. */
 export default function SpeakingView() {
   const { t } = useT();
   return (
     <>
+      <div className="relative">
+        <CurtainSwag side="left" className="pointer-events-none absolute left-0 top-0 z-0 w-[34vw] max-w-[360px]" />
+        <CurtainSwag side="right" className="pointer-events-none absolute right-0 top-0 z-0 w-[34vw] max-w-[360px]" />
+      </div>
       <SectionHero
+        reverse
+        tulips={false}
         eyebrow={t(s.eyebrow)}
         title={[t(s.title[0]), t(s.title[1])]}
         desc={t(s.desc)}
         cta={{ label: t(s.cta), href: '#events' }}
+        visualClassName="h-[460px] sm:h-[580px]"
         visual={
-          <div className="relative mx-auto h-full w-full max-w-[560px]">
-            <Halo className="left-0 top-[6%] h-[88%] w-[96%] -rotate-[4deg] rounded-[46%_54%_50%_50%/40%_44%_56%_60%]" />
-            <MaskedImage src={s.hero.src} alt={t(s.hero.alt)} priority objectPosition="60% 40%" className="absolute left-[4%] top-0 h-[92%] w-[90%] rounded-[46%_54%_50%_50%/40%_44%_56%_60%]" />
-            <TulipCorner side="left" scale={0.5} className="-bottom-12 -left-12 z-20" />
+          <div className="relative mx-auto h-full w-full max-w-[520px]">
+            <Spotlight className="-top-10 left-[8%] h-[110%] w-[84%]" />
+            {/* stage-shaped frame, cropped on the speaker (bottom-left of the original photo) */}
+            <MaskedImage
+              src={s.hero.src}
+              alt={t(s.hero.alt)}
+              priority
+              objectPosition={s.hero.pos}
+              className="absolute left-[14%] top-[4%] h-[86%] w-[66%] rounded-t-[200px] rounded-b-[24px] border-[10px] border-paper"
+            />
+            <Microphone className="absolute bottom-0 left-0 z-10 h-56 w-20" />
+            <div aria-hidden className="absolute bottom-0 left-[6%] right-[6%] h-4 rounded-full bg-ink/10 blur-md" />
           </div>
         }
       />
       <Container id="events" className="scroll-mt-28 pb-6">
-        <Reveal>
-          <h2 className="mb-6 font-serif text-4xl italic">{t(s.highlightsTitle)}</h2>
-        </Reveal>
-        <PhotoGrid photos={s.highlights} columns="grid-cols-2 md:grid-cols-4" itemClassName="h-[180px] md:h-[240px]" />
-        <div className="mt-8 grid gap-5 md:grid-cols-2">
+        <div className="grid gap-6 md:grid-cols-2">
           {s.events.map((e, i) => (
-            <Reveal key={i} delay={i * 0.1}>
-              <Card className="flex h-full flex-col gap-2">
-                <p className="text-[13px] text-muted">{t(e.when)}</p>
-                <h3 className="text-base font-semibold">{t(e.title)}</h3>
-                <p className="text-[13px] text-muted">{t(e.host)}</p>
-                <p className="text-[15px] leading-relaxed text-muted">{t(e.body)}</p>
-              </Card>
+            <Reveal key={i} delay={i * 0.12}>
+              <Ticket
+                stub={
+                  <>
+                    <span className="text-[10px] font-semibold uppercase tracking-[0.25em]">Admit one</span>
+                    <span className="font-serif text-3xl italic leading-none">{t(e.when).split(' · ')[0]}</span>
+                    <span className="text-[11px] opacity-80">{t(e.when).split(' · ')[1]}</span>
+                  </>
+                }
+              >
+                <h3 className="font-serif text-2xl italic leading-tight">{t(e.title)}</h3>
+                <p className="mt-1 text-[13px] text-muted">{t(e.host)}</p>
+                <p className="mt-3 text-[15px] leading-relaxed text-muted">{t(e.body)}</p>
+              </Ticket>
             </Reveal>
           ))}
         </div>
+        <Reveal>
+          <h2 className="mb-6 mt-16 font-serif text-4xl italic">{t(s.highlightsTitle)}</h2>
+        </Reveal>
+        <PhotoGrid photos={s.highlights} columns="grid-cols-2 md:grid-cols-4" itemClassName="h-[200px] md:h-[280px]" />
       </Container>
       <FooterCTA />
     </>
