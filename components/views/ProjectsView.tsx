@@ -5,13 +5,15 @@ import Link from 'next/link';
 import { projects, projectsPage as pp } from '@/lib/content';
 import { ui } from '@/lib/i18n';
 import { useT } from '@/lib/store';
-import { Card, Container, Eyebrow, SerifTitle } from '@/components/ui/primitives';
+import { Container, Eyebrow, SerifTitle } from '@/components/ui/primitives';
 import { Reveal } from '@/components/ui/Reveal';
 import { Polaroid } from '@/components/decor/Decor';
+import { LabGlass, Washi } from '@/components/decor/Illustrations';
 import { TulipCorner } from '@/components/decor/TulipCluster';
 import SectionHero from '@/components/sections/SectionHero';
 import FooterCTA from '@/components/layout/FooterCTA';
 
+/** Concept: two very different projects — a lab notebook and a magazine cover. */
 export default function ProjectsView() {
   const { t } = useT();
   const [thesis, momies] = projects;
@@ -27,29 +29,44 @@ export default function ProjectsView() {
           <div className="relative h-full">
             <Polaroid src={thesis.gallery[2].src} alt={t(thesis.gallery[2].alt)} rotate={4} caption="Thesis · 2024" className="absolute right-[6%] top-0" imgClassName="h-[160px] w-[230px] sm:h-[210px] sm:w-[300px]" />
             <Polaroid src={momies.gallery[2].src} alt={t(momies.gallery[2].alt)} rotate={-5} caption="Momies Bakery" className="absolute left-[6%] top-[30%] z-[2]" imgClassName="h-[200px] w-[150px] sm:h-[250px] sm:w-[190px]" />
-            <Polaroid src={thesis.gallery[0].src} alt={t(thesis.gallery[0].alt)} rotate={3} className="absolute bottom-[4%] right-[14%] z-[3]" imgClassName="h-[120px] w-[160px] sm:h-[150px] sm:w-[200px]" />
-            <TulipCorner side="right" scale={0.42} className="-bottom-12 right-0 z-10" />
+            <LabGlass className="animate-bob absolute bottom-[2%] right-[10%] z-[3] w-36" />
+            <TulipCorner side="right" scale={0.4} className="-bottom-12 right-0 z-10" />
           </div>
         }
       />
-      <Container id="list" className="grid scroll-mt-28 gap-6 pb-6 md:grid-cols-2">
-        {projects.map((p, i) => (
-          <Reveal key={p.slug} delay={i * 0.1}>
-            <Link href={`/projects/${p.slug}`} className="group block">
-              <Card className="flex h-full flex-col gap-4 p-4">
-                <div className="relative h-[280px] overflow-hidden rounded-2xl">
-                  <Image src={p.cover.src} alt={t(p.cover.alt)} fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
-                </div>
-                <div className="flex flex-col gap-2 px-2 pb-2">
-                  <Eyebrow>{t(p.kicker)}</Eyebrow>
-                  <SerifTitle as="h2" size="md" lines={[t(p.title[0]), t(p.title[1])]} accent />
-                  <p className="text-[15px] leading-relaxed text-muted">{t(p.summary)}</p>
-                  <span className="mt-1 text-sm font-medium underline decoration-rose underline-offset-4">{t(ui.common.viewDetails)} →</span>
-                </div>
-              </Card>
-            </Link>
-          </Reveal>
-        ))}
+      <Container id="list" className="grid scroll-mt-28 items-start gap-10 pb-6 md:grid-cols-2">
+        {/* Lab notebook */}
+        <Reveal>
+          <Link href={`/projects/${thesis.slug}`} className="group block">
+            <div className="paper-grid relative rounded-[20px] p-6 text-[#5B2C3A] shadow-[var(--shadow-photo)] transition-transform duration-500 group-hover:-translate-y-1.5 sm:p-8">
+              <Washi className="-top-3 left-8 -rotate-6" color="rgba(168,185,160,0.65)" />
+              <div className="flex items-start justify-between gap-4">
+                <Eyebrow>{t(thesis.kicker)}</Eyebrow>
+                <LabGlass className="w-20 flex-none" />
+              </div>
+              <SerifTitle as="h2" size="md" lines={[t(thesis.title[0]), t(thesis.title[1])]} accent className="mt-2" />
+              <p className="mt-3 text-[15px] leading-relaxed text-[#7D5F66]">{t(thesis.summary)}</p>
+              <div className="relative mt-6 h-[240px] overflow-hidden rounded-xl">
+                <Image src={thesis.cover.src} alt={t(thesis.cover.alt)} fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
+              </div>
+              <span className="mt-4 inline-block text-sm font-medium underline decoration-[#E48A9A] underline-offset-4">{t(ui.common.viewDetails)} →</span>
+            </div>
+          </Link>
+        </Reveal>
+        {/* Magazine cover */}
+        <Reveal delay={0.12} className="md:mt-16">
+          <Link href={`/projects/${momies.slug}`} className="group relative block aspect-[3/4] overflow-hidden rounded-[20px] shadow-[var(--shadow-photo)]">
+            <Image src={momies.gallery[2].src} alt={t(momies.gallery[2].alt)} fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
+            <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(91,44,58,0.55),transparent_30%,transparent_60%,rgba(91,44,58,0.75))]" />
+            <p className="absolute left-6 right-6 top-5 font-serif text-[clamp(2.6rem,6vw,4.2rem)] italic leading-none text-white">Momies</p>
+            <p className="absolute right-6 top-[5.2rem] text-[10px] font-semibold uppercase tracking-[0.3em] text-white/90 sm:top-24">Bakery · Lookbook</p>
+            <div className="absolute bottom-6 left-6 right-6 text-white">
+              <p className="text-[11px] uppercase tracking-[0.25em] opacity-90">{t(momies.kicker)}</p>
+              <p className="mt-2 font-serif text-xl italic leading-snug">{t(momies.summary)}</p>
+              <span className="mt-3 inline-block text-sm underline underline-offset-4">{t(ui.common.viewDetails)} →</span>
+            </div>
+          </Link>
+        </Reveal>
       </Container>
       <FooterCTA />
     </>

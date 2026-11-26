@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { experiences, makeupPage, site } from '@/lib/content';
 import { ui } from '@/lib/i18n';
@@ -7,12 +8,12 @@ import { useT } from '@/lib/store';
 import { Card, Container, Eyebrow, SerifTitle } from '@/components/ui/primitives';
 import { Reveal } from '@/components/ui/Reveal';
 import { Halo, MaskedImage } from '@/components/decor/Decor';
-import { TulipCorner } from '@/components/decor/TulipCluster';
+import { Lipstick, MakeupBrush, VanityMirror } from '@/components/decor/Illustrations';
 import { PhotoGrid } from '@/components/sections/Gallery';
 import SectionHero from '@/components/sections/SectionHero';
 import FooterCTA from '@/components/layout/FooterCTA';
 
-/** /experience/makeup-artist — the image-led beauty page. */
+/** Concept: a vanity table — oval mirror ringed with twinkling bulbs, lipstick and brush, powder-compact stats. */
 function MakeupView() {
   const { t } = useT();
   const e = experiences.find((x) => x.slug === 'makeup-artist')!;
@@ -24,11 +25,14 @@ function MakeupView() {
         accent
         desc={t(makeupPage.desc)}
         cta={{ label: t(makeupPage.cta), href: site.arunikaa }}
+        tulips={false}
         visual={
           <div className="relative mx-auto h-full w-full max-w-[520px]">
-            <Halo className="left-0 top-[4%] h-[92%] w-[94%] -rotate-[5deg] rounded-[48%_52%_44%_56%/42%_40%_60%_58%]" />
-            <MaskedImage src={e.cover.src} alt={t(e.cover.alt)} priority objectPosition="50% 20%" className="absolute left-[4%] top-0 h-[94%] w-[90%] rounded-[48%_52%_44%_56%/42%_40%_60%_58%]" />
-            <TulipCorner side="left" scale={0.5} className="-bottom-10 -left-10 z-20" />
+            <VanityMirror className="absolute left-[10%] top-[2%] h-[88%] w-[76%]">
+              <Image src={e.cover.src} alt={t(e.cover.alt)} fill priority sizes="(min-width: 1024px) 420px, 80vw" className="object-cover" style={{ objectPosition: '50% 22%' }} />
+            </VanityMirror>
+            <Lipstick className="animate-bob absolute bottom-0 left-0 z-10 h-36 w-14 -rotate-12" />
+            <MakeupBrush className="animate-sway absolute bottom-0 right-[2%] z-10 h-48 w-14 rotate-[14deg]" />
           </div>
         }
       />
@@ -36,18 +40,25 @@ function MakeupView() {
         <Reveal>
           <h2 className="mb-6 font-serif text-4xl italic">{t(makeupPage.galleryTitle)}</h2>
         </Reveal>
-        <PhotoGrid photos={e.gallery} columns="grid-cols-2 md:grid-cols-3" itemClassName="h-[220px] md:h-[300px]" />
-        <div className="mt-12 grid gap-6 sm:grid-cols-3">
+        <PhotoGrid photos={e.gallery} masonry />
+        <div className="mt-14 grid gap-8 sm:grid-cols-3">
           {makeupPage.stats.map((s, i) => (
-            <Reveal key={i} delay={i * 0.08} className="text-center">
-              <p className="font-serif text-5xl italic leading-none">{t(s.value)}</p>
-              <p className="mt-2 text-[13px] text-muted">{t(s.label)}</p>
+            <Reveal key={i} delay={i * 0.1} className="flex flex-col items-center">
+              {/* powder compact */}
+              <div className="flex h-36 w-36 items-center justify-center rounded-full bg-[linear-gradient(145deg,#F6D9C4,#E9B9A0)] p-3 shadow-[var(--shadow-soft)]">
+                <div className="flex h-full w-full items-center justify-center rounded-full bg-[radial-gradient(circle_at_35%_30%,#FFFFFF,#F8DCD6_55%,#EFC3C9)]">
+                  <p className="font-serif text-4xl italic text-[#5B2C3A]">{t(s.value)}</p>
+                </div>
+              </div>
+              <p className="mt-3 text-center text-[13px] text-muted">{t(s.label)}</p>
             </Reveal>
           ))}
         </div>
         <Card className="mt-12 grid gap-6 md:grid-cols-2">
           <div>
-            <p className="text-[13px] text-muted">{t(e.period)} · {t(e.type)}</p>
+            <p className="text-[13px] text-muted">
+              {t(e.period)} · {t(e.type)}
+            </p>
             <h3 className="mt-1 font-serif text-3xl italic">{t(e.org)}</h3>
           </div>
           <ul className="list-disc space-y-2 pl-5 text-[15px] leading-relaxed text-muted">

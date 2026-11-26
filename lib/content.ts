@@ -5,9 +5,10 @@ import type { L } from './i18n';
  * Edit text here — pages read from this file. Photos live in /public/images.
  */
 
-export type Photo = { src: string; alt: L };
+/** `pos` = CSS object-position, for photos whose subject is off-centre. */
+export type Photo = { src: string; alt: L; pos?: string };
 
-const p = (src: string, en: string, id: string): Photo => ({ src, alt: { en, id } });
+const p = (src: string, en: string, id: string, pos?: string): Photo => ({ src, alt: { en, id }, pos });
 
 export const site = {
   name: 'Rizka Amelia Nurazizah Johana',
@@ -22,7 +23,7 @@ export const site = {
   arunikaa: 'https://www.instagram.com/arunikaa.makeup',
   cv: '/docs/Rizka-Amelia-CV.pdf',
   location: { en: 'Bandung, Indonesia', id: 'Bandung, Indonesia' } as L,
-  portrait: p('/images/profile/rizka.jpg', 'Portrait of Rizka Amelia', 'Potret Rizka Amelia'),
+  portrait: p('/images/profile/rizka.jpg', 'Portrait of Rizka Amelia', 'Potret Rizka Amelia', '62% 10%'),
   description: {
     en: 'Portfolio of Rizka Amelia — Operation & Administration Staff, Cum Laude graduate of Universitas Pendidikan Indonesia, freelance makeup artist (Arunikaa Makeup), model and speaker based in Bandung.',
     id: 'Portofolio Rizka Amelia — Operation & Administration Staff, lulusan Cum Laude Universitas Pendidikan Indonesia, makeup artist freelance (Arunikaa Makeup), model, dan pembicara di Bandung.',
@@ -46,7 +47,7 @@ export const home = {
   worksAll: { en: 'View All Works', id: 'Lihat Semua Karya' },
   works: [
     { href: '/experience/makeup-artist', photo: p('/images/makeup/mua-1.jpg', 'Makeup work behind the scenes', 'Proses makeup di balik layar') },
-    { href: '/speaking', photo: p('/images/speaking/unpad-2.jpg', 'Speaking on stage at FMIPA UNPAD', 'Menjadi pembicara di FMIPA UNPAD') },
+    { href: '/speaking', photo: p('/images/speaking/unpad-2.jpg', 'Speaking on stage at FMIPA UNPAD', 'Menjadi pembicara di FMIPA UNPAD', '40% 78%') },
     { href: '/projects/momies-bakery', photo: p('/images/model/momies-3.jpg', 'Momies Bakery campaign portrait', 'Potret kampanye Momies Bakery') },
     { href: '/organization', photo: p('/images/organization/himagrin.jpg', 'With fellow organization members', 'Bersama rekan organisasi') },
   ],
@@ -299,13 +300,13 @@ export const speakingPage = {
   title: [{ en: 'Sharing ideas,', id: 'Berbagi ide,' }, { en: 'inspiring others.', id: 'menginspirasi sesama.' }] as [L, L],
   desc: { en: 'Sharing knowledge and experiences through talks, workshops, and classes.', id: 'Berbagi ilmu dan pengalaman lewat talkshow, workshop, dan kelas.' },
   cta: { en: 'View Events', id: 'Lihat Acara' },
-  hero: p('/images/speaking/unpad-2.jpg', 'Speaking on stage at FMIPA UNPAD', 'Menjadi pembicara di FMIPA UNPAD'),
+  hero: p('/images/speaking/unpad-2.jpg', 'Speaking on stage at FMIPA UNPAD', 'Menjadi pembicara di FMIPA UNPAD', '40% 78%'),
   highlightsTitle: { en: 'Event highlights', id: 'Sorotan acara' },
   highlights: [
     p('/images/speaking/sman1-subang-1.jpg', 'With SMAN 1 Subang students', 'Bersama siswa SMAN 1 Subang'),
     p('/images/speaking/unpad-1.jpg', 'Token of appreciation at UNPAD', 'Menerima tanda terima kasih di UNPAD'),
     p('/images/speaking/sman1-subang-2.jpg', 'Live makeup demo', 'Demo makeup langsung'),
-    p('/images/speaking/unpad-2.jpg', 'On stage at FMIPA UNPAD', 'Di panggung FMIPA UNPAD'),
+    p('/images/speaking/unpad-2.jpg', 'On stage at FMIPA UNPAD', 'Di panggung FMIPA UNPAD', '40% 78%'),
   ],
   events: [
     {
@@ -361,12 +362,6 @@ export const projects: Project[] = [
       p('/images/thesis/lab-9.jpg', 'Panelist session', 'Sesi panelis'),
       p('/images/thesis/lab-6.jpg', 'Preparing the station', 'Menyiapkan meja uji'),
       p('/images/thesis/lab-10.jpg', 'Hedonic score sheet', 'Lembar penilaian hedonik'),
-    ],
-    steps: [
-      // TODO(Rizka): replace the bracketed parts with the real details from the thesis.
-      { title: { en: 'Context', id: 'Latar belakang' }, body: { en: 'Why the lab needed one consistent procedure. [to be completed]', id: 'Mengapa laboratorium membutuhkan satu prosedur baku. [akan dilengkapi]' } },
-      { title: { en: 'Process', id: 'Proses' }, body: { en: 'Coded samples, prepared stations and scored panel sessions. [method, number of panelists]', id: 'Sampel berkode, meja uji, dan sesi penilaian panelis. [metode, jumlah panelis]' } },
-      { title: { en: 'Output', id: 'Hasil' }, body: { en: 'A written SOP for the sensory evaluation lab. [validation result]', id: 'Dokumen SOP untuk laboratorium evaluasi sensori. [hasil validasi]' } },
     ],
   },
   {

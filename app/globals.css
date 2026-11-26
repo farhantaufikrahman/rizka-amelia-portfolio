@@ -63,40 +63,68 @@
 }
 
 /* ---------- Ambient motion (CSS, GPU transforms only) ---------- */
-@keyframes sway {
-  0%, 100% { transform: rotate(-2deg); }
-  50% { transform: rotate(2deg); }
-}
+@keyframes sway { 0%, 100% { transform: rotate(-2deg); } 50% { transform: rotate(2deg); } }
+@keyframes swing { 0%, 100% { transform: rotate(-3deg); } 50% { transform: rotate(3deg); } }
 @keyframes fall {
   0% { transform: translate3d(0, -40px, 0) rotate(0deg); opacity: 0; }
   10% { opacity: 0.85; }
-  100% { transform: translate3d(120px, 105vh, 0) rotate(260deg); opacity: 0; }
+  100% { transform: translate3d(140px, 105vh, 0) rotate(300deg); opacity: 0; }
 }
-@keyframes spin-slow {
-  to { transform: rotate(360deg); }
-}
+@keyframes spin-slow { to { transform: rotate(360deg); } }
+@keyframes fly { from { transform: translateX(-12vw); } to { transform: translateX(112vw); } }
+@keyframes fly-back { from { transform: translateX(112vw) scaleX(-1); } to { transform: translateX(-12vw) scaleX(-1); } }
+@keyframes bob { 0%, 100% { transform: translateY(0); } 30% { transform: translateY(-34px); } 60% { transform: translateY(12px); } }
+@keyframes flap { 0%, 100% { transform: scaleX(1); } 50% { transform: scaleX(0.22); } }
+@keyframes glide { 0% { transform: translate(-10vw, 0); } 50% { transform: translate(50vw, -22px); } 100% { transform: translate(110vw, 10px); } }
+@keyframes beat { 0%, 100% { transform: scaleY(1); } 50% { transform: scaleY(-0.55); } }
+@keyframes gust { 0% { stroke-dashoffset: 420; opacity: 0; } 25% { opacity: 0.85; } 100% { stroke-dashoffset: -420; opacity: 0; } }
+@keyframes twinkle { 0%, 100% { opacity: 0.55; } 50% { opacity: 1; } }
 
-@utility animate-sway {
-  transform-origin: 50% 100%;
-  animation: sway 6s ease-in-out infinite;
+@utility animate-sway { transform-origin: 50% 100%; animation: sway 6s ease-in-out infinite; }
+@utility animate-swing { transform-origin: 50% 0; animation: swing 5s ease-in-out infinite; }
+@utility animate-fall { animation: fall 18s linear infinite; }
+@utility animate-spin-slow { animation: spin-slow 20s linear infinite; }
+@utility animate-fly { animation: fly 34s linear infinite; }
+@utility animate-fly-back { animation: fly-back 40s linear infinite; }
+@utility animate-bob { animation: bob 6s ease-in-out infinite; }
+@utility animate-flap { transform-box: fill-box; animation: flap 0.45s ease-in-out infinite; }
+@utility animate-glide { animation: glide 28s linear infinite; }
+@utility animate-beat { transform-box: fill-box; transform-origin: 50% 100%; animation: beat 0.8s ease-in-out infinite; }
+@utility animate-gust { stroke-dasharray: 160 420; animation: gust 9s ease-in-out infinite; }
+@utility animate-twinkle { animation: twinkle 2.4s ease-in-out infinite; }
+
+/* Paper textures used by the page concepts */
+@utility paper-lined {
+  /* paper stays light in dark mode, so pin the light tokens inside it */
+  --color-ink: #5b2c3a;
+  --color-muted: #7d5f66;
+  --color-rose: #e48a9a;
+  --color-line: rgb(91 44 58 / 0.15);
+  --color-card: rgb(255 255 255 / 0.7);
+  --color-on-ink: #fbefed;
+  color: #5b2c3a;
+  background-color: #fffdfb;
+  background-image: repeating-linear-gradient(to bottom, transparent 0 31px, rgb(228 138 154 / 0.25) 31px 32px);
 }
-@utility animate-fall {
-  animation: fall 18s linear infinite;
-}
-@utility animate-spin-slow {
-  animation: spin-slow 20s linear infinite;
+@utility paper-grid {
+  /* paper stays light in dark mode, so pin the light tokens inside it */
+  --color-ink: #5b2c3a;
+  --color-muted: #7d5f66;
+  --color-rose: #e48a9a;
+  --color-line: rgb(91 44 58 / 0.15);
+  --color-card: rgb(255 255 255 / 0.7);
+  --color-on-ink: #fbefed;
+  color: #5b2c3a;
+  background-color: #fffdfb;
+  background-image: linear-gradient(rgb(91 44 58 / 0.07) 1px, transparent 1px), linear-gradient(90deg, rgb(91 44 58 / 0.07) 1px, transparent 1px);
+  background-size: 22px 22px;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .animate-sway,
-  .animate-fall,
-  .animate-spin-slow {
+  .animate-sway, .animate-swing, .animate-fall, .animate-spin-slow, .animate-fly, .animate-fly-back,
+  .animate-bob, .animate-flap, .animate-glide, .animate-beat, .animate-gust, .animate-twinkle {
     animation: none !important;
   }
-  .animate-fall {
-    display: none;
-  }
-  html {
-    scroll-behavior: auto;
-  }
+  .animate-fall, .animate-fly, .animate-fly-back, .animate-glide { display: none; }
+  html { scroll-behavior: auto; }
 }

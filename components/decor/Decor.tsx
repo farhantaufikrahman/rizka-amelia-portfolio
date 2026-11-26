@@ -61,7 +61,9 @@ export function MaskedImage({
 }) {
   return (
     <motion.div
-      className={cx('relative overflow-hidden shadow-[var(--shadow-photo)]', className)}
+      // `absolute` callers size it with inset/width/height; otherwise it is a normal relative box.
+      // (A hard-coded `relative` here used to override `absolute` and collapse the photo to 0px.)
+      className={cx(/\babsolute\b/.test(className ?? '') ? '' : 'relative', 'overflow-hidden shadow-[var(--shadow-photo)]', className)}
       initial={{ clipPath: 'circle(0% at 50% 60%)' }}
       animate={{ clipPath: 'circle(75% at 50% 50%)' }}
       transition={{ duration: 1.6, ease, delay: 0.2 }}
