@@ -4,51 +4,66 @@ import { organizationPage as o } from '@/lib/content';
 import { useT } from '@/lib/store';
 import { Body, Container, SerifTitle } from '@/components/ui/primitives';
 import { Reveal } from '@/components/ui/Reveal';
-import { LineIcon, Polaroid } from '@/components/decor/Decor';
-import { TulipCorner } from '@/components/decor/TulipCluster';
+import { Polaroid } from '@/components/decor/Decor';
+import { Bunting, Clothespin } from '@/components/decor/Illustrations';
 import SectionHero from '@/components/sections/SectionHero';
 import FooterCTA from '@/components/layout/FooterCTA';
 
+/** Concept: a campus event — bunting across the top, photos pegged on a line, roles as lanyard ID cards. */
 export default function OrganizationView() {
   const { t } = useT();
   return (
     <>
+      <div className="relative">
+        <Bunting className="pointer-events-none absolute inset-x-0 top-0 h-24 w-full opacity-90" />
+      </div>
       <SectionHero
         eyebrow={t(o.eyebrow)}
         title={[t(o.title[0]), t(o.title[1])]}
         desc={t(o.desc)}
         cta={{ label: t(o.cta), href: '#roles' }}
-        visualClassName="h-[420px] sm:h-[540px]"
+        visualClassName="h-[440px] sm:h-[540px]"
         visual={
           <div className="relative h-full">
-            <Polaroid src={o.photos[0].src} alt={t(o.photos[0].alt)} rotate={4} className="absolute right-[4%] top-0 z-[1]" imgClassName="h-[160px] w-[230px] sm:h-[210px] sm:w-[300px]" />
-            <Polaroid src={o.photos[1].src} alt={t(o.photos[1].alt)} rotate={-3} caption="FPTI UPI" className="absolute left-[6%] top-[38%] z-[2]" imgClassName="h-[190px] w-[270px] sm:h-[250px] sm:w-[360px]" />
-            <TulipCorner side="right" scale={0.45} className="-bottom-12 right-0 z-10" />
+            <svg aria-hidden viewBox="0 0 600 120" preserveAspectRatio="none" className="absolute inset-x-0 top-6 h-24 w-full">
+              <path d="M0 20 Q300 110 600 20" stroke="#B98A88" strokeWidth="2" fill="none" />
+            </svg>
+            {o.photos.map((ph, i) => (
+              <div
+                key={ph.src}
+                className="animate-swing absolute"
+                style={{ left: i === 0 ? '4%' : '48%', top: i === 0 ? '13%' : '16%', animationDelay: `${-i * 1.6}s` }}
+              >
+                <Clothespin className="absolute -top-5 left-1/2 z-20 h-11 w-4 -translate-x-1/2" />
+                <Polaroid src={ph.src} alt={t(ph.alt)} rotate={i === 0 ? -3 : 4} caption={i === 1 ? 'FPTI UPI' : 'HIMAGRIN'} imgClassName="h-[170px] w-[220px] sm:h-[210px] sm:w-[280px]" />
+              </div>
+            ))}
           </div>
         }
       />
-      <Container id="roles" className="grid scroll-mt-28 gap-10 py-10 lg:grid-cols-12">
-        <Reveal className="flex flex-col gap-4 lg:col-span-5">
+      <Container id="roles" className="scroll-mt-28 py-10">
+        <Reveal className="mb-10 flex flex-col items-center gap-3 text-center">
           <SerifTitle as="h2" size="md" accent lines={[t(o.rolesTitle[0]), t(o.rolesTitle[1])]} />
-          <Body>{t(o.rolesBody)}</Body>
+          <Body className="text-center">{t(o.rolesBody)}</Body>
         </Reveal>
-        <Reveal delay={0.1} className="lg:col-span-7">
-          <ol>
+        <div className="mx-auto grid max-w-[900px] gap-10 md:grid-cols-2">
           {o.roles.map((r, i) => (
-              <li key={i} className="flex items-start gap-4 border-b border-line py-5">
-                <span className="flex h-10 w-10 flex-none items-center justify-center rounded-full bg-surface text-ink">
-                  <LineIcon name="role" size={18} />
-                </span>
-                <div className="flex flex-col gap-1">
-                  <p className="text-base font-semibold">{t(r.role)}</p>
-                  <p className="text-sm text-muted">{t(r.org)}</p>
-                  <p className="text-sm text-muted">{t(r.period)}</p>
-                  <p className="mt-1 text-[15px] leading-relaxed text-muted">{t(r.body)}</p>
-                </div>
-              </li>
+            <Reveal key={i} delay={i * 0.12} className="flex flex-col items-center">
+              {/* lanyard */}
+              <svg aria-hidden viewBox="0 0 120 90" className="h-20 w-28">
+                <path d="M10 0 L56 80 M110 0 L64 80" stroke="#E48A9A" strokeWidth="8" />
+                <rect x="50" y="74" width="20" height="14" rx="3" fill="#C9A27C" />
+              </svg>
+              <div className="animate-swing -mt-2 w-full max-w-[380px] rounded-2xl border border-line bg-card p-7 text-center shadow-[var(--shadow-photo)]" style={{ animationDuration: `${6 + i}s` }}>
+                <span aria-hidden className="mx-auto mb-4 block h-2.5 w-14 rounded-full bg-blush shadow-[inset_0_1px_2px_rgba(91,44,58,0.3)]" />
+                <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-rose">{t(r.period)}</p>
+                <h3 className="mt-2 font-serif text-3xl italic">{t(r.role)}</h3>
+                <p className="mt-1 text-sm font-medium">{t(r.org)}</p>
+                <p className="mt-3 text-[15px] leading-relaxed text-muted">{t(r.body)}</p>
+              </div>
+            </Reveal>
           ))}
-          </ol>
-        </Reveal>
+        </div>
       </Container>
       <FooterCTA />
     </>

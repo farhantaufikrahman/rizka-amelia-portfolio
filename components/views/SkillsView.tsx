@@ -2,35 +2,28 @@
 
 import { skillsPage } from '@/lib/content';
 import { useT } from '@/lib/store';
-import { Card, Chip, Container } from '@/components/ui/primitives';
+import { Chip, Container } from '@/components/ui/primitives';
 import { Reveal } from '@/components/ui/Reveal';
 import { Halo, MaskedImage } from '@/components/decor/Decor';
+import { SeedPacket } from '@/components/decor/Illustrations';
 import { TulipCorner } from '@/components/decor/TulipCluster';
 import SectionHero from '@/components/sections/SectionHero';
 import FooterCTA from '@/components/layout/FooterCTA';
 
+const TINTS = ['#F3B3BE', '#F6C7A7', '#D9C6F0', '#BFD6F2', '#E48A9A', '#F7DC94', '#C8E3B4'];
+
+/** Concept: a garden shop — every skill group is a packet of seeds. */
 export default function SkillsView() {
   const { t } = useT();
+  const groups = [...skillsPage.featured, ...skillsPage.more];
+
   return (
     <>
       <SectionHero
         eyebrow={t(skillsPage.eyebrow)}
         title={[t(skillsPage.title[0]), t(skillsPage.title[1])]}
         desc={t(skillsPage.desc)}
-        below={
-          <div className="mt-2 flex flex-col gap-5">
-            {skillsPage.featured.map((g) => (
-              <div key={g.name.en} className="flex flex-col gap-2.5">
-                <p className="text-sm font-semibold">{t(g.name)}</p>
-                <div className="flex flex-wrap gap-2">
-                  {g.items.map((s) => (
-                    <Chip key={s.en}>{t(s)}</Chip>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        }
+        cta={{ label: t({ en: 'Explore Skills', id: 'Lihat Keahlian' }), href: '#packets' }}
         visual={
           <div className="relative mx-auto aspect-square w-full max-w-[480px]">
             <Halo className="inset-0 rounded-full" />
@@ -39,18 +32,17 @@ export default function SkillsView() {
           </div>
         }
       />
-      <Container className="pb-6">
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {skillsPage.more.map((g, i) => (
-            <Reveal key={g.name.en} delay={i * 0.08}>
-              <Card className="flex h-full flex-col gap-3">
-                <h2 className="font-serif text-[26px] italic">{t(g.name)}</h2>
+      <Container id="packets" className="scroll-mt-28 pb-6">
+        <div className="grid gap-x-5 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
+          {groups.map((g, i) => (
+            <Reveal key={g.name.en} delay={(i % 4) * 0.08} className={i % 2 ? 'lg:mt-10' : undefined}>
+              <SeedPacket title={t(g.name)} tint={TINTS[i % TINTS.length]}>
                 <div className="flex flex-wrap gap-2">
                   {g.items.map((s) => (
                     <Chip key={s.en}>{t(s)}</Chip>
                   ))}
                 </div>
-              </Card>
+              </SeedPacket>
             </Reveal>
           ))}
         </div>
