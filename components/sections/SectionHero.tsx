@@ -18,6 +18,9 @@ export default function SectionHero({
   visual,
   below,
   visualClassName = 'h-[420px] sm:h-[520px] lg:h-[600px]',
+  reverse = false,
+  decor,
+  tulips = true,
 }: {
   eyebrow: string;
   title: [string, string];
@@ -27,11 +30,18 @@ export default function SectionHero({
   visual: ReactNode;
   below?: ReactNode;
   visualClassName?: string;
+  /** Put the visual on the left and the text on the right. */
+  reverse?: boolean;
+  /** Extra page-specific decoration layered behind the hero. */
+  decor?: ReactNode;
+  /** Show the default bottom corner tulips. */
+  tulips?: boolean;
 }) {
   return (
     <Container className="grid min-h-[calc(100svh-120px)] items-center gap-10 pb-16 pt-10 lg:grid-cols-12 lg:gap-8 lg:pt-6">
-      <TulipCorner side="left" scale={0.62} className="-bottom-24 -left-40 hidden lg:block" />
-      <Stagger className="relative z-10 flex flex-col gap-5 lg:col-span-5">
+      {tulips && <TulipCorner side={reverse ? 'right' : 'left'} scale={0.62} className={cx('-bottom-24 hidden lg:block', reverse ? '-right-40' : '-left-40')} />}
+      {decor}
+      <Stagger className={cx('relative z-10 flex flex-col gap-5 lg:col-span-5', reverse && 'lg:order-2')}>
         <StaggerItem>
           <Eyebrow>{eyebrow}</Eyebrow>
         </StaggerItem>
@@ -48,7 +58,7 @@ export default function SectionHero({
         )}
         {below && <StaggerItem>{below}</StaggerItem>}
       </Stagger>
-      <div className={cx('relative z-10 lg:col-span-7', visualClassName)}>{visual}</div>
+      <div className={cx('relative z-10 lg:col-span-7', reverse && 'lg:order-1', visualClassName)}>{visual}</div>
     </Container>
   );
 }

@@ -1,22 +1,30 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import { useCallback, useState } from 'react';
-import { certificatesPage as c } from '@/lib/content';
-import { useT } from '@/lib/store';
-import { Container, PillLink, cx } from '@/components/ui/primitives';
-import { Reveal } from '@/components/ui/Reveal';
-import { Polaroid } from '@/components/decor/Decor';
-import { TulipCorner } from '@/components/decor/TulipCluster';
-import { Lightbox } from '@/components/sections/Gallery';
-import SectionHero from '@/components/sections/SectionHero';
-import FooterCTA from '@/components/layout/FooterCTA';
+import Image from "next/image";
+import { useCallback, useState } from "react";
+import { certificatesPage as c } from "@/lib/content";
+import { useT } from "@/lib/store";
+import { Container, PillLink, cx } from "@/components/ui/primitives";
+import { Reveal } from "@/components/ui/Reveal";
+import { HangingString, Washi } from "@/components/decor/Illustrations";
+import { Lightbox } from "@/components/sections/Gallery";
+import SectionHero from "@/components/sections/SectionHero";
+import FooterCTA from "@/components/layout/FooterCTA";
 
+const FRAMES = [
+  "border-[#C9A27C] bg-[#FFFDFB]",
+  "border-[#E48A9A] bg-[#FFF8F7]",
+  "border-[#A8B9A0] bg-[#FBFDF9]",
+  "border-[#B98A88] bg-[#FFFDFB]",
+];
+
+/** Concept: a gallery wall — each certificate hangs in its own frame from a nail. */
 export default function CertificatesView() {
   const { t } = useT();
   const [index, setIndex] = useState<number | null>(null);
   const close = useCallback(() => setIndex(null), []);
   const photos = c.items.map((i) => i.photo);
+  const lead = c.items[0];
 
   return (
     <>
@@ -24,42 +32,97 @@ export default function CertificatesView() {
         eyebrow={t(c.eyebrow)}
         title={[t(c.title[0]), t(c.title[1])]}
         desc={t(c.desc)}
-        cta={{ label: t(c.cta), href: '#all' }}
-        visualClassName="h-[440px] sm:h-[540px]"
+        cta={{ label: t(c.cta), href: "#wall" }}
+        visualClassName="h-[460px] sm:h-[560px]"
         visual={
-          <div className="relative h-full">
-            <Polaroid src={c.items[0].photo.src} alt={t(c.items[0].photo.alt)} rotate={-4} caption="BNSP · 2024" className="absolute left-[10%] top-0 z-[1]" imgClassName="h-[250px] w-[180px] sm:h-[290px] sm:w-[210px]" />
-            <Polaroid src={c.items[2].photo.src} alt={t(c.items[2].photo.alt)} rotate={5} className="absolute right-[4%] top-[10%] z-[2]" imgClassName="h-[140px] w-[200px] sm:h-[170px] sm:w-[240px]" />
-            <Polaroid src={c.items[3].photo.src} alt={t(c.items[3].photo.alt)} rotate={-2} caption="SMAN 1 Subang" className="absolute bottom-[2%] right-[14%] z-[3]" imgClassName="h-[130px] w-[180px] sm:h-[160px] sm:w-[220px]" />
-            <TulipCorner side="right" scale={0.42} className="-bottom-12 right-0 z-10" />
+          <div className="relative mx-auto flex h-full w-full max-w-[420px] flex-col items-center">
+            <HangingString className="w-56" />
+            <div
+              className="animate-swing -mt-1 rounded-sm border-[14px] border-[#C9A27C] bg-[#FFFDFB] p-3 shadow-[var(--shadow-photo)] [box-shadow:inset_0_0_0_2px_#E9CFA9,var(--shadow-photo)]"
+              style={{ animationDuration: "7s" }}
+            >
+              <span className="relative block h-[300px] w-[220px] sm:h-[360px] sm:w-[260px]">
+                <Image
+                  src={lead.photo.src}
+                  alt={t(lead.photo.alt)}
+                  fill
+                  priority
+                  sizes="260px"
+                  className="object-contain"
+                />
+              </span>
+            </div>
+            <p className="mt-4 rounded-full bg-card px-4 py-1.5 text-[13px] text-muted shadow-[var(--shadow-soft)]">
+              {t(lead.title)} · {t(lead.meta)}
+            </p>
           </div>
         }
       />
-      <Container id="all" className="scroll-mt-28 pb-6">
-        <div className="grid grid-cols-2 gap-5 lg:grid-cols-4">
+      <Container id="wall" className="scroll-mt-28 pb-6">
+        {/* picture rail */}
+        <div
+          aria-hidden
+          className="mb-2 h-2 rounded-full bg-[linear-gradient(90deg,#E9CFA9,#C9A27C,#E9CFA9)] shadow-[0_6px_14px_-8px_rgba(91,44,58,0.4)]"
+        />
+        <div className="grid grid-cols-2 gap-x-6 gap-y-10 lg:grid-cols-4">
           {c.items.map((item, i) => (
-            <Reveal key={item.photo.src} delay={i * 0.08}>
+            <Reveal
+              key={item.photo.src}
+              delay={i * 0.08}
+              className={cx(
+                "flex flex-col items-center",
+                i % 2 === 1 && "lg:mt-8",
+              )}
+            >
+              <HangingString className="h-10 w-32" />
               <button
                 type="button"
                 onClick={() => setIndex(i)}
-                className={cx('group flex w-full cursor-zoom-in flex-col gap-3 rounded-[22px] border border-line bg-card p-4 text-left shadow-[var(--shadow-soft)]')}
+                aria-label={t(item.title)}
+                className={cx(
+                  "animate-swing group -mt-1 cursor-zoom-in rounded-sm border-[10px] p-2 shadow-[var(--shadow-photo)] transition-transform hover:scale-[1.03]",
+                  FRAMES[i % FRAMES.length],
+                )}
+                style={{
+                  animationDelay: `${-i * 1.3}s`,
+                  animationDuration: `${6 + (i % 3)}s`,
+                }}
               >
-                <span className="relative mx-auto block h-[200px] w-[150px] overflow-hidden bg-paper shadow-[0_24px_40px_-20px_rgb(91_44_58/0.35)] sm:h-[240px] sm:w-[180px]">
-                  <Image src={item.photo.src} alt={t(item.photo.alt)} fill sizes="200px" className="object-contain p-1.5 transition-transform duration-700 group-hover:scale-105" />
+                <span className="relative block h-[180px] w-[130px] sm:h-[220px] sm:w-[160px]">
+                  <Image
+                    src={item.photo.src}
+                    alt={t(item.photo.alt)}
+                    fill
+                    sizes="180px"
+                    className="object-contain"
+                  />
                 </span>
-                <span className="font-serif text-xl italic">{t(item.title)}</span>
-                <span className="text-[13px] text-muted">{t(item.meta)}</span>
               </button>
+              {/* museum label */}
+              <div className="relative mt-5 w-full max-w-[200px] rounded-sm bg-[#FFFDFB] px-3 py-2 text-center text-[#5B2C3A] shadow-[var(--shadow-soft)]">
+                <Washi className="-top-3 left-1/2 -translate-x-1/2 scale-75" />
+                <p className="font-serif text-lg italic leading-tight">
+                  {t(item.title)}
+                </p>
+                <p className="mt-0.5 text-[12px] text-[#7D5F66]">
+                  {t(item.meta)}
+                </p>
+              </div>
             </Reveal>
           ))}
         </div>
-        <div className="mt-8">
+        <div className="mt-12 flex justify-center">
           <PillLink href={c.pdf} variant="outline">
             {t(c.openPdf)}
           </PillLink>
         </div>
       </Container>
-      <Lightbox photos={photos} index={index} onClose={close} onIndex={setIndex} />
+      <Lightbox
+        photos={photos}
+        index={index}
+        onClose={close}
+        onIndex={setIndex}
+      />
       <FooterCTA />
     </>
   );

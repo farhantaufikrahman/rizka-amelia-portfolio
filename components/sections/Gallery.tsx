@@ -116,6 +116,7 @@ export function PhotoGrid({
               fill
               sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
               className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,0.61,0.36,1)] group-hover:scale-105"
+              style={ph.pos ? { objectPosition: ph.pos } : undefined}
             />
           </motion.button>
         ))}
