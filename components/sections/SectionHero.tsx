@@ -2,7 +2,7 @@
 
 import type { ReactNode } from 'react';
 import { Body, Container, Eyebrow, PillLink, SerifTitle, cx } from '@/components/ui/primitives';
-import { Stagger, StaggerItem } from '@/components/ui/Reveal';
+import { Parallax, Stagger, StaggerItem } from '@/components/ui/Reveal';
 import { TulipCorner } from '@/components/decor/TulipCluster';
 
 /**
@@ -20,7 +20,7 @@ export default function SectionHero({
   visualClassName = 'h-[420px] sm:h-[520px] lg:h-[600px]',
   reverse = false,
   decor,
-  tulips = true,
+  tulips = false,
 }: {
   eyebrow: string;
   title: [string, string];
@@ -58,7 +58,7 @@ export default function SectionHero({
         )}
         {below && <StaggerItem>{below}</StaggerItem>}
       </Stagger>
-      <div className={cx('relative z-10 lg:col-span-7', reverse && 'lg:order-1', visualClassName)}>{visual}</div>
+      <Parallax speed={40} className={cx('relative z-10 lg:col-span-7', reverse && 'lg:order-1', visualClassName)}>{visual}</Parallax>
     </Container>
   );
 }
