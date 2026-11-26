@@ -4,11 +4,11 @@ import type { ReactNode } from 'react';
 const cx = (...c: (string | false | null | undefined)[]) => c.filter(Boolean).join(' ');
 export { cx };
 
-/** "— HELLO, I'M" style label. */
+/** "— HELLO, I'M" style label, as in the reference layout. */
 export function Eyebrow({ children, className }: { children: ReactNode; className?: string }) {
   return (
     <p className={cx('flex items-center gap-3.5 text-[11px] font-semibold uppercase tracking-[0.3em] text-ink', className)}>
-      <span aria-hidden className="h-px w-10 bg-ink" />
+      <span aria-hidden className="h-px w-10 origin-left animate-[grow-line_1.2s_ease-out_both] bg-ink" />
       {children}
     </p>
   );
@@ -37,7 +37,7 @@ export function SerifTitle({
     <Tag className={cx('font-serif font-normal italic leading-[1.05] text-ink', sizes[size], className)}>
       {lines[0]}
       <br />
-      <span className={accent ? 'text-rose' : undefined}>{lines[1]}</span>
+      <span className={accent ? 'text-shimmer' : undefined}>{lines[1]}</span>
     </Tag>
   );
 }
@@ -54,19 +54,21 @@ type PillProps = {
   className?: string;
 };
 
-/** Rounded pill button. External, mailto and file links open as plain anchors. */
+/** Rounded pill button. Primary pills carry a slow passing glint. External, mailto and file links open as plain anchors. */
 export function PillLink({ href, children, variant = 'primary', arrow = variant === 'primary', className }: PillProps) {
   const classes = cx(
-    'group inline-flex items-center gap-2 self-start rounded-full px-6 py-3.5 text-sm font-medium transition-[box-shadow,background-color,color] duration-300 hover:shadow-[0_14px_28px_-14px_rgb(91_44_58/0.45)]',
-    variant === 'primary' ? 'bg-ink text-on-ink' : 'border border-line bg-card text-ink',
+    'group inline-flex items-center gap-2 self-start rounded-full px-6 py-3.5 text-sm font-medium transition-[box-shadow,background-color,color,transform] duration-300 hover:-translate-y-0.5 hover:shadow-[0_14px_28px_-14px_rgb(91_44_58/0.45)] active:translate-y-0',
+    variant === 'primary' ? 'sheen bg-ink text-on-ink' : 'border border-line bg-card text-ink backdrop-blur-sm hover:border-rose',
     className,
   );
   const inner = (
     <>
       {children}
       {arrow && (
-        <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">
-          →
+        <span aria-hidden className="inline-block transition-transform duration-300 group-hover:translate-x-1.5">
+          <svg width="16" height="10" viewBox="0 0 16 10" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M1 5h13M10 1l4 4-4 4" />
+          </svg>
         </span>
       )}
     </>
@@ -87,13 +89,34 @@ export function PillLink({ href, children, variant = 'primary', arrow = variant 
   );
 }
 
+/** The small round arrow button used on list cards; it nudges forward on its own and on hover. */
+export function ArrowCircle({ className }: { className?: string }) {
+  return (
+    <span
+      aria-hidden
+      className={cx(
+        'flex h-9 w-9 flex-none items-center justify-center rounded-full border border-line bg-paper/70 text-ink transition-colors duration-300 group-hover:border-rose group-hover:bg-rose group-hover:text-white',
+        className,
+      )}
+    >
+      <svg width="14" height="10" viewBox="0 0 16 10" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="animate-nudge">
+        <path d="M1 5h13M10 1l4 4-4 4" />
+      </svg>
+    </span>
+  );
+}
+
 export function Chip({ children }: { children: ReactNode }) {
-  return <span className="rounded-full border border-line bg-card px-3.5 py-1.5 text-[12.5px] text-ink">{children}</span>;
+  return (
+    <span className="inline-block rounded-full border border-line bg-card px-3.5 py-1.5 text-[12.5px] text-ink transition-[transform,background-color,border-color] duration-300 hover:-translate-y-0.5 hover:rotate-[-2deg] hover:border-rose hover:bg-paper">
+      {children}
+    </span>
+  );
 }
 
 export function Card({ children, className }: { children: ReactNode; className?: string }) {
   return (
-    <div className={cx('rounded-[22px] border border-line bg-card p-7 shadow-[var(--shadow-soft)] backdrop-blur-sm', className)}>
+    <div className={cx('rounded-[22px] border border-white/70 bg-card p-7 shadow-[var(--shadow-soft)] backdrop-blur-md dark:border-white/10', className)}>
       {children}
     </div>
   );

@@ -2,41 +2,58 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 import { home, site } from '@/lib/content';
 import { useT } from '@/lib/store';
-import { Body, Container, PillLink } from '@/components/ui/primitives';
-import { Reveal, Stagger, StaggerItem } from '@/components/ui/Reveal';
+import { Body, Container, Eyebrow, PillLink } from '@/components/ui/primitives';
+import { Parallax, Reveal, SplitWords, Stagger, StaggerItem } from '@/components/ui/Reveal';
 import { Halo, MaskedImage, RotatingBadge } from '@/components/decor/Decor';
 import { TulipCorner } from '@/components/decor/TulipCluster';
 import FooterCTA from '@/components/layout/FooterCTA';
+
+const ease = [0.22, 0.61, 0.36, 1] as const;
+
+/** Endless ribbon of the creative roles, with a tulip between each. */
+function RoleRibbon() {
+  const { t } = useT();
+  const items = [...home.roles, ...home.roles];
+  return (
+    <div className="relative overflow-hidden border-y border-line bg-card/60 py-4 backdrop-blur-sm [mask-image:linear-gradient(90deg,transparent,black_12%,black_88%,transparent)]">
+      <div className="animate-marquee flex w-max items-center gap-10 hover:[animation-play-state:paused]">
+        {items.map((r, i) => (
+          <span key={i} className="flex items-center gap-10 whitespace-nowrap font-serif text-2xl italic text-ink sm:text-3xl" aria-hidden={i >= home.roles.length}>
+            {t(r)}
+            <svg width="18" height="22" viewBox="0 0 24 30" aria-hidden className="animate-spin-slow text-rose" style={{ animationDuration: `${10 + (i % 3) * 4}s` }}>
+              <path d="M6 6 C8 9 10 12 12 14 C14 12 16 9 18 6 C17 11 15 13 12 14 C9 13 7 11 6 6 Z M12 3 C10 6 10 10 12 14 C14 10 14 6 12 3 Z" fill="currentColor" opacity="0.8" />
+            </svg>
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export default function HomeView() {
   const { t } = useT();
 
   return (
     <>
-      <Container className="grid items-center gap-12 pb-10 pt-10 lg:min-h-[640px] lg:grid-cols-12 lg:gap-6 lg:pt-6">
+      <Container className="grid items-center gap-12 pb-12 pt-10 lg:min-h-[660px] lg:grid-cols-12 lg:gap-6 lg:pt-6">
         <Stagger className="relative z-10 flex flex-col gap-5 lg:col-span-6 lg:pt-10">
           <StaggerItem>
-            <p className="flex items-center gap-3.5 text-[11px] font-semibold uppercase tracking-[0.3em]">
-              <span aria-hidden className="h-px w-10 bg-ink" />
-              {t(home.hello)}
-              <span aria-hidden className="h-px w-28 bg-line" />
-            </p>
+            <Eyebrow>{t(home.hello)}</Eyebrow>
           </StaggerItem>
           <h1 className="font-serif text-[clamp(3.4rem,7vw,6rem)] font-normal italic leading-[1.02]">
-            <StaggerItem as="span" className="block text-ink">
-              {site.shortName}
-            </StaggerItem>
-            <StaggerItem as="span" className="block text-rose">
+            <SplitWords text={site.shortName} className="block text-ink" delay={0.6} />
+            <StaggerItem as="span" className="text-shimmer block">
               {t(home.tagline1)}
             </StaggerItem>
-            <StaggerItem as="span" className="block text-rose">
+            <StaggerItem as="span" className="text-shimmer block">
               {t(home.tagline2)}
             </StaggerItem>
           </h1>
           <StaggerItem>
-            <Body className="max-w-[34ch] text-[17px]">{t(home.intro)}</Body>
+            <Body className="max-w-[38ch] text-[17px]">{t(home.intro)}</Body>
           </StaggerItem>
           <StaggerItem className="mt-1 flex flex-wrap gap-3.5">
             <PillLink href="/about">{t(home.ctaPrimary)}</PillLink>
@@ -46,41 +63,80 @@ export default function HomeView() {
           </StaggerItem>
         </Stagger>
 
-        <div className="relative mx-auto aspect-square w-full max-w-[560px] lg:col-span-6 lg:max-w-none">
-          <svg aria-hidden viewBox="0 0 640 640" className="absolute -inset-[4%] h-[108%] w-[108%]">
-            <circle cx="330" cy="310" r="292" stroke="var(--color-line)" strokeWidth="1" fill="none" />
+        <Parallax speed={30} className="relative mx-auto aspect-square w-full max-w-[560px] lg:col-span-6 lg:max-w-none">
+          <motion.svg
+            aria-hidden
+            viewBox="0 0 640 640"
+            className="absolute -inset-[4%] h-[108%] w-[108%]"
+            initial={{ opacity: 0, rotate: -40 }}
+            animate={{ opacity: 1, rotate: 0 }}
+            transition={{ duration: 1.6, ease, delay: 0.5 }}
+          >
+            <circle cx="320" cy="320" r="300" stroke="var(--color-line)" strokeWidth="1" fill="none" strokeDasharray="2 8" />
             <path d="M40 470 C120 600 300 650 470 590" stroke="var(--color-rose)" strokeOpacity="0.5" strokeWidth="1" fill="none" />
-          </svg>
-          <Halo className="inset-[3%] rounded-full" />
-          <MaskedImage src={site.portrait.src} alt={t(site.portrait.alt)} priority objectPosition="62% 10%" className="absolute inset-[3%] rounded-full" />
+          </motion.svg>
+          {/* a spark of light circling the portrait */}
+          <div aria-hidden className="absolute left-1/2 top-1/2 h-0 w-0 [--orbit:min(46vw,290px)]">
+            <span className="animate-orbit absolute -ml-2 -mt-2 block h-4 w-4 rounded-full bg-[radial-gradient(circle,#FFF7DC,rgba(255,214,150,0.7)_40%,transparent_70%)] shadow-[0_0_18px_6px_rgba(255,226,170,0.6)]" />
+          </div>
+          <div className="animate-float absolute inset-[3%]">
+            <Halo className="inset-0 rounded-full" />
+            <MaskedImage src={site.portrait.src} alt={t(site.portrait.alt)} priority objectPosition="62% 10%" className="absolute inset-0 rounded-full" />
+          </div>
           <RotatingBadge text={t(home.badge)} className="absolute right-0 top-[4%] z-30 h-[104px] w-[104px] sm:h-[136px] sm:w-[136px]" />
-          <TulipCorner side="left" scale={0.72} className="-bottom-14 -left-6 z-20" />
-        </div>
+          <TulipCorner side="left" scale={0.5} className="-bottom-10 -left-10 z-20" gustDelay={0.4} />
+        </Parallax>
       </Container>
 
+      <Reveal kind="blur">
+        <RoleRibbon />
+      </Reveal>
+
       <section className="relative">
-        <TulipCorner side="left" scale={0.9} className="-left-40 bottom-[-180px] hidden xl:block" />
-        <Container className="pb-8 xl:pl-[200px]">
-          <Reveal>
-            <div className="flex items-center gap-4">
-              <h2 className="font-serif text-3xl font-medium">{t(home.worksTitle)}</h2>
-              <span aria-hidden className="h-px w-16 bg-line" />
-              <span className="flex-1" />
-              <PillLink href="/experience" variant="outline" className="border-0 bg-transparent px-0 py-0 shadow-none hover:shadow-none" arrow>
-                {t(home.worksAll)}
-              </PillLink>
+        <Container className="pb-6 pt-16">
+          <Reveal className="flex items-end gap-4">
+            <div>
+              <h2 className="font-serif text-[clamp(2rem,3.4vw,2.6rem)] font-normal italic">{t(home.worksTitle)}</h2>
+              <p className="mt-1 text-sm text-muted">{t(home.worksSub)}</p>
             </div>
-            <p className="mb-5 mt-1 text-sm text-muted">{t(home.worksSub)}</p>
+            <span aria-hidden className="mb-3 hidden h-px flex-1 bg-line sm:block" />
+            <PillLink href="/experience" variant="outline" className="border-0 bg-transparent px-0 py-0 shadow-none hover:shadow-none" arrow>
+              {t(home.worksAll)}
+            </PillLink>
           </Reveal>
-          <div className="grid grid-cols-2 gap-3.5 md:grid-cols-4">
+          <div className="mt-7 grid grid-cols-2 gap-4 md:grid-cols-4">
             {home.works.map((w, i) => (
-              <Reveal key={w.href} delay={i * 0.08}>
-                <Link href={w.href} className="group relative block h-[200px] overflow-hidden rounded-2xl shadow-[0_20px_40px_-24px_rgb(91_44_58/0.35)] md:h-[220px]">
-                  <Image src={w.photo.src} alt={t(w.photo.alt)} fill sizes="(min-width: 768px) 25vw, 50vw" className="object-cover transition-transform duration-700 group-hover:scale-105" style={w.photo.pos ? { objectPosition: w.photo.pos } : undefined} />
+              <motion.div
+                key={w.href}
+                initial={{ opacity: 0, y: 60, rotate: i % 2 ? 3 : -3 }}
+                whileInView={{ opacity: 1, y: 0, rotate: 0 }}
+                viewport={{ once: true, margin: '-60px' }}
+                transition={{ duration: 0.9, ease, delay: i * 0.1 }}
+                className={i % 2 ? 'md:mt-10' : undefined}
+              >
+                <Link href={w.href} className="group relative block h-[230px] overflow-hidden rounded-[22px] shadow-[0_24px_44px_-26px_rgb(91_44_58/0.45)] md:h-[280px]">
+                  <span className="animate-ken-burns absolute inset-0 block" style={{ animationDelay: `${-i * 4}s` }}>
+                    <Image src={w.photo.src} alt={t(w.photo.alt)} fill sizes="(min-width: 768px) 25vw, 50vw" className="object-cover" style={w.photo.pos ? { objectPosition: w.photo.pos } : undefined} />
+                  </span>
+                  <span className="absolute inset-0 bg-[linear-gradient(180deg,transparent_50%,rgba(91,44,58,0.6))]" />
+                  <span className="absolute bottom-4 left-4 right-4 flex items-center justify-between font-serif text-2xl italic text-white">
+                    {t(w.label)}
+                    <span aria-hidden className="flex h-8 w-8 items-center justify-center rounded-full bg-white/25 backdrop-blur-sm transition-transform duration-500 group-hover:rotate-[-45deg] group-hover:bg-rose">
+                      <svg width="13" height="9" viewBox="0 0 16 10" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"><path d="M1 5h13M10 1l4 4-4 4" /></svg>
+                    </span>
+                  </span>
                 </Link>
-              </Reveal>
+              </motion.div>
             ))}
           </div>
+          <Reveal delay={0.2} className="mt-10">
+            <p className="max-w-[60ch] text-sm leading-relaxed text-muted">
+              {t(home.footnote)}{' '}
+              <Link href="/experience/i-love-emas" className="underline decoration-rose underline-offset-4 hover:text-rose">
+                {t({ en: 'See that role', id: 'Lihat peran itu' })}
+              </Link>
+            </p>
+          </Reveal>
         </Container>
       </section>
 
