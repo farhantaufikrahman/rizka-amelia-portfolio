@@ -1,7 +1,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { skillsPage } from '@/lib/content';
+import Link from 'next/link';
+import { skillsPage, type SkillGroup } from '@/lib/content';
 import { useT } from '@/lib/store';
 import { Chip, Container } from '@/components/ui/primitives';
 import { Halo, LineIcon } from '@/components/decor/Decor';
@@ -15,7 +16,7 @@ type Icon = 'mic' | 'brush' | 'laptop' | 'compass' | 'file' | 'flask' | 'globe' 
 /** Reference layout: one row per skill group — line icon, group name, chips. */
 export default function SkillsView() {
   const { t } = useT();
-  const groups = [...skillsPage.featured, ...skillsPage.more];
+  const groups: SkillGroup[] = [...skillsPage.featured, ...skillsPage.more];
 
   return (
     <>
@@ -70,9 +71,17 @@ export default function SkillsView() {
               >
                 {g.items.map((s) => (
                   <motion.span key={s.en} variants={{ hidden: { opacity: 0, scale: 0.6, y: 8 }, show: { opacity: 1, scale: 1, y: 0 } }} transition={{ type: 'spring', stiffness: 260, damping: 18 }}>
-                    <Chip>{t(s)}</Chip>
+                    <Chip>
+                      {t(s)}
+                      {s.note && <span className="text-muted"> · {t(s.note)}</span>}
+                    </Chip>
                   </motion.span>
                 ))}
+                {g.proof && (
+                  <Link href={g.proof.href} className="ml-1 self-center text-[12.5px] text-rose underline-offset-4 hover:underline">
+                    {t(skillsPage.proofLabel)}: {t(g.proof.label)} →
+                  </Link>
+                )}
               </motion.div>
             </motion.li>
           ))}

@@ -10,12 +10,15 @@ import { Washi } from '@/components/decor/Illustrations';
 import { TulipCorner } from '@/components/decor/TulipCluster';
 import SectionHero from '@/components/sections/SectionHero';
 import FooterCTA from '@/components/layout/FooterCTA';
+import BackLink from '@/components/ui/BackLink';
+import { ui } from '@/lib/i18n';
 
 /** Reference layout: taped polaroid collage hero → "My roles" list with line icons. */
 export default function OrganizationView() {
   const { t } = useT();
   return (
     <>
+      <BackLink href="/experience#organizational" label={ui.nav.experience} />
       <SectionHero
         eyebrow={t(o.eyebrow)}
         title={[t(o.title[0]), t(o.title[1])]}

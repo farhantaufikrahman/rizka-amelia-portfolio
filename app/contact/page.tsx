@@ -3,7 +3,7 @@ import { pageMetadata } from '@/lib/seo';
 
 export const metadata = pageMetadata({
   title: 'Contact',
-  description: 'Contact Rizka Amelia for operations & administration roles, makeup bookings (Arunikaa Makeup) or modelling in Bandung.',
+  description: 'Contact Rizka Amelia for Operational & Administrative Staff opportunities in Bandung — CV, email, LinkedIn and WhatsApp.',
   path: '/contact',
 });
 

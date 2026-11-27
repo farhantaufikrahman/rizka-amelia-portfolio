@@ -11,6 +11,8 @@ import { OrgLogo } from "@/components/decor/Decor";
 import { Lightbox } from "@/components/sections/Gallery";
 import SectionHero from "@/components/sections/SectionHero";
 import FooterCTA from "@/components/layout/FooterCTA";
+import BackLink from "@/components/ui/BackLink";
+import { ui } from "@/lib/i18n";
 
 const FRAMES = [
   "border-[#C9A27C] bg-[#FFFDFB]",
@@ -29,6 +31,7 @@ export default function CertificatesView() {
 
   return (
     <>
+      <BackLink href="/education#certificates" label={ui.nav.education} />
       <SectionHero
         eyebrow={t(c.eyebrow)}
         title={[t(c.title[0]), t(c.title[1])]}

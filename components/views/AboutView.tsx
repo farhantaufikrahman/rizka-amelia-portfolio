@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { about, site } from '@/lib/content';
 import type { L } from '@/lib/i18n';
 import { useT } from '@/lib/store';
@@ -42,7 +43,7 @@ export default function AboutView() {
           {about.values.map((v, i) => (
             <Reveal key={v.icon} kind="bloom" delay={i * 0.15} className="flex flex-col items-center px-6 text-center">
               <span className="hover-wiggle animate-rise-bob flex h-16 w-16 items-center justify-center rounded-full border border-line bg-card text-rose shadow-[var(--shadow-soft)]" style={{ animationDelay: `${-i * 1.1}s` }}>
-                <LineIcon name={v.icon as 'gem' | 'star' | 'heart'} size={28} />
+                <LineIcon name={v.icon as 'notebook' | 'file' | 'people'} size={28} />
               </span>
               <h3 className="mt-4 text-[15px] font-semibold text-ink">{t(v.title)}</h3>
               <p className="mt-1 max-w-[24ch] text-sm leading-relaxed text-muted">{t(v.caption)}</p>
@@ -73,7 +74,19 @@ export default function AboutView() {
         <Reveal kind="left" className="flex flex-col gap-4 lg:col-span-7">
           <Eyebrow>{t(about.journeyEyebrow)}</Eyebrow>
           <SerifTitle as="h2" size="md" accent lines={tt(about.journeyTitle)} />
-          <Body className="max-w-[60ch]">{t(about.journey)}</Body>
+          {about.journey.map((para, i) => (
+            <Body key={i} className="max-w-[60ch]">
+              {t(para)}
+              {i === about.journey.length - 1 && (
+                <>
+                  {' '}
+                  <Link href="/experience#creative" className="underline decoration-rose underline-offset-4 hover:text-rose">
+                    {t(about.creativeLink)}
+                  </Link>
+                </>
+              )}
+            </Body>
+          ))}
           <div className="mt-2 flex flex-wrap gap-3">
             <PillLink href={site.cv}>{t(about.cv)}</PillLink>
             <PillLink href={site.linkedin} variant="outline">
@@ -82,8 +95,8 @@ export default function AboutView() {
           </div>
         </Reveal>
         <Reveal kind="right" delay={0.1} className="relative h-[360px] lg:col-span-5">
-          <Polaroid src={about.photos[1].src} alt={t(about.photos[1].alt)} rotate={-6} drift={0} caption="Arunikaa" className="absolute left-0 top-0" imgClassName="h-[230px] w-[230px]" />
-          <Polaroid src={about.photos[0].src} alt={t(about.photos[0].alt)} rotate={6} drift={3.5} caption="UNPAD · 2024" className="absolute bottom-0 right-0 z-10" imgClassName="h-[200px] w-[170px]" />
+          <Polaroid src={about.photos[1].src} alt={t(about.photos[1].alt)} rotate={-6} drift={0} caption={about.photos[1].caption} className="absolute left-0 top-0" imgClassName="h-[230px] w-[230px]" />
+          <Polaroid src={about.photos[0].src} alt={t(about.photos[0].alt)} rotate={6} drift={3.5} caption={about.photos[0].caption} className="absolute bottom-0 right-0 z-10" imgClassName="h-[200px] w-[170px]" />
         </Reveal>
       </Container>
 

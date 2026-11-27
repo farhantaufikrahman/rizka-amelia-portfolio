@@ -5,16 +5,17 @@ import { usePathname, useRouter } from 'next/navigation';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Menu, Moon, Search, Sun, X } from 'lucide-react';
-import { navItems } from '@/lib/content';
+import { detailPages, navItems } from '@/lib/content';
 import { ui, type Lang } from '@/lib/i18n';
 import { setLang, toggleTheme, useAppDispatch, useAppSelector, useT } from '@/lib/store';
 import { cx } from '@/components/ui/primitives';
 
 type NavKey = (typeof navItems)[number]['key'];
 
+/** Detail pages that are no longer in the menu still light up their parent item. */
 function isActive(pathname: string, key: NavKey, href: string) {
-  if (key === 'makeup') return pathname === href;
-  if (key === 'experience') return pathname.startsWith('/experience') && pathname !== '/experience/makeup-artist';
+  if (key === 'experience') return ['/experience', '/organization', '/speaking'].some((p) => pathname.startsWith(p));
+  if (key === 'education') return pathname.startsWith('/education') || pathname.startsWith('/certificates');
   if (href === '/') return pathname === '/';
   return pathname.startsWith(href);
 }
@@ -82,7 +83,8 @@ function SearchDialog({ open, onClose }: { open: boolean; onClose: () => void })
   const inputRef = useRef<HTMLInputElement>(null);
 
   const pages = useMemo(
-    () => [...navItems.map((n) => ({ href: n.href, label: ui.nav[n.key] })), { href: '/contact', label: ui.nav.contact }],
+    // The search also finds the detail pages that are linked from Experience and Education rather than the menu.
+    () => [...navItems, ...detailPages].map((n) => ({ href: n.href, label: ui.nav[n.key] })),
     [],
   );
   const results = pages.filter((p) => `${p.label.en} ${p.label.id}`.toLowerCase().includes(q.trim().toLowerCase()));
@@ -236,7 +238,7 @@ export default function Navbar() {
               </button>
             </div>
             <ul className="mt-10 flex flex-col gap-1">
-              {[...navItems, { key: 'contact' as const, href: '/contact' }].map((n, i) => (
+              {navItems.map((n, i) => (
                 <motion.li key={n.key} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.04 * i }}>
                   <Link href={n.href} className="block py-1.5 font-serif text-4xl italic text-ink">
                     {t(ui.nav[n.key])}

@@ -51,42 +51,69 @@ export const home = {
   hello: { en: "Hello, I'm", id: 'Halo, saya' },
   headline: { en: 'Operational & Administrative Staff', id: 'Operational & Administrative Staff' },
   intro: {
-    en: 'Organized, detail-oriented, and adaptable professional with experience in daily operations, administrative tasks, data management, reporting, and customer service.',
-    id: 'Profesional yang terorganisir, teliti, dan mudah beradaptasi, berpengalaman dalam operasional harian, tugas administrasi, pengelolaan data, pelaporan, dan layanan pelanggan.',
+    en: 'Operational Staff at PT Muara Logam Indonesia (I Love Emas) with hands-on experience in daily operations, SOP implementation, administration, reporting, data processing, and customer service.',
+    id: 'Operational Staff di PT Muara Logam Indonesia (I Love Emas) dengan pengalaman langsung dalam operasional harian, penerapan SOP, administrasi, pelaporan, pengolahan data, dan layanan pelanggan.',
   },
-  interestsLabel: { en: 'Additional Interests', id: 'Minat Lainnya' },
-  interests: [
-    { label: { en: 'Makeup Artist', id: 'Makeup Artist' }, href: '/experience/makeup-artist' },
-    { label: { en: 'Model & Talent', id: 'Model & Talent' }, href: '/experience/model-talent' },
-    { label: { en: 'Public Speaking', id: 'Public Speaking' }, href: '/speaking' },
-  ],
-  /** Scrolling ribbon under the hero: the professional strengths an HR reader scans for. */
+  /** Scrolling ribbon under the hero: core competencies, named as in the CV. */
   roles: [
     { en: 'Daily Operations', id: 'Operasional Harian' },
+    { en: 'SOP Implementation', id: 'Penerapan SOP' },
     { en: 'Administration', id: 'Administrasi' },
-    { en: 'Data Management', id: 'Pengelolaan Data' },
     { en: 'Reporting', id: 'Pelaporan' },
-    { en: 'Stock Management', id: 'Pengelolaan Stok' },
+    { en: 'Data Processing', id: 'Pengolahan Data' },
+    { en: 'Documentation', id: 'Dokumentasi' },
     { en: 'Customer Service', id: 'Layanan Pelanggan' },
     { en: 'Team Coordination', id: 'Koordinasi Tim' },
   ] as L[],
   ctaPrimary: { en: 'View My Experience', id: 'Lihat Pengalaman Saya' },
   ctaSecondary: { en: 'Download CV', id: 'Unduh CV' },
   badge: { en: 'operations · admin · Rizka Amelia · ', id: 'operasional · admin · Rizka Amelia · ' },
-  worksTitle: { en: 'Selected Works', id: 'Karya Pilihan' },
-  worksSub: { en: 'Operations and administration first — creative work alongside.', id: 'Operasional dan administrasi di depan — karya kreatif menyertai.' },
+  worksTitle: { en: 'Selected Professional Works', id: 'Karya Profesional Pilihan' },
+  worksSub: {
+    en: 'Operations and administration work, from daily store operations to SOP development.',
+    id: 'Pekerjaan operasional dan administrasi, dari operasional toko harian hingga penyusunan SOP.',
+  },
   worksAll: { en: 'View All Experience', id: 'Lihat Semua Pengalaman' },
   works: [
-    { href: '/experience/i-love-emas', label: { en: 'Operations', id: 'Operasional' }, photo: p('/images/work/ilove-emas-3.jpg', 'Serving a customer at the I Love Emas counter', 'Melayani pelanggan di konter I Love Emas') },
-    { href: '/experience/agronesia-bmc', label: { en: 'Reporting & QC', id: 'Laporan & QC' }, photo: p('/images/internship/agronesia-1.jpg', 'PT Agronesia production floor', 'Area produksi PT Agronesia') },
-    { href: '/experience/makeup-artist', label: { en: 'Makeup', id: 'Makeup' }, photo: p('/images/makeup/mua-5.jpg', 'Sundanese bridal makeup by Arunikaa', 'Riasan pengantin Sunda oleh Arunikaa', '50% 22%') },
-    { href: '/speaking', label: { en: 'Speaking', id: 'Pembicara' }, photo: p('/images/speaking/unpad-2-speaker.jpg', 'Speaking on stage at FMIPA UNPAD', 'Menjadi pembicara di FMIPA UNPAD', '50% 35%') },
+    {
+      href: '/experience/i-love-emas',
+      label: { en: 'Daily Operations', id: 'Operasional Harian' },
+      sub: { en: 'I Love Emas · SOP, reports, customer service', id: 'I Love Emas · SOP, laporan, layanan pelanggan' },
+      photo: p('/images/work/ilove-emas-3.jpg', 'Serving a customer at the I Love Emas counter', 'Melayani pelanggan di konter I Love Emas'),
+    },
+    {
+      href: '/projects/sop-hedonic-testing',
+      label: { en: 'SOP Development', id: 'Penyusunan SOP' },
+      sub: { en: 'Undergraduate thesis · UPI', id: 'Skripsi · UPI' },
+      photo: p('/images/thesis/lab-5.jpg', 'Scoring samples in the sensory lab', 'Menilai sampel di laboratorium sensori'),
+    },
+    {
+      href: '/experience/agronesia-bmc',
+      label: { en: 'Reporting & QC', id: 'Laporan & QC' },
+      sub: { en: 'PT Agronesia (BMC) · internship', id: 'PT Agronesia (BMC) · magang' },
+      photo: p('/images/internship/agronesia-1.jpg', 'PT Agronesia production floor', 'Area produksi PT Agronesia'),
+    },
+    {
+      href: '/organization',
+      label: { en: 'Administration', id: 'Administrasi' },
+      sub: { en: 'Documentation · secretary roles in student organizations', id: 'Dokumentasi · peran sekretaris di organisasi mahasiswa' },
+      photo: p('/images/organization/fpti-board.jpg', 'With the FPTI student board', 'Bersama pengurus organisasi mahasiswa FPTI'),
+    },
+  ],
+  backgroundTitle: { en: 'Professional background', id: 'Latar belakang profesional' },
+  background: {
+    en: 'Currently working as an Operational Staff at PT Muara Logam Indonesia (I Love Emas), with experience in daily operations, operational administration, data processing, and periodic reporting. Previously gained operational experience through an internship at PT Agronesia (BMC), and administrative experience through secretary roles in student organizations at UPI.',
+    id: 'Saat ini bekerja sebagai Operational Staff di PT Muara Logam Indonesia (I Love Emas), berpengalaman dalam operasional harian, administrasi operasional, pengolahan data, dan pelaporan berkala. Sebelumnya mendapatkan pengalaman operasional melalui magang di PT Agronesia (BMC), serta pengalaman administrasi melalui peran sekretaris di organisasi mahasiswa UPI.',
+  },
+  backgroundLinks: [
+    { href: '/experience', label: { en: 'View full experience', id: 'Lihat semua pengalaman' } },
+    { href: '/education', label: { en: 'View education', id: 'Lihat pendidikan' } },
   ],
   footnote: {
-    en: 'Outside office hours I also work freelance as a makeup artist (Arunikaa), model and speaker — the creative side of the same organised person.',
-    id: 'Di luar jam kerja, saya juga aktif secara freelance sebagai makeup artist (Arunikaa), model, dan pembicara — sisi kreatif dari pribadi yang sama-sama rapi.',
+    en: 'Outside office hours I freelance as a makeup artist (Arunikaa), model and speaker — work that involves scheduling clients, delegating jobs to a team and communicating with an audience.',
+    id: 'Di luar jam kerja, saya aktif secara freelance sebagai makeup artist (Arunikaa), model, dan pembicara — pekerjaan yang melibatkan penjadwalan klien, pembagian tugas tim, dan komunikasi dengan audiens.',
   },
-  footnoteLink: { en: 'See the creative work', id: 'Lihat karya kreatif' },
+  footnoteLink: { en: 'See creative work', id: 'Lihat karya kreatif' },
 };
 
 /* ---------------- ABOUT ---------------- */
@@ -94,42 +121,63 @@ export const about = {
   eyebrow: { en: 'About me', id: 'Tentang saya' },
   title: [{ en: 'A little story', id: 'Sedikit cerita' }, { en: 'about me.', id: 'tentang saya.' }] as [L, L],
   desc: {
-    en: "I'm Rizka Amelia — a Cum Laude graduate who believes in the power of creativity, kindness, and continuous learning.",
-    id: 'Saya Rizka Amelia — lulusan Cum Laude yang percaya pada kekuatan kreativitas, kebaikan, dan belajar tanpa henti.',
+    en: "I'm Rizka Amelia — a Cum Laude graduate from UPI, now working in operations, with a strong interest in structured processes, documentation, and administration.",
+    id: 'Saya Rizka Amelia — lulusan Cum Laude UPI yang kini bekerja di bidang operasional, dengan minat kuat pada proses yang terstruktur, dokumentasi, dan administrasi.',
   },
   cta: { en: 'Know More', id: 'Selengkapnya' },
-  valuesTitle: { en: 'My values', id: 'Nilai saya' },
+  valuesTitle: { en: 'How I work', id: 'Cara saya bekerja' },
   values: [
-    { icon: 'gem', title: { en: 'Creative mindset', id: 'Pola pikir kreatif' }, caption: { en: 'Always looking for new ideas and solutions.', id: 'Selalu mencari ide dan solusi baru.' } },
-    { icon: 'heart', title: { en: 'Kind & collaborative', id: 'Ramah & kolaboratif' }, caption: { en: 'Working with care and respect.', id: 'Bekerja dengan peduli dan hormat.' } },
-    { icon: 'star', title: { en: 'Continuous growth', id: 'Terus bertumbuh' }, caption: { en: 'Eager to learn and be better than before.', id: 'Haus belajar dan menjadi lebih baik.' } },
+    { icon: 'notebook', title: { en: 'Organized & detail-oriented', id: 'Rapi & teliti' }, caption: { en: 'Careful with data, reports, and documentation.', id: 'Teliti dalam data, laporan, dan dokumentasi.' } },
+    { icon: 'file', title: { en: 'Process-driven', id: 'Berpegang pada prosedur' }, caption: { en: 'Work to SOP, and have written one myself.', id: 'Bekerja sesuai SOP, dan pernah menyusunnya sendiri.' } },
+    { icon: 'people', title: { en: 'Reliable & collaborative', id: 'Andal & kolaboratif' }, caption: { en: 'Coordinate across teams until the target is met.', id: 'Berkoordinasi lintas tim sampai target tercapai.' } },
   ],
   journeyEyebrow: { en: 'My journey', id: 'Perjalanan saya' },
-  journeyTitle: [{ en: 'Turning passion', id: 'Mengubah passion' }, { en: 'into purpose.', id: 'menjadi tujuan.' }] as [L, L],
-  journey: {
-    en: 'I currently work as an Operational Staff at PT Muara Logam Indonesia (I Love Emas): I run daily operations to SOP, maintain operational administration and process data, prepare daily, weekly and monthly reports, coordinate facilities, equipment and supplies, and serve customers in person and online. My goal is to grow as an Operational & Administrative Staff. I am a Cum Laude graduate in Agroindustrial Technology Education from Universitas Pendidikan Indonesia, with a thesis on developing an SOP for hedonic testing. Beyond the office, I am the makeup artist behind Arunikaa, a freelance model, and a speaker on grooming and beauty.',
-    id: 'Saat ini saya bekerja sebagai Operational Staff di PT Muara Logam Indonesia (I Love Emas): menjalankan operasional harian sesuai SOP, menjaga administrasi operasional dan mengolah data, menyusun laporan harian, mingguan, dan bulanan, mengoordinasikan fasilitas, peralatan, dan perlengkapan, serta melayani pelanggan secara langsung maupun online. Tujuan saya adalah berkembang sebagai Operational & Administrative Staff. Saya lulusan Cum Laude Pendidikan Teknologi Agroindustri, Universitas Pendidikan Indonesia, dengan skripsi tentang pengembangan SOP uji hedonik. Di luar kantor, saya adalah makeup artist di balik Arunikaa, model freelance, dan pembicara seputar grooming dan kecantikan.',
-  },
+  journeyTitle: [{ en: 'Experience in operations,', id: 'Berpengalaman di operasional,' }, { en: 'growing in administration.', id: 'bertumbuh di administrasi.' }] as [L, L],
+  /** Professional first, education and organization next, creative work last. */
+  journey: [
+    {
+      en: "Since April 2025 I've worked as an Operational Staff at PT Muara Logam Indonesia (I Love Emas): running daily operations in line with SOP, preparing daily, weekly and monthly reports, maintaining operational administration, coordinating facilities, equipment and supplies, and handling customer inquiries and complaints. Before that, I completed an operational internship at PT Agronesia (BMC), covering Quality Control and production reporting.",
+      id: 'Sejak April 2025 saya bekerja sebagai Operational Staff di PT Muara Logam Indonesia (I Love Emas): menjalankan operasional harian sesuai SOP, menyusun laporan harian, mingguan, dan bulanan, menjaga administrasi operasional, mengoordinasikan fasilitas, peralatan, dan perlengkapan, serta menangani pertanyaan dan keluhan pelanggan. Sebelumnya, saya menjalani magang operasional di PT Agronesia (BMC) yang mencakup Quality Control dan laporan produksi.',
+    },
+    {
+      en: 'I graduated Cum Laude (GPA 3.49) in Agroindustrial Technology Education from Universitas Pendidikan Indonesia. My thesis — developing an SOP for hedonic testing in the faculty’s sensory evaluation lab — is where I learned to work with structured, documented processes.',
+      id: 'Saya lulus Cum Laude (IPK 3,49) dari Pendidikan Teknologi Agroindustri, Universitas Pendidikan Indonesia. Skripsi saya — menyusun SOP uji hedonik di laboratorium evaluasi sensori fakultas — adalah tempat saya belajar bekerja dengan proses yang terstruktur dan terdokumentasi.',
+    },
+    {
+      en: 'In student organizations at UPI I served in secretary roles — General Assembly Secretary of the FPTI student board and General Secretary Staff of BEM HIMAGRIN — handling meeting minutes, correspondence, documentation and reports.',
+      id: 'Di organisasi mahasiswa UPI saya memegang peran sekretaris — Sekretaris Sidang Umum organisasi mahasiswa FPTI dan Staf Sekretaris Umum BEM HIMAGRIN — menangani notulensi, surat-menyurat, dokumentasi, dan laporan.',
+    },
+    {
+      en: 'Beyond the office, I am the makeup artist behind Arunikaa, a freelance model, and a speaker on grooming and beauty.',
+      id: 'Di luar kantor, saya adalah makeup artist di balik Arunikaa, model freelance, dan pembicara seputar grooming dan kecantikan.',
+    },
+  ] as L[],
+  creativeLink: { en: 'See freelance & creative work', id: 'Lihat karya freelance & kreatif' },
   cv: { en: 'Download CV', id: 'Unduh CV' },
   photos: [
-    p('/images/speaking/unpad-1.jpg', 'Receiving a token of appreciation at UNPAD', 'Menerima tanda terima kasih di UNPAD', '50% 30%'),
-    p('/images/makeup/mua-1.jpg', 'Behind the chair with Arunikaa Makeup', 'Di balik kursi rias bersama Arunikaa Makeup'),
+    { ...p('/images/work/ilove-emas-1.jpg', 'With the I Love Emas store team', 'Bersama tim toko I Love Emas'), caption: 'I Love Emas' },
+    { ...p('/images/internship/agronesia-1.jpg', 'PT Agronesia production floor', 'Area produksi PT Agronesia'), caption: 'Agronesia · BMC' },
   ],
-  quote: [{ en: 'Turning ideas', id: 'Mengubah ide' }, { en: 'into meaningful impact.', id: 'menjadi dampak bermakna.' }] as [L, L],
+  quote: [{ en: 'Clear processes,', id: 'Proses yang jelas,' }, { en: 'reliable results.', id: 'hasil yang andal.' }] as [L, L],
 };
 
 /* ---------------- EDUCATION ---------------- */
 export const education = {
-  eyebrow: { en: 'Education', id: 'Pendidikan' },
+  eyebrow: { en: 'Education & Certifications', id: 'Pendidikan & Sertifikasi' },
   title: [{ en: 'Building a strong', id: 'Membangun fondasi' }, { en: 'foundation.', id: 'yang kuat.' }] as [L, L],
   desc: {
-    en: 'A solid foundation in agroindustrial technology and education to achieve greater dreams.',
-    id: 'Fondasi kuat di bidang teknologi agroindustri dan pendidikan untuk meraih mimpi yang lebih besar.',
+    en: 'Bachelor’s degree from Universitas Pendidikan Indonesia (Cum Laude, GPA 3.49), a thesis on SOP development, a teaching practicum, and BNSP certification.',
+    id: 'Sarjana dari Universitas Pendidikan Indonesia (Cum Laude, IPK 3,49), skripsi tentang penyusunan SOP, praktik mengajar, dan sertifikasi BNSP.',
   },
   cta: { en: 'See My Education', id: 'Lihat Pendidikan Saya' },
+  certCta: { en: 'Certifications', id: 'Sertifikasi' },
+  certTitle: [{ en: 'Professional', id: 'Sertifikasi' }, { en: 'certification.', id: 'profesional.' }] as [L, L],
+  certMain: { en: 'Main certification', id: 'Sertifikasi utama' },
+  certMore: { en: 'Additional certificates', id: 'Sertifikat tambahan' },
+  certAll: { en: 'View all certificates', id: 'Lihat semua sertifikat' },
   timeline: [
     {
-      period: { en: '2020 – 2025', id: '2020 – 2025' },
+      period: { en: 'Sep 2020 – Jan 2025', id: 'Sep 2020 – Jan 2025' },
       title: { en: 'Universitas Pendidikan Indonesia', id: 'Universitas Pendidikan Indonesia' },
       logo: logos.upi as Logo | null,
       sub: { en: 'Bachelor of Agroindustrial Technology Education · Faculty of Technology and Industrial Education (FPTI)', id: 'S1 Pendidikan Teknologi Agroindustri · Fakultas Pendidikan Teknologi dan Industri (FPTI)' },
@@ -139,14 +187,14 @@ export const education = {
       period: { en: 'During studies', id: 'Selama kuliah' },
       title: { en: 'SMKN 4 Garut', id: 'SMKN 4 Garut' },
       logo: null as Logo | null,
-      sub: { en: 'Teaching practicum — lesson plans, teaching, evaluation', id: 'PPL — menyusun RPP, mengajar, evaluasi' },
+      sub: { en: 'Teaching practicum — taught vocational students, prepared lesson plans (RPP) and evaluated student progress', id: 'PPL — mengajar siswa SMK, menyusun RPP, dan mengevaluasi perkembangan siswa' },
       photo: p('/images/teaching/smkn4-garut-2.jpg', 'With the class at SMKN 4 Garut', 'Bersama kelas di SMKN 4 Garut') as Photo | null,
     },
     {
       period: { en: 'Jan 2025', id: 'Jan 2025' },
       title: { en: 'Graduated Cum Laude · S.Pd.', id: 'Lulus Cum Laude · S.Pd.' },
       logo: logos.upi as Logo | null,
-      sub: { en: 'GPA 3.49 / 4.00', id: 'IPK 3,49 / 4,00' },
+      sub: { en: 'GPA 3.49 / 4.00 · Bachelor of Education (S.Pd.)', id: 'IPK 3,49 / 4,00 · Sarjana Pendidikan (S.Pd.)' },
       // No graduation photo of Rizka exists, so this stop shows a diploma illustration instead.
       photo: null as Photo | null,
     },
@@ -169,8 +217,12 @@ export type Experience = {
   period: L;
   type: L;
   summary: L;
+  /** professional = jobs & internships; creative = freelance work (shown last on /experience). */
+  group: 'professional' | 'creative';
   /** Key areas shown as chips on the role card and detail page. */
   focus?: L[];
+  /** For freelance cards: the transferable skills this work shows. */
+  skillsShown?: L[];
   logo?: Logo;
   points: L[];
   cover: Photo;
@@ -179,10 +231,43 @@ export type Experience = {
 
 export const experiencePage = {
   eyebrow: { en: 'Experience', id: 'Pengalaman' },
-  title: [{ en: 'Organised work,', id: 'Kerja rapi,' }, { en: 'real impact.', id: 'dampak nyata.' }] as [L, L],
+  title: [{ en: 'Organized work,', id: 'Kerja rapi,' }, { en: 'real impact.', id: 'dampak nyata.' }] as [L, L],
   desc: {
-    en: 'Operations, administration, data and reporting first — with freelance creative work alongside.',
-    id: 'Operasional, administrasi, data, dan pelaporan di depan — ditemani karya kreatif freelance.',
+    en: 'Professional experience first, followed by organizational and freelance work.',
+    id: 'Pengalaman profesional di depan, diikuti pengalaman organisasi dan freelance.',
+  },
+  sections: {
+    professional: {
+      title: { en: 'Professional Experience', id: 'Pengalaman Profesional' },
+      sub: { en: 'Full-time work and internship.', id: 'Pekerjaan penuh waktu dan magang.' },
+    },
+    organizational: {
+      title: { en: 'Administrative & Organizational Experience', id: 'Pengalaman Administrasi & Organisasi' },
+      sub: { en: 'Secretary roles in student organizations at UPI.', id: 'Peran sekretaris di organisasi mahasiswa UPI.' },
+    },
+    creative: {
+      title: { en: 'Freelance & Creative', id: 'Freelance & Kreatif' },
+      sub: { en: 'Freelance work outside office hours, and the skills it shows.', id: 'Pekerjaan freelance di luar jam kerja, beserta kemampuan yang ditunjukkannya.' },
+    },
+  },
+  skillsShownLabel: { en: 'Skills shown', id: 'Kemampuan yang ditunjukkan' },
+  /** Hero collage: three operational photos and one creative. */
+  collage: [
+    p('/images/work/ilove-emas-1.jpg', 'The I Love Emas store team', 'Tim toko I Love Emas'),
+    p('/images/internship/agronesia-1.jpg', 'PT Agronesia production floor', 'Area produksi PT Agronesia'),
+    p('/images/organization/fpti-board.jpg', 'With the FPTI student board', 'Bersama pengurus organisasi mahasiswa FPTI'),
+    p('/images/makeup/mua-5.jpg', 'Sundanese bridal makeup by Arunikaa', 'Riasan pengantin Sunda oleh Arunikaa', '50% 22%'),
+  ],
+  speaking: {
+    href: '/speaking',
+    title: { en: 'Speaking Engagements', id: 'Pembicara' },
+    meta: { en: 'FMIPA UNPAD · Sep 2024 · SMAN 1 Subang · Jun 2024', id: 'FMIPA UNPAD · Sep 2024 · SMAN 1 Subang · Jun 2024' },
+    summary: {
+      en: 'Speaker at a grooming & beauty class and an inspirational class on makeup and entrepreneurship.',
+      id: 'Pembicara di kelas grooming & kecantikan dan kelas inspirasi tentang makeup dan kewirausahaan.',
+    },
+    skillsShown: [{ en: 'Communication', id: 'Komunikasi' }, { en: 'Presentation', id: 'Presentasi' }] as L[],
+    cover: p('/images/speaking/unpad-2-speaker.jpg', 'Speaking on stage at FMIPA UNPAD', 'Menjadi pembicara di FMIPA UNPAD', '50% 30%'),
   },
   cta: { en: 'View Details', id: 'Lihat Detail' },
   focusTitle: { en: 'Key responsibilities', id: 'Fokus pekerjaan' },
@@ -192,6 +277,7 @@ export const experiencePage = {
 export const experiences: Experience[] = [
   {
     slug: 'i-love-emas',
+    group: 'professional',
     logo: logos.iloveEmas,
     role: { en: 'Operational Staff', id: 'Operational Staff' },
     org: { en: 'PT Muara Logam Indonesia · I Love Emas', id: 'PT Muara Logam Indonesia · I Love Emas' },
@@ -210,7 +296,7 @@ export const experiences: Experience[] = [
       { en: 'Customer service', id: 'Layanan pelanggan' },
     ],
     points: [
-      { en: 'Operational coordination — manage and monitor daily operations in line with SOP, coordinating with internal teams and organising work priorities so operational targets are met.', id: 'Koordinasi operasional — mengelola dan memantau operasional harian sesuai SOP, berkoordinasi dengan tim internal, dan mengatur prioritas kerja agar target operasional tercapai.' },
+      { en: 'Operational coordination — manage and monitor daily operations in line with SOP, coordinating with internal teams and organizing work priorities so operational targets are met.', id: 'Koordinasi operasional — mengelola dan memantau operasional harian sesuai SOP, berkoordinasi dengan tim internal, dan mengatur prioritas kerja agar target operasional tercapai.' },
       { en: 'Administration & reporting — prepare daily, weekly and monthly operational reports and maintain operational administration as input for management monitoring and decisions.', id: 'Administrasi & laporan — menyusun laporan operasional harian, mingguan, dan bulanan serta menjaga administrasi operasional sebagai bahan pemantauan dan pengambilan keputusan manajemen.' },
       { en: 'Data processing — process and record operational data accurately to support periodic reporting.', id: 'Pengolahan data — mengolah dan mencatat data operasional secara akurat untuk mendukung pelaporan berkala.' },
       { en: 'Stock & supplies — monitor operational needs, coordinate the availability of facilities, equipment and supplies, and follow up process issues with solutions.', id: 'Stok & perlengkapan — memantau kebutuhan operasional, mengoordinasikan ketersediaan fasilitas, peralatan, dan perlengkapan, serta menindaklanjuti kendala proses dengan solusi.' },
@@ -226,6 +312,7 @@ export const experiences: Experience[] = [
   },
   {
     slug: 'agronesia-bmc',
+    group: 'professional',
     logo: logos.agronesia,
     role: { en: 'Operational Staff (Internship)', id: 'Operational Staff (Magang)' },
     org: { en: 'PT Agronesia · Unit Bandoengsche Melk Centrale', id: 'PT Agronesia · Unit Bandoengsche Melk Centrale' },
@@ -257,6 +344,8 @@ export const experiences: Experience[] = [
   },
   {
     slug: 'makeup-artist',
+    group: 'creative',
+    skillsShown: [{ en: 'Scheduling', id: 'Penjadwalan' }, { en: 'Client handling', id: 'Menangani klien' }, { en: 'Team delegation', id: 'Pembagian tugas tim' }],
     role: { en: 'Professional Makeup Artist', id: 'Professional Makeup Artist' },
     org: { en: 'Freelance · Arunikaa Makeup', id: 'Freelance · Arunikaa Makeup' },
     period: { en: 'Jan 2024 – Feb 2025', id: 'Jan 2024 – Feb 2025' },
@@ -281,6 +370,8 @@ export const experiences: Experience[] = [
   },
   {
     slug: 'model-talent',
+    group: 'creative',
+    skillsShown: [{ en: 'Professional collaboration', id: 'Kolaborasi profesional' }, { en: 'Adaptability', id: 'Adaptasi' }],
     logo: logos.momies,
     role: { en: 'Model and Talent', id: 'Model and Talent' },
     org: { en: 'Freelance · Momis Bakery', id: 'Freelance · Momis Bakery' },
@@ -360,32 +451,83 @@ export const skillsPage = {
   eyebrow: { en: 'Skills', id: 'Keahlian' },
   title: [{ en: 'My skills', id: 'Keahlian' }, { en: 'and expertise.', id: 'dan kemampuan.' }] as [L, L],
   desc: {
-    en: 'Operational and administrative skills first, backed by communication, technical and creative strengths.',
-    id: 'Kemampuan operasional dan administrasi di depan, didukung kemampuan komunikasi, teknis, dan kreatif.',
+    en: 'Work competencies, grouped as in my CV — each linked to where it was used.',
+    id: 'Kompetensi kerja, dikelompokkan sesuai CV — masing-masing ditautkan ke tempat kemampuan itu digunakan.',
   },
+  proofLabel: { en: 'See it in', id: 'Lihat di' },
+  // Groups and items follow the SKILLS section of the CV. Creative interests live under
+  // Experience → Freelance & Creative instead of here.
   featured: [
-    // Groups and items follow the SKILLS section of the CV.
-    { icon: 'compass', name: { en: 'Operations', id: 'Operasional' }, items: [{ en: 'Daily operations management', id: 'Manajemen operasional harian' }, { en: 'SOP implementation', id: 'Penerapan SOP' }, { en: 'Operational monitoring', id: 'Monitoring operasional' }, { en: 'Workflow coordination', id: 'Koordinasi alur kerja' }, { en: 'Work scheduling', id: 'Penjadwalan kerja' }] },
-    { icon: 'file', name: { en: 'Administration & Reporting', id: 'Administrasi & Laporan' }, items: [{ en: 'Data processing', id: 'Pengolahan data' }, { en: 'Operational reporting', id: 'Laporan operasional' }, { en: 'Production reporting', id: 'Laporan produksi' }, { en: 'Documentation', id: 'Dokumentasi' }, { en: 'Meeting minutes', id: 'Notulensi rapat' }, { en: 'Correspondence', id: 'Korespondensi' }] },
-    { icon: 'laptop', name: { en: 'Software', id: 'Software' }, items: [{ en: 'Microsoft Excel', id: 'Microsoft Excel' }, { en: 'Microsoft Word', id: 'Microsoft Word' }, { en: 'Microsoft PowerPoint', id: 'Microsoft PowerPoint' }, { en: 'Google Workspace', id: 'Google Workspace' }, { en: 'Canva', id: 'Canva' }, { en: 'CapCut', id: 'CapCut' }] },
+    {
+      icon: 'compass',
+      name: { en: 'Operations', id: 'Operasional' },
+      items: [{ en: 'Daily operations management', id: 'Manajemen operasional harian' }, { en: 'SOP implementation', id: 'Penerapan SOP' }, { en: 'Operational monitoring', id: 'Monitoring operasional' }, { en: 'Workflow coordination', id: 'Koordinasi alur kerja' }, { en: 'Work scheduling', id: 'Penjadwalan kerja' }],
+      proof: { href: '/experience/i-love-emas', label: { en: 'I Love Emas', id: 'I Love Emas' } },
+    },
+    {
+      icon: 'file',
+      name: { en: 'Administration & Reporting', id: 'Administrasi & Laporan' },
+      items: [{ en: 'Data processing', id: 'Pengolahan data' }, { en: 'Operational reporting', id: 'Laporan operasional' }, { en: 'Production reporting', id: 'Laporan produksi' }, { en: 'Documentation', id: 'Dokumentasi' }, { en: 'Meeting minutes', id: 'Notulensi rapat' }, { en: 'Correspondence', id: 'Korespondensi' }],
+      proof: { href: '/organization', label: { en: 'Organization roles', id: 'Peran organisasi' } },
+    },
+    {
+      icon: 'laptop',
+      name: { en: 'Software', id: 'Software' },
+      items: [
+        { en: 'Microsoft Excel', id: 'Microsoft Excel', note: { en: 'operational reports & data recap', id: 'laporan operasional & rekap data' } },
+        { en: 'Microsoft Word', id: 'Microsoft Word', note: { en: 'correspondence & minutes', id: 'surat-menyurat & notulen' } },
+        { en: 'Microsoft PowerPoint', id: 'Microsoft PowerPoint', note: { en: 'presentation materials', id: 'materi presentasi' } },
+        { en: 'Google Workspace', id: 'Google Workspace', note: { en: 'shared documentation', id: 'dokumentasi bersama' } },
+        { en: 'Canva', id: 'Canva', note: { en: 'social media content', id: 'konten media sosial' } },
+        { en: 'CapCut', id: 'CapCut', note: { en: 'short video content', id: 'konten video pendek' } },
+      ],
+    },
   ],
   more: [
-    { icon: 'mic', name: { en: 'Customer Service', id: 'Layanan Pelanggan' }, items: [{ en: 'In-person & digital customer service', id: 'Layanan pelanggan langsung & digital' }, { en: 'Inquiry & complaint handling', id: 'Penanganan pertanyaan & keluhan' }] },
-    { icon: 'flask', name: { en: 'Quality Control & Research', id: 'Quality Control & Riset' }, items: [{ en: 'Product quality inspection', id: 'Inspeksi mutu produk' }, { en: 'QC monitoring', id: 'Monitoring QC' }, { en: 'SOP development', id: 'Pengembangan SOP' }, { en: 'Sensory evaluation (hedonic testing)', id: 'Evaluasi sensori (uji hedonik)' }] },
-    { icon: 'people', name: { en: 'Digital Marketing', id: 'Pemasaran Digital' }, items: [{ en: 'Social media management', id: 'Manajemen media sosial' }, { en: 'Content planning', id: 'Perencanaan konten' }, { en: 'Content performance monitoring', id: 'Monitoring performa konten' }] },
-    { icon: 'globe', name: { en: 'Languages', id: 'Bahasa' }, items: [{ en: 'Indonesian (native)', id: 'Indonesia (bahasa ibu)' }, { en: 'English (intermediate)', id: 'Inggris (menengah)' }] },
-    { icon: 'brush', name: { en: 'Additional interests', id: 'Minat lainnya' }, items: [{ en: 'Makeup artistry', id: 'Tata rias' }, { en: 'Modelling', id: 'Modeling' }, { en: 'Public speaking', id: 'Public speaking' }] },
+    {
+      icon: 'mic',
+      name: { en: 'Customer Service', id: 'Layanan Pelanggan' },
+      items: [{ en: 'In-person & digital customer service', id: 'Layanan pelanggan langsung & digital' }, { en: 'Inquiry & complaint handling', id: 'Penanganan pertanyaan & keluhan' }],
+      proof: { href: '/experience/i-love-emas', label: { en: 'I Love Emas', id: 'I Love Emas' } },
+    },
+    {
+      icon: 'flask',
+      name: { en: 'Quality Control & Research', id: 'Quality Control & Riset' },
+      items: [{ en: 'Product quality inspection', id: 'Inspeksi mutu produk' }, { en: 'QC monitoring', id: 'Monitoring QC' }, { en: 'SOP development', id: 'Pengembangan SOP' }, { en: 'Sensory evaluation (hedonic testing)', id: 'Evaluasi sensori (uji hedonik)' }],
+      proof: { href: '/projects/sop-hedonic-testing', label: { en: 'SOP case study', id: 'Studi kasus SOP' } },
+    },
+    {
+      icon: 'people',
+      name: { en: 'Digital Marketing', id: 'Pemasaran Digital' },
+      items: [{ en: 'Social media management', id: 'Manajemen media sosial' }, { en: 'Content planning', id: 'Perencanaan konten' }, { en: 'Content performance monitoring', id: 'Monitoring performa konten' }],
+      proof: { href: '/experience/i-love-emas', label: { en: 'I Love Emas', id: 'I Love Emas' } },
+    },
+    {
+      icon: 'globe',
+      name: { en: 'Languages', id: 'Bahasa' },
+      items: [{ en: 'Indonesian (native)', id: 'Indonesia (bahasa ibu)' }, { en: 'English (intermediate)', id: 'Inggris (menengah)' }],
+    },
   ],
+};
+
+export type SkillGroup = {
+  icon: string;
+  name: L;
+  items: (L & { note?: L })[];
+  proof?: { href: string; label: L };
 };
 
 /* ---------------- ORGANIZATION ---------------- */
 export const organizationPage = {
   eyebrow: { en: 'Organization', id: 'Organisasi' },
-  title: [{ en: 'Growing together', id: 'Tumbuh bersama' }, { en: 'in great community.', id: 'dalam komunitas hebat.' }] as [L, L],
-  desc: { en: 'Active in student organisations at FPTI UPI to create positive impact.', id: 'Aktif di organisasi mahasiswa FPTI UPI untuk menciptakan dampak positif.' },
-  cta: { en: 'See My Organization', id: 'Lihat Organisasi Saya' },
+  title: [{ en: 'Administrative experience', id: 'Pengalaman administrasi' }, { en: 'in student organizations.', id: 'di organisasi mahasiswa.' }] as [L, L],
+  desc: {
+    en: 'Secretary roles at FPTI UPI: meeting minutes, correspondence, documentation, and reports.',
+    id: 'Peran sekretaris di FPTI UPI: notulensi, surat-menyurat, dokumentasi, dan laporan.',
+  },
+  cta: { en: 'See the Roles', id: 'Lihat Perannya' },
   rolesTitle: [{ en: 'Leadership', id: 'Peran' }, { en: 'roles.', id: 'kepemimpinan.' }] as [L, L],
-  rolesBody: { en: 'Keeping student organisations organised — minutes, records and the coordination in between.', id: 'Menjaga organisasi tetap rapi — notulen, arsip, dan koordinasi di antaranya.' },
+  rolesBody: { en: 'Keeping student organizations organized — minutes, records and the coordination in between.', id: 'Menjaga organisasi tetap rapi — notulen, arsip, dan koordinasi di antaranya.' },
   photos: [
     p('/images/organization/himagrin.jpg', 'With HIMAGRIN members', 'Bersama anggota HIMAGRIN'),
     p('/images/organization/fpti-board.jpg', 'With the FPTI student board', 'Bersama pengurus organisasi mahasiswa FPTI'),
@@ -395,13 +537,17 @@ export const organizationPage = {
       period: { en: 'Sep 2022 – Jan 2023', id: 'Sep 2022 – Jan 2023' },
       role: { en: 'General Assembly Secretary', id: 'Sekretaris Sidang Umum' },
       org: { en: 'FPTI UPI Student Organization Board (DPM/BEM)', id: 'Dewan Perwakilan Mahasiswa / BEM FPTI UPI' },
-      body: { en: 'Recorded, summarised and documented every outcome of the BEM General Assembly; managed its administration and minutes.', id: 'Mencatat, merangkum, dan mendokumentasikan seluruh hasil Sidang Umum BEM; mengelola administrasi dan notulensinya.' },
+      body: { en: 'Recorded, summarized and documented every outcome of the BEM General Assembly; managed its administration and minutes, keeping communication and coordination among participants smooth.', id: 'Mencatat, merangkum, dan mendokumentasikan seluruh hasil Sidang Umum BEM; mengelola administrasi dan notulensinya, menjaga komunikasi dan koordinasi antarpeserta tetap lancar.' },
+      tags: [{ en: 'Meeting minutes', id: 'Notulensi' }, { en: 'Documentation', id: 'Dokumentasi' }, { en: 'Administration', id: 'Administrasi' }] as L[],
+      photo: p('/images/organization/fpti-board.jpg', 'With the FPTI student board', 'Bersama pengurus organisasi mahasiswa FPTI'),
     },
     {
       period: { en: 'Jan 2021 – Jan 2022', id: 'Jan 2021 – Jan 2022' },
       role: { en: 'General Secretary Staff', id: 'Staf Sekretaris Umum' },
       org: { en: 'BEM HIMAGRIN FPTI UPI', id: 'BEM HIMAGRIN FPTI UPI' },
-      body: { en: "Managed the association's administration, correspondence and activity records; supported reports, minutes and coordination.", id: 'Mengelola administrasi, surat-menyurat, dan arsip kegiatan himpunan; mendukung laporan, notulensi, dan koordinasi.' },
+      body: { en: "Managed the association's administration, correspondence and activity records; supported the General Secretary with reports, minutes and internal coordination.", id: 'Mengelola administrasi, surat-menyurat, dan arsip kegiatan himpunan; membantu Sekretaris Umum menyusun laporan, notulensi, dan koordinasi internal.' },
+      tags: [{ en: 'Correspondence', id: 'Surat-menyurat' }, { en: 'Documentation', id: 'Dokumentasi' }, { en: 'Reporting', id: 'Pelaporan' }, { en: 'Meeting minutes', id: 'Notulensi' }] as L[],
+      photo: p('/images/organization/himagrin.jpg', 'With HIMAGRIN members', 'Bersama anggota HIMAGRIN'),
     },
   ],
 };
@@ -448,12 +594,28 @@ export type Project = {
   steps?: { title: L; body: L; photos: Photo[] }[];
   /** Near-identical frames grouped into looks, shown as one stack per look. */
   looks?: { title: L; note: L; photos: Photo[] }[];
+  /** professional projects are listed first; creative ones last, with a "Creative" label. */
+  category: 'professional' | 'creative';
+  /** Case-study framing shown above the steps. Only facts from the CV / thesis — nothing invented. */
+  caseStudy?: { overview: L; aim: L; role: L; outputs: L[]; skills: L[] };
 };
 
 export const projectsPage = {
   eyebrow: { en: 'Projects', id: 'Proyek' },
-  title: [{ en: 'Little projects,', id: 'Proyek kecil,' }, { en: 'lasting lessons.', id: 'pelajaran besar.' }] as [L, L],
-  desc: { en: 'A thesis that became a lab procedure, and a campaign shoot in front of the camera.', id: 'Skripsi yang menjadi prosedur laboratorium, dan sesi kampanye di depan kamera.' },
+  title: [{ en: 'Process and', id: 'Proses dan' }, { en: 'documentation work.', id: 'dokumentasi kerja.' }] as [L, L],
+  desc: {
+    en: 'A thesis that became a written lab procedure — plus one creative campaign, listed last.',
+    id: 'Skripsi yang menjadi prosedur laboratorium tertulis — ditambah satu kampanye kreatif di urutan terakhir.',
+  },
+  creativeLabel: { en: 'Creative', id: 'Kreatif' },
+  caseLabels: {
+    overview: { en: 'Project overview', id: 'Gambaran proyek' },
+    aim: { en: 'Aim', id: 'Tujuan' },
+    role: { en: 'My role', id: 'Peran saya' },
+    process: { en: 'Process', id: 'Proses' },
+    outputs: { en: 'Output', id: 'Hasil' },
+    skills: { en: 'Skills applied', id: 'Kemampuan yang diterapkan' },
+  },
   cta: { en: 'See Projects', id: 'Lihat Proyek' },
   backToProjects: { en: 'Back to Projects', id: 'Kembali ke Proyek' },
   caseKicker: { en: 'Project case study', id: 'Studi kasus proyek' },
@@ -471,6 +633,31 @@ export const projects: Project[] = [
     },
     cover: p('/images/thesis/lab-5.jpg', 'Scoring samples in the sensory lab', 'Menilai sampel di laboratorium sensori'),
     gallery: [],
+    category: 'professional',
+    caseStudy: {
+      overview: {
+        en: 'Undergraduate thesis at the Food Technology Sensory Evaluation Laboratory, Faculty of Technology and Industrial Education (FPTI), Universitas Pendidikan Indonesia, 2024.',
+        id: 'Skripsi di Laboratorium Evaluasi Sensori Teknologi Pangan, Fakultas Pendidikan Teknologi dan Industri (FPTI), Universitas Pendidikan Indonesia, 2024.',
+      },
+      aim: {
+        en: 'Give the lab written, step-by-step guidance for preparing, running and recording hedonic (consumer-preference) tests.',
+        id: 'Memberi laboratorium panduan tertulis langkah demi langkah untuk menyiapkan, menjalankan, dan mencatat uji hedonik (uji kesukaan konsumen).',
+      },
+      role: {
+        en: 'As the thesis author, I developed the procedure: organizing the sequence of activities and documenting each step, from preparing the station to recording the results.',
+        id: 'Sebagai penulis skripsi, saya menyusun prosedurnya: mengurutkan rangkaian kegiatan dan mendokumentasikan setiap langkah, dari menyiapkan meja uji hingga mencatat hasil.',
+      },
+      outputs: [
+        { en: 'A written SOP for hedonic testing in the sensory lab', id: 'SOP tertulis untuk uji hedonik di laboratorium sensori' },
+        { en: 'A hedonic score sheet for recording panelists’ ratings', id: 'Lembar penilaian hedonik untuk mencatat penilaian panelis' },
+      ],
+      skills: [
+        { en: 'SOP development', id: 'Penyusunan SOP' },
+        { en: 'Documentation', id: 'Dokumentasi' },
+        { en: 'Process standardization', id: 'Standardisasi proses' },
+        { en: 'Attention to detail', id: 'Ketelitian' },
+      ],
+    },
     steps: [
       {
         title: { en: 'Prepare the station', id: 'Siapkan meja uji' },
@@ -518,6 +705,7 @@ export const projects: Project[] = [
     },
     cover: p('/images/model/momies-3.jpg', 'Lifestyle shoot for Momis Bakery', 'Sesi foto lifestyle Momis Bakery', '50% 35%'),
     gallery: [],
+    category: 'creative',
     looks: [
       {
         title: { en: 'The briefing', id: 'Briefing' },
@@ -559,7 +747,15 @@ export const certificatesPage = {
 export const contactPage = {
   eyebrow: { en: 'Contact', id: 'Kontak' },
   title: [{ en: "Let's", id: 'Mari' }, { en: 'connect!', id: 'terhubung!' }] as [L, L],
-  desc: { en: 'Feel free to reach out for collaboration, projects, a role — or just to say hello.', id: 'Silakan hubungi saya untuk kolaborasi, proyek, peluang kerja — atau sekadar menyapa.' },
+  desc: {
+    en: 'Thank you for visiting. For opportunities in operations and administration, or professional networking, please get in touch.',
+    id: 'Terima kasih sudah berkunjung. Untuk peluang di bidang operasional dan administrasi, atau jejaring profesional, silakan hubungi saya.',
+  },
+  availability: { en: 'Open to Operational & Administrative Staff roles · Bandung, Indonesia', id: 'Terbuka untuk posisi Operational & Administrative Staff · Bandung, Indonesia' },
+  cv: { en: 'Curriculum vitae', id: 'Curriculum vitae' },
+  cvValue: { en: 'Download CV (PDF)', id: 'Unduh CV (PDF)' },
+  linkedin: { en: 'LinkedIn', id: 'LinkedIn' },
+  linkedinValue: { en: 'View my profile', id: 'Lihat profil saya' },
   email: { en: 'Email', id: 'Email' },
   whatsapp: { en: 'WhatsApp', id: 'WhatsApp' },
   whatsappValue: { en: 'Chat with me', id: 'Chat dengan saya' },
@@ -574,15 +770,21 @@ export const notFoundPage = {
 };
 
 /* ---------------- NAV / SEARCH ---------------- */
+/** Main menu: seven items, professional profile first. */
 export const navItems = [
   { key: 'home', href: '/' },
   { key: 'about', href: '/about' },
-  { key: 'education', href: '/education' },
   { key: 'experience', href: '/experience' },
-  { key: 'makeup', href: '/experience/makeup-artist' },
   { key: 'skills', href: '/skills' },
-  { key: 'organization', href: '/organization' },
-  { key: 'speaking', href: '/speaking' },
   { key: 'projects', href: '/projects' },
+  { key: 'education', href: '/education' },
+  { key: 'contact', href: '/contact' },
+] as const;
+
+/** Pages kept live but reached from Experience / Education instead of the menu (and from the search). */
+export const detailPages = [
+  { key: 'organization', href: '/organization' },
+  { key: 'makeup', href: '/experience/makeup-artist' },
+  { key: 'speaking', href: '/speaking' },
   { key: 'certificates', href: '/certificates' },
 ] as const;

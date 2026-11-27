@@ -2,7 +2,7 @@
 
 import type { ReactNode } from 'react';
 import { motion } from 'framer-motion';
-import { Brush, Mail, MapPin, MessageCircle } from 'lucide-react';
+import { Brush, FileDown, Mail, MapPin, MessageCircle } from 'lucide-react';
 import { contactPage as c, site } from '@/lib/content';
 import { useT } from '@/lib/store';
 import { Body, Container, Eyebrow, PillLink, SerifTitle } from '@/components/ui/primitives';
@@ -56,18 +56,22 @@ export default function ContactView() {
           </StaggerItem>
           <StaggerItem>
             <Body>{t(c.desc)}</Body>
+            <p className="mt-3 inline-flex items-center gap-2 rounded-full border border-rose/30 bg-rose/10 px-3.5 py-1.5 text-[13px] font-medium text-ink">
+              <span aria-hidden className="h-2 w-2 rounded-full bg-[#7FB069]" />
+              {t(c.availability)}
+            </p>
           </StaggerItem>
+          {/* Order for recruiters: CV, email, LinkedIn, WhatsApp, location; Instagram sits with the icons below. */}
           <StaggerItem className="flex flex-col divide-y divide-line">
+            <Row icon={<FileDown {...ic} />} label={t(c.cv)} value={t(c.cvValue)} href={site.cv} />
             <Row icon={<Mail {...ic} />} label={t(c.email)} value={site.email} href={`mailto:${site.email}`} />
+            <Row icon={<LineIcon name="linkedin" size={18} />} label={t(c.linkedin)} value={t(c.linkedinValue)} href={site.linkedin} />
             <Row icon={<MessageCircle {...ic} />} label={t(c.whatsapp)} value={t(c.whatsappValue)} href={site.whatsapp} />
             <Row icon={<MapPin {...ic} />} label={t(c.location)} value={t(site.location)} />
           </StaggerItem>
           <StaggerItem className="flex flex-wrap items-center gap-4">
             <PillLink href={`mailto:${site.email}`}>{t(c.send)}</PillLink>
             <div className="flex gap-2.5">
-              <Social href={site.linkedin} label="LinkedIn">
-                <LineIcon name="linkedin" size={18} />
-              </Social>
               <Social href={site.instagram} label="Instagram @rizkamnj">
                 <LineIcon name="instagram" size={18} />
               </Social>

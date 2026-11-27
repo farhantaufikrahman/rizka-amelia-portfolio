@@ -58,19 +58,6 @@ export default function HomeView() {
               {t(home.ctaSecondary)}
             </PillLink>
           </StaggerItem>
-          <StaggerItem className="mt-2 border-t border-line pt-4">
-            <p className="text-[12px] font-semibold uppercase tracking-[0.18em] text-muted">{t(home.interestsLabel)}</p>
-            <p className="mt-1.5 flex flex-wrap items-center gap-x-2 gap-y-1 font-serif text-lg italic text-ink">
-              {home.interests.map((it, i) => (
-                <span key={it.href} className="flex items-center gap-2">
-                  {i > 0 && <span aria-hidden className="text-rose">·</span>}
-                  <Link href={it.href} className="underline-offset-4 transition-colors hover:text-rose hover:underline">
-                    {t(it.label)}
-                  </Link>
-                </span>
-              ))}
-            </p>
-          </StaggerItem>
         </Stagger>
 
         <Parallax speed={30} className="relative mx-auto aspect-square w-full max-w-[560px] lg:col-span-6 lg:max-w-none">
@@ -128,10 +115,13 @@ export default function HomeView() {
                   <span className="animate-ken-burns absolute inset-0 block" style={{ animationDelay: `${-i * 4}s` }}>
                     <Image src={w.photo.src} alt={t(w.photo.alt)} fill sizes="(min-width: 768px) 25vw, 50vw" className="object-cover" style={w.photo.pos ? { objectPosition: w.photo.pos } : undefined} />
                   </span>
-                  <span className="absolute inset-0 bg-[linear-gradient(180deg,transparent_50%,rgba(91,44,58,0.6))]" />
-                  <span className="absolute bottom-4 left-4 right-4 flex items-center justify-between font-serif text-2xl italic text-white">
-                    {t(w.label)}
-                    <span aria-hidden className="flex h-8 w-8 items-center justify-center rounded-full bg-white/25 backdrop-blur-sm transition-transform duration-500 group-hover:rotate-[-45deg] group-hover:bg-rose">
+                  <span className="absolute inset-0 bg-[linear-gradient(180deg,transparent_30%,rgba(91,44,58,0.75))]" />
+                  <span className="absolute bottom-4 left-4 right-4 flex items-end justify-between gap-2 text-white">
+                    <span className="flex flex-col">
+                      <span className="font-serif text-[22px] italic leading-tight md:text-2xl">{t(w.label)}</span>
+                      <span className="mt-1 text-[11px] leading-snug text-white/85">{t(w.sub)}</span>
+                    </span>
+                    <span aria-hidden className="flex h-8 w-8 flex-none items-center justify-center rounded-full bg-white/25 backdrop-blur-sm transition-transform duration-500 group-hover:rotate-[-45deg] group-hover:bg-rose">
                       <svg width="13" height="9" viewBox="0 0 16 10" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"><path d="M1 5h13M10 1l4 4-4 4" /></svg>
                     </span>
                   </span>
@@ -139,10 +129,25 @@ export default function HomeView() {
               </motion.div>
             ))}
           </div>
+          <Reveal delay={0.1} className="mt-16">
+            <div className="grid gap-6 rounded-[24px] border border-white/70 bg-card p-6 shadow-[var(--shadow-soft)] backdrop-blur-md dark:border-white/10 sm:p-8 md:grid-cols-[1fr_auto] md:items-center">
+              <div>
+                <h2 className="font-serif text-[clamp(1.7rem,3vw,2.2rem)] italic">{t(home.backgroundTitle)}</h2>
+                <p className="mt-2 max-w-[70ch] text-[15px] leading-relaxed text-muted">{t(home.background)}</p>
+              </div>
+              <div className="flex flex-wrap gap-3 md:flex-col">
+                {home.backgroundLinks.map((l, i) => (
+                  <PillLink key={l.href} href={l.href} variant={i ? 'outline' : undefined}>
+                    {t(l.label)}
+                  </PillLink>
+                ))}
+              </div>
+            </div>
+          </Reveal>
           <Reveal delay={0.2} className="mt-10">
             <p className="max-w-[60ch] text-sm leading-relaxed text-muted">
               {t(home.footnote)}{' '}
-              <Link href="/experience/makeup-artist" className="underline decoration-rose underline-offset-4 hover:text-rose">
+              <Link href="/experience#creative" className="underline decoration-rose underline-offset-4 hover:text-rose">
                 {t(home.footnoteLink)}
               </Link>
             </p>
