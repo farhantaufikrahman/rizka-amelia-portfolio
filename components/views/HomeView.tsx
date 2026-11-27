@@ -43,23 +43,33 @@ export default function HomeView() {
           <StaggerItem>
             <Eyebrow>{t(home.hello)}</Eyebrow>
           </StaggerItem>
-          <h1 className="font-serif text-[clamp(3.4rem,7vw,6rem)] font-normal italic leading-[1.02]">
-            <SplitWords text={site.shortName} className="block text-ink" delay={0.6} />
-            <StaggerItem as="span" className="text-shimmer block">
-              {t(home.tagline1)}
-            </StaggerItem>
-            <StaggerItem as="span" className="text-shimmer block">
-              {t(home.tagline2)}
+          <h1 className="font-serif font-normal italic">
+            <SplitWords text={site.shortName} className="block text-[clamp(3.2rem,7vw,5.6rem)] leading-[1.02] text-ink" delay={0.6} />
+            <StaggerItem as="span" className="text-shimmer mt-2 block text-[clamp(1.75rem,3.4vw,2.6rem)] leading-[1.15]">
+              {t(home.headline)}
             </StaggerItem>
           </h1>
           <StaggerItem>
-            <Body className="max-w-[38ch] text-[17px]">{t(home.intro)}</Body>
+            <Body className="max-w-[46ch] text-[17px]">{t(home.intro)}</Body>
           </StaggerItem>
           <StaggerItem className="mt-1 flex flex-wrap gap-3.5">
-            <PillLink href="/about">{t(home.ctaPrimary)}</PillLink>
-            <PillLink href="/contact" variant="outline">
+            <PillLink href="/experience">{t(home.ctaPrimary)}</PillLink>
+            <PillLink href={site.cv} variant="outline">
               {t(home.ctaSecondary)}
             </PillLink>
+          </StaggerItem>
+          <StaggerItem className="mt-2 border-t border-line pt-4">
+            <p className="text-[12px] font-semibold uppercase tracking-[0.18em] text-muted">{t(home.interestsLabel)}</p>
+            <p className="mt-1.5 flex flex-wrap items-center gap-x-2 gap-y-1 font-serif text-lg italic text-ink">
+              {home.interests.map((it, i) => (
+                <span key={it.href} className="flex items-center gap-2">
+                  {i > 0 && <span aria-hidden className="text-rose">·</span>}
+                  <Link href={it.href} className="underline-offset-4 transition-colors hover:text-rose hover:underline">
+                    {t(it.label)}
+                  </Link>
+                </span>
+              ))}
+            </p>
           </StaggerItem>
         </Stagger>
 
@@ -81,10 +91,10 @@ export default function HomeView() {
           </div>
           <div className="animate-float absolute inset-[3%]">
             <Halo className="inset-0 rounded-full" />
-            <MaskedImage src={site.portrait.src} alt={t(site.portrait.alt)} priority objectPosition="62% 10%" className="absolute inset-0 rounded-full" />
+            <MaskedImage src={site.portraitCircle.src} alt={t(site.portraitCircle.alt)} priority objectPosition={site.portraitCircle.pos} className="absolute inset-0 rounded-full" />
           </div>
-          <RotatingBadge text={t(home.badge)} className="absolute right-0 top-[4%] z-30 h-[104px] w-[104px] sm:h-[136px] sm:w-[136px]" />
-          <TulipCorner side="left" scale={0.5} className="-bottom-10 -left-10 z-20" gustDelay={0.4} />
+          <RotatingBadge text={t(home.badge)} className="absolute right-0 top-[4%] z-30 h-[88px] w-[88px] sm:h-[136px] sm:w-[136px]" />
+          <TulipCorner side="left" scale={0.3} className="-bottom-4 -left-2 z-20 sm:-left-6" gustDelay={0.4} />
         </Parallax>
       </Container>
 
@@ -132,8 +142,8 @@ export default function HomeView() {
           <Reveal delay={0.2} className="mt-10">
             <p className="max-w-[60ch] text-sm leading-relaxed text-muted">
               {t(home.footnote)}{' '}
-              <Link href="/experience/i-love-emas" className="underline decoration-rose underline-offset-4 hover:text-rose">
-                {t({ en: 'See that role', id: 'Lihat peran itu' })}
+              <Link href="/experience/makeup-artist" className="underline decoration-rose underline-offset-4 hover:text-rose">
+                {t(home.footnoteLink)}
               </Link>
             </p>
           </Reveal>

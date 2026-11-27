@@ -5,7 +5,8 @@ import type { L } from '@/lib/i18n';
 import { useT } from '@/lib/store';
 import { Body, Card, Container, Eyebrow, PillLink, SerifTitle } from '@/components/ui/primitives';
 import { Reveal } from '@/components/ui/Reveal';
-import { Halo, LineIcon, MaskedImage, Polaroid } from '@/components/decor/Decor';import { TulipCorner } from '@/components/decor/TulipCluster';
+import { Halo, LineIcon, MaskedImage, Polaroid } from '@/components/decor/Decor';
+import { TulipCorner } from '@/components/decor/TulipCluster';
 import SectionHero from '@/components/sections/SectionHero';
 import FooterCTA from '@/components/layout/FooterCTA';
 
@@ -23,12 +24,12 @@ export default function AboutView() {
         desc={t(about.desc)}
         cta={{ label: t(about.cta), href: '#journey' }}
         visual={
-          <div className="relative mx-auto h-full w-full max-w-[460px]">
-            <div className="animate-float absolute inset-x-[8%] bottom-[4%] top-0">
+          <div className="relative mx-auto aspect-[5/7] h-full max-h-full max-w-full">
+            <div className="animate-float absolute inset-0">
               <Halo className="inset-0 rounded-t-full rounded-b-[32px]" />
-              <MaskedImage src={site.portrait.src} alt={t(site.portrait.alt)} priority objectPosition="60% 12%" className="absolute inset-[3%] rounded-t-full rounded-b-[28px] border-4 border-paper" />
+              <MaskedImage src={site.portrait.src} alt={t(site.portrait.alt)} priority objectPosition={site.portrait.pos} className="absolute inset-[3%] rounded-t-full rounded-b-[28px] border-4 border-paper" />
             </div>
-            <TulipCorner side="right" scale={0.55} className="-bottom-6 -right-16 z-20" gustDelay={1} />
+            <TulipCorner side="right" scale={0.3} className="-bottom-4 -right-6 z-20 sm:-right-10" gustDelay={1} />
           </div>
         }
       />
@@ -62,7 +63,7 @@ export default function AboutView() {
               </p>
             </div>
             <div aria-hidden className="relative hidden h-[220px] w-[200px] justify-self-center sm:block">
-              <TulipCorner side="left" scale={0.4} className="bottom-0 left-0" gustDelay={0.6} />
+              <TulipCorner side="left" scale={0.34} className="bottom-0 left-4" gustDelay={0.6} />
             </div>
           </Card>
         </Reveal>

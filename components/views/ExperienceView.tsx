@@ -50,7 +50,7 @@ export default function ExperienceView() {
                 </motion.div>
               );
             })}
-            <TulipCorner side="right" scale={0.42} className="-bottom-10 right-[-6%] z-10" gustDelay={1.4} />
+            <TulipCorner side="right" scale={0.3} className="-bottom-6 right-0 z-10" gustDelay={1.4} />
           </div>
         }
       />
@@ -85,6 +85,15 @@ export default function ExperienceView() {
                   </span>
                   <span className="font-serif text-2xl italic leading-tight text-ink transition-colors group-hover:text-rose sm:text-[28px]">{t(e.role)}</span>
                   <span className="hidden text-sm leading-relaxed text-muted sm:block">{t(e.summary)}</span>
+                  {e.focus && (
+                    <span className="mt-1 hidden flex-wrap gap-1.5 sm:flex">
+                      {e.focus.map((f) => (
+                        <span key={f.en} className="rounded-full border border-rose/30 bg-rose/10 px-2.5 py-0.5 text-[11px] font-medium text-ink">
+                          {t(f)}
+                        </span>
+                      ))}
+                    </span>
+                  )}
                 </span>
                 <ArrowCircle />
               </Link>

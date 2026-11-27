@@ -40,7 +40,7 @@ export default function EducationView() {
             </div>
             <BookStack className="absolute bottom-0 left-0 z-10 w-[58%]" />
             <Polaroid src="/images/teaching/smkn4-garut-1.jpg" alt={t({ en: 'With students at SMKN 4 Garut', id: 'Bersama siswa SMKN 4 Garut' })} rotate={6} drift={1.5} caption="SMKN 4 Garut" className="absolute right-[2%] top-0 z-20" imgClassName="h-[170px] w-[140px] sm:h-[210px] sm:w-[170px]" />
-            <TulipCorner side="right" scale={0.45} className="-bottom-8 right-0 z-10" gustDelay={1.2} />
+            <TulipCorner side="right" scale={0.28} className="-bottom-4 right-0 z-10" gustDelay={1.2} />
           </div>
         }
       />

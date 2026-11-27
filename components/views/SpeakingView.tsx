@@ -24,14 +24,14 @@ export default function SpeakingView() {
         cta={{ label: t(s.cta), href: '#events' }}
         visualClassName="h-[460px] sm:h-[580px]"
         visual={
-          <div className="relative mx-auto h-full w-full max-w-[520px]">
-            <Spotlight className="animate-breathe -top-10 left-[8%] h-[110%] w-[84%]" />
-            <div className="animate-float absolute left-[10%] top-[4%] h-[86%] w-[76%]">
+          <div className="relative mx-auto aspect-[4/5] h-full max-h-full max-w-full">
+            <Spotlight className="animate-breathe -top-10 left-[4%] h-[110%] w-[92%]" />
+            <div className="animate-float absolute inset-x-[4%] bottom-[2%] top-[4%]">
               <Halo className="inset-0 rounded-t-full rounded-b-[40px]" />
-              {/* cropped on the speaker, bottom-left of the original stage photo */}
+              {/* pre-cropped on the speaker so she sits in the middle of the arch */}
               <MaskedImage src={s.hero.src} alt={t(s.hero.alt)} priority objectPosition={s.hero.pos} className="absolute inset-[3%] rounded-t-full rounded-b-[36px] border-4 border-paper" />
             </div>
-            <TulipCorner side="left" scale={0.45} className="-bottom-8 -left-8 z-20" gustDelay={0.2} />
+            <TulipCorner side="left" scale={0.3} className="-bottom-4 -left-4 z-20 sm:-left-8" gustDelay={0.2} />
           </div>
         }
       />
