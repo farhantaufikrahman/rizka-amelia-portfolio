@@ -81,7 +81,7 @@ export default function ExperienceView() {
                 </span>
                 <span className="flex flex-col gap-1">
                   <span className="flex items-center gap-2 text-[12px] text-muted">
-                    {e.logo && <OrgLogo logo={e.logo} size={26} />}
+                    {e.logo && <OrgLogo logo={e.logo} size={36} className="m-1" />}
                     <span>
                       {t(e.org).split(' · ').find((s) => s !== t(e.type))} · {t(e.period)} · {t(e.type)}
                     </span>

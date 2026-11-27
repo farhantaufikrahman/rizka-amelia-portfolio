@@ -72,6 +72,8 @@
   100% { transform: translate3d(40px, 105vh, 0) rotate(300deg); opacity: 0; }
 }
 @keyframes spin-slow { to { transform: rotate(360deg); } }
+/* a light band crossing a logo badge every few seconds */
+@keyframes logo-shine { 0%, 70% { transform: translateX(-160%) skewX(-18deg); } 100% { transform: translateX(260%) skewX(-18deg); } }
 @keyframes bob { 0%, 100% { transform: translateY(0); } 30% { transform: translateY(-34px); } 60% { transform: translateY(12px); } }
 @keyframes gust { 0% { stroke-dashoffset: 420; opacity: 0; } 25% { opacity: 0.85; } 100% { stroke-dashoffset: -420; opacity: 0; } }
 @keyframes twinkle { 0%, 100% { opacity: 0.55; } 50% { opacity: 1; } }
@@ -153,6 +155,7 @@
 @utility animate-swing { transform-origin: 50% 0; animation: swing 5s ease-in-out infinite; }
 @utility animate-fall { animation: fall 18s linear infinite; }
 @utility animate-spin-slow { animation: spin-slow 20s linear infinite; }
+@utility animate-logo-shine { animation: logo-shine 6s ease-in-out infinite; }
 @utility animate-bob { animation: bob 6s ease-in-out infinite; }
 @utility animate-gust { stroke-dasharray: 160 420; animation: gust 9s ease-in-out infinite; }
 @utility animate-twinkle { animation: twinkle 2.4s ease-in-out infinite; }
