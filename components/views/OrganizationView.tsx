@@ -45,7 +45,7 @@ export default function OrganizationView() {
                 />
               </motion.div>
             ))}
-            <TulipCorner side="right" scale={0.4} className="-bottom-12 right-0 z-10" gustDelay={1.3} />
+            <TulipCorner side="right" scale={0.3} className="-bottom-6 right-0 z-10" gustDelay={1.3} />
           </div>
         }
       />

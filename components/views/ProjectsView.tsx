@@ -20,7 +20,7 @@ export default function ProjectsView() {
   const { t } = useT();
   const [thesis, momies] = projects;
   const cards = [
-    { p: momies, img: momies.looks![2].photos[0] },
+    { p: momies, img: momies.looks![1].photos[1] },
     { p: thesis, img: thesis.cover },
   ];
   return (
@@ -34,10 +34,10 @@ export default function ProjectsView() {
         visualClassName="h-[420px] sm:h-[540px]"
         visual={
           <div className="relative h-full">
-            <Polaroid src={momies.looks![4].photos[0].src} alt={t(momies.looks![4].photos[0].alt)} rotate={-5} drift={0} caption="Momies Bakery" className="absolute left-[6%] top-[4%] z-[2]" imgClassName="h-[230px] w-[170px] sm:h-[290px] sm:w-[220px]" />
+            <Polaroid src={momies.cover.src} alt={t(momies.cover.alt)} rotate={-5} drift={0} caption="Momies Bakery" className="absolute left-[6%] top-[4%] z-[2]" imgClassName="h-[230px] w-[170px] sm:h-[290px] sm:w-[220px]" />
             <Polaroid src={thesis.steps![0].photos[1].src} alt={t(thesis.steps![0].photos[1].alt)} rotate={5} drift={2.2} caption={t({ en: 'Thesis · 2024', id: 'Skripsi · 2024' })} className="absolute right-[6%] top-[22%]" imgClassName="h-[190px] w-[160px] sm:h-[240px] sm:w-[200px]" />
             <LabGlass className="animate-bob absolute bottom-[2%] right-[34%] z-[3] w-28" />
-            <TulipCorner side="right" scale={0.4} className="-bottom-12 right-0 z-10" gustDelay={1.3} />
+            <TulipCorner side="right" scale={0.3} className="-bottom-6 right-0 z-10" gustDelay={1.3} />
           </div>
         }
       />

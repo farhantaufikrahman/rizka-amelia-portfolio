@@ -2,14 +2,14 @@
 
 import Link from 'next/link';
 import { useCallback, useState } from 'react';
-import { experiences, makeupPage, projects, site } from '@/lib/content';
+import { experiencePage, experiences, makeupPage, projects, site } from '@/lib/content';
 import { ui } from '@/lib/i18n';
 import { useT } from '@/lib/store';
 import { Card, Container, Eyebrow, PillLink, SerifTitle } from '@/components/ui/primitives';
 import { Reveal } from '@/components/ui/Reveal';
 import { Halo, MaskedImage } from '@/components/decor/Decor';
 import { TulipCorner } from '@/components/decor/TulipCluster';
-import { Lightbox, PhotoGrid, PhotoTile } from '@/components/sections/Gallery';
+import { Lightbox, LookStack, PhotoGrid, PhotoTile } from '@/components/sections/Gallery';
 import SectionHero from '@/components/sections/SectionHero';
 import FooterCTA from '@/components/layout/FooterCTA';
 
@@ -38,7 +38,7 @@ function MakeupView() {
               <Halo className="inset-0 rounded-full" />
               <MaskedImage src={e.cover.src} alt={t(e.cover.alt)} priority objectPosition="50% 20%" className="absolute inset-[4%] rounded-full" />
             </div>
-            <TulipCorner side="right" scale={0.5} className="-bottom-8 -right-10 z-20" gustDelay={1} />
+            <TulipCorner side="right" scale={0.3} className="-bottom-4 right-0 z-20 sm:-right-4" gustDelay={1} />
           </div>
         }
       />
@@ -52,7 +52,16 @@ function MakeupView() {
           ))}
         </div>
         <Lightbox photos={e.gallery} index={index} onClose={close} onIndex={setIndex} />
-        <div className="mt-14 grid gap-8 sm:grid-cols-3">
+        <Reveal>
+          <h2 className="mt-16 font-serif text-[clamp(2rem,3.4vw,2.6rem)] italic">{t(makeupPage.looksTitle)}</h2>
+          <p className="mb-10 mt-2 max-w-[60ch] text-sm leading-relaxed text-muted">{t(makeupPage.looksSub)}</p>
+        </Reveal>
+        <div className="grid grid-cols-1 gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-4">
+          {makeupPage.looks.map((l, i) => (
+            <LookStack key={l.title.en} title={l.title} note={l.note} photos={l.photos} index={i} />
+          ))}
+        </div>
+        <div className="mt-16 grid gap-8 sm:grid-cols-3">
           {makeupPage.stats.map((s, i) => (
             <Reveal key={i} kind="bloom" delay={i * 0.12} className="flex flex-col items-center">
               {/* powder compact */}
@@ -119,6 +128,18 @@ export default function ExperienceDetailView({ slug }: { slug: string }) {
         <Reveal kind="left" className="flex flex-col gap-4 lg:col-span-5">
           <Eyebrow>{t(e.org)}</Eyebrow>
           <SerifTitle as="h2" size="md" lines={[t(e.role), t(e.period)]} accent />
+          {e.focus && (
+            <div>
+              <p className="text-[12px] font-semibold uppercase tracking-[0.18em] text-muted">{t(experiencePage.focusTitle)}</p>
+              <div className="mt-2.5 flex flex-wrap gap-2">
+                {e.focus.map((f) => (
+                  <span key={f.en} className="rounded-full border border-rose/30 bg-rose/10 px-3 py-1 text-[13px] font-medium text-ink">
+                    {t(f)}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
         </Reveal>
         <Reveal kind="tilt" delay={0.1} className="lg:col-span-7">
           <Card>
@@ -131,7 +152,14 @@ export default function ExperienceDetailView({ slug }: { slug: string }) {
         </Reveal>
       </Container>
       <Container className="pb-6">
-        <PhotoGrid photos={e.gallery} columns="grid-cols-2 md:grid-cols-3" itemClassName="h-[220px] md:h-[300px]" />
+        <Reveal>
+          <h2 className="mb-6 font-serif text-[clamp(1.8rem,3vw,2.3rem)] italic">{t(experiencePage.docsTitle)}</h2>
+        </Reveal>
+        <PhotoGrid
+          photos={e.gallery}
+          columns={e.gallery.length === 4 ? 'grid-cols-2 md:grid-cols-4' : 'grid-cols-2 md:grid-cols-3'}
+          itemClassName="h-[200px] md:h-[280px]"
+        />
         {lookbook && (
           <Reveal className="mt-8">
             <PillLink href={`/projects/${lookbook.slug}`}>{t({ en: 'See the full lookbook, grouped by look', id: 'Lihat lookbook lengkap per tampilan' })}</PillLink>

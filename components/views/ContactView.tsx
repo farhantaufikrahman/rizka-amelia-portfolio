@@ -78,7 +78,7 @@ export default function ContactView() {
           </StaggerItem>
         </Stagger>
 
-        <Parallax speed={30} className="relative mx-auto h-[480px] w-full max-w-[420px] lg:col-span-6 lg:h-[600px]">
+        <Parallax speed={30} className="relative mx-auto aspect-[5/7] w-full max-w-[340px] sm:max-w-[400px] lg:col-span-6 lg:max-w-[420px]">
           {/* garden arch */}
           <motion.div
             className="absolute inset-0"
@@ -89,9 +89,9 @@ export default function ContactView() {
             <Halo className="inset-0 rounded-t-full rounded-b-[32px]" />
           </motion.div>
           <div className="animate-float absolute inset-[5%]">
-            <MaskedImage src={site.portrait.src} alt={t(site.portrait.alt)} priority objectPosition="60% 12%" className="absolute inset-0 rounded-t-full rounded-b-[28px] border-4 border-paper" />
+            <MaskedImage src={site.portrait.src} alt={t(site.portrait.alt)} priority objectPosition={site.portrait.pos} className="absolute inset-0 rounded-t-full rounded-b-[28px] border-4 border-paper" />
           </div>
-          <TulipCorner side="left" scale={0.4} className="-bottom-6 -left-24 z-20" gustDelay={0.3} />
+          <TulipCorner side="left" scale={0.28} className="-bottom-4 -left-6 z-20 sm:-left-10" gustDelay={0.3} />
         </Parallax>
       </Container>
     </div>

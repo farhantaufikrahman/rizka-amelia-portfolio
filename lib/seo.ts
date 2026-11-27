@@ -59,7 +59,7 @@ export const personJsonLd = {
   url: site.url,
   image: `${site.url}${site.portrait.src}`,
   email: `mailto:${site.email}`,
-  jobTitle: 'Operation & Administration Staff',
+  jobTitle: 'Operational & Administrative Staff',
   description: site.description.en,
   address: { '@type': 'PostalAddress', addressLocality: 'Bandung', addressCountry: 'ID' },
   alumniOf: { '@type': 'CollegeOrUniversity', name: 'Universitas Pendidikan Indonesia' },
