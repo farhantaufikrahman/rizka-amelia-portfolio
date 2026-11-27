@@ -42,7 +42,7 @@ export const logos = {
   upi: { src: '/images/logos/upi.png', name: 'Universitas Pendidikan Indonesia', mono: 'UPI' },
   iloveEmas: { src: '/images/logos/ilove-emas.png', name: 'PT Muara Logam Indonesia · I Love Emas', mono: 'ILE' },
   agronesia: { src: '/images/logos/agronesia.png', name: 'PT Agronesia · BMC', mono: 'BMC' },
-  momies: { src: '/images/logos/momies-bakery.png', name: 'Momies Bakery', mono: 'MB' },
+  momies: { src: '/images/logos/momies-bakery.png', name: 'Momis Bakery', mono: 'MB' },
   bnsp: { src: '/images/logos/bnsp.png', name: 'Badan Nasional Sertifikasi Profesi', mono: 'BNSP' },
 } satisfies Record<string, Logo>;
 
@@ -283,7 +283,7 @@ export const experiences: Experience[] = [
     slug: 'model-talent',
     logo: logos.momies,
     role: { en: 'Model and Talent', id: 'Model and Talent' },
-    org: { en: 'Freelance · Momies Bakery', id: 'Freelance · Momies Bakery' },
+    org: { en: 'Freelance · Momis Bakery', id: 'Freelance · Momis Bakery' },
     period: { en: 'Jan 2024 – Present', id: 'Jan 2024 – Sekarang' },
     type: { en: 'Freelance', id: 'Freelance' },
     summary: {
@@ -294,9 +294,9 @@ export const experiences: Experience[] = [
       { en: 'Took on model and talent roles for photoshoot, fashion and commercial projects.', id: 'Menjadi model dan talent untuk proyek photoshoot, fashion, dan komersial.' },
       { en: 'Adapted to varied concepts and worked professionally with creative teams.', id: 'Beradaptasi dengan berbagai konsep dan bekerja profesional bersama tim kreatif.' },
     ],
-    cover: p('/images/model/momies-3.jpg', 'Momies Bakery campaign shoot', 'Sesi kampanye Momies Bakery', '50% 35%'),
+    cover: p('/images/model/momies-3.jpg', 'Momis Bakery campaign shoot', 'Sesi kampanye Momis Bakery', '50% 35%'),
     gallery: [
-      p('/images/model/momies-3.jpg', 'Presenting the bakes for Momies Bakery', 'Menampilkan kue untuk Momies Bakery', '50% 35%'),
+      p('/images/model/momies-3.jpg', 'Presenting the bakes for Momis Bakery', 'Menampilkan kue untuk Momis Bakery', '50% 35%'),
       p('/images/model/momies-4.jpg', 'Tasting the bakes on set', 'Mencicipi kue di lokasi'),
       p('/images/model/momies-1.jpg', 'Concept briefing with the creative team', 'Briefing konsep bersama tim kreatif'),
       p('/images/model/momies-2.jpg', 'Going through the shot list', 'Membahas daftar foto'),
@@ -510,13 +510,13 @@ export const projects: Project[] = [
   },
   {
     slug: 'momies-bakery',
-    kicker: { en: 'Campaign · Model · Momies Bakery', id: 'Kampanye · Model · Momies Bakery' },
-    title: [{ en: 'Momies Bakery', id: 'Momies Bakery' }, { en: 'campaign lookbook.', id: 'lookbook kampanye.' }],
+    kicker: { en: 'Campaign · Model · Momis Bakery', id: 'Kampanye · Model · Momis Bakery' },
+    title: [{ en: 'Momis Bakery', id: 'Momis Bakery' }, { en: 'campaign lookbook.', id: 'lookbook kampanye.' }],
     summary: {
       en: 'From the concept briefing with the creative team to the lifestyle set at the bakery table — grouped by moment.',
       id: 'Dari briefing konsep bersama tim kreatif hingga set lifestyle di meja bakery — dikelompokkan per momen.',
     },
-    cover: p('/images/model/momies-3.jpg', 'Lifestyle shoot for Momies Bakery', 'Sesi foto lifestyle Momies Bakery', '50% 35%'),
+    cover: p('/images/model/momies-3.jpg', 'Lifestyle shoot for Momis Bakery', 'Sesi foto lifestyle Momis Bakery', '50% 35%'),
     gallery: [],
     looks: [
       {

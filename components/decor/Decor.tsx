@@ -90,19 +90,21 @@ export function OrgLogo({ logo, size = 44, className }: { logo: { src: string; n
     if (el && el.complete && el.naturalWidth === 0) setFailed(true);
   }, []);
   return (
-    <span
-      title={logo.name}
-      className={cx('flex flex-none items-center justify-center overflow-hidden rounded-full border border-line bg-white shadow-[var(--shadow-soft)]', className)}
-      style={{ width: size, height: size }}
-    >
-      {failed ? (
-        <span aria-label={logo.name} className="font-serif text-[0.95em] font-semibold italic text-rose" style={{ fontSize: size * 0.34 }}>
-          {logo.mono}
-        </span>
-      ) : (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img ref={img} src={logo.src} alt={logo.name} className="h-[78%] w-[78%] object-contain" onError={() => setFailed(true)} />
-      )}
+    <span title={logo.name} className={cx('group/logo relative inline-flex flex-none', className)} style={{ width: size, height: size }}>
+      {/* frame: a slowly turning dotted ring around the badge */}
+      <span aria-hidden className="animate-spin-slow absolute -inset-[4px] rounded-full border border-dashed border-rose/60 motion-reduce:animate-none" style={{ animationDuration: '24s' }} />
+      {/* white badge (always white, also on the night theme) with a gold-rose rim and a passing shine */}
+      <span className="relative flex h-full w-full items-center justify-center overflow-hidden rounded-full border-2 border-white bg-white shadow-[0_0_0_1px_rgba(228,138,154,0.45),0_10px_20px_-10px_rgba(91,44,58,0.45)] transition-transform duration-500 group-hover/logo:scale-110">
+        {failed ? (
+          <span aria-label={logo.name} className="font-serif font-semibold italic text-rose" style={{ fontSize: size * 0.34 }}>
+            {logo.mono}
+          </span>
+        ) : (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img ref={img} src={logo.src} alt={logo.name} className="h-[80%] w-[80%] object-contain" onError={() => setFailed(true)} />
+        )}
+        <span aria-hidden className="animate-logo-shine pointer-events-none absolute inset-y-0 left-0 w-1/2 bg-[linear-gradient(100deg,transparent,rgba(255,255,255,0.85),transparent)] motion-reduce:hidden" />
+      </span>
     </span>
   );
 }

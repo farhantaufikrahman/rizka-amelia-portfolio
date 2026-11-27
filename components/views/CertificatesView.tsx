@@ -54,7 +54,7 @@ export default function CertificatesView() {
               </span>
             </div>
             <p className="mt-4 flex items-center gap-2 rounded-full bg-card py-1.5 pl-1.5 pr-4 text-[13px] text-muted shadow-[var(--shadow-soft)]">
-              {lead.logo && <OrgLogo logo={lead.logo} size={28} />}
+              {lead.logo && <OrgLogo logo={lead.logo} size={34} className="m-0.5" />}
               {t(lead.title)} · {t(lead.meta)}
             </p>
           </div>
@@ -103,7 +103,7 @@ export default function CertificatesView() {
               {/* museum label */}
               <div className="relative mt-5 w-full max-w-[200px] rounded-sm bg-[#FFFDFB] px-3 py-2 text-center text-[#5B2C3A] shadow-[var(--shadow-soft)]">
                 <Washi className="-top-3 left-1/2 -translate-x-1/2 scale-75" />
-                {item.logo && <OrgLogo logo={item.logo} size={36} className="mx-auto mb-1.5 mt-1" />}
+                {item.logo && <OrgLogo logo={item.logo} size={48} className="mx-auto mb-2 mt-2" />}
                 <p className="font-serif text-lg italic leading-tight">
                   {t(item.title)}
                 </p>
