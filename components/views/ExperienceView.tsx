@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import { experiencePage, experiences } from '@/lib/content';
 import { useT } from '@/lib/store';
 import { ArrowCircle, Container, cx } from '@/components/ui/primitives';
-import { Polaroid } from '@/components/decor/Decor';
+import { OrgLogo, Polaroid } from '@/components/decor/Decor';
 import { TulipCorner } from '@/components/decor/TulipCluster';
 import SectionHero from '@/components/sections/SectionHero';
 import FooterCTA from '@/components/layout/FooterCTA';
@@ -80,8 +80,11 @@ export default function ExperienceView() {
                   />
                 </span>
                 <span className="flex flex-col gap-1">
-                  <span className="text-[12px] text-muted">
-                    {t(e.period)} · {t(e.type)}
+                  <span className="flex items-center gap-2 text-[12px] text-muted">
+                    {e.logo && <OrgLogo logo={e.logo} size={26} />}
+                    <span>
+                      {t(e.org).split(' · ').find((s) => s !== t(e.type))} · {t(e.period)} · {t(e.type)}
+                    </span>
                   </span>
                   <span className="font-serif text-2xl italic leading-tight text-ink transition-colors group-hover:text-rose sm:text-[28px]">{t(e.role)}</span>
                   <span className="hidden text-sm leading-relaxed text-muted sm:block">{t(e.summary)}</span>
