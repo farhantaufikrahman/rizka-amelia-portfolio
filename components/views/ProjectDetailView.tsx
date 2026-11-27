@@ -82,7 +82,7 @@ export default function ProjectDetailView({ slug }: { slug: string }) {
       <Container className="py-8">
         <div className="relative">
           <MaskedImage src={p.cover.src} alt={t(p.cover.alt)} priority objectPosition={p.cover.pos ?? '50% 45%'} sizes="(min-width: 1240px) 1160px, 100vw" className="h-[320px] w-full rounded-[28px] sm:h-[460px] lg:h-[540px]" />
-          <TulipCorner side="right" scale={0.5} className="-bottom-16 -right-20 z-10 hidden md:block" gustDelay={1.4} />
+          <TulipCorner side="right" scale={0.32} className="-bottom-8 -right-8 z-10 hidden md:block" gustDelay={1.4} />
         </div>
       </Container>
 

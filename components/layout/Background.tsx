@@ -17,11 +17,12 @@ const FALLING = [
   { left: '88%', delay: '-18s', dur: '25s', w: 20, kind: 'petal' },
 ] as const;
 
+/** Slow, see-through butterflies: long flight loops and a lazy wing beat so they stay in the background. */
 const BUTTERFLIES = [
-  { path: 'flutter-a', dur: '46s', delay: '-6s', size: 42, a: '#F3B3BE', b: '#FCE0E4', edge: '#E48A9A' },
-  { path: 'flutter-b', dur: '54s', delay: '-22s', size: 34, a: '#F6C7A7', b: '#FFF1E6', edge: '#E0A27E' },
-  { path: 'flutter-c', dur: '38s', delay: '-14s', size: 28, a: '#D9C6F0', b: '#F8F2FD', edge: '#B59AD8' },
-  { path: 'flutter-d', dur: '42s', delay: '-30s', size: 30, a: '#FBD3DA', b: '#FFFFFF', edge: '#E48A9A' },
+  { path: 'flutter-a', dur: '80s', delay: '-10s', size: 38, a: '#F3B3BE', b: '#FCE0E4', edge: '#E48A9A' },
+  { path: 'flutter-b', dur: '95s', delay: '-40s', size: 32, a: '#F6C7A7', b: '#FFF1E6', edge: '#E0A27E' },
+  { path: 'flutter-c', dur: '70s', delay: '-25s', size: 26, a: '#D9C6F0', b: '#F8F2FD', edge: '#B59AD8' },
+  { path: 'flutter-d', dur: '75s', delay: '-55s', size: 28, a: '#FBD3DA', b: '#FFFFFF', edge: '#E48A9A' },
 ];
 
 function Butterfly({ size, a, b, edge }: { size: number; a: string; b: string; edge: string }) {
@@ -34,7 +35,7 @@ function Butterfly({ size, a, b, edge }: { size: number; a: string; b: string; e
     </svg>
   );
   return (
-    <div className="relative flex drop-shadow-[0_8px_8px_rgba(91,44,58,0.18)]" style={{ perspective: 160 }}>
+    <div className="relative flex opacity-45 drop-shadow-[0_6px_6px_rgba(91,44,58,0.1)] dark:opacity-40" style={{ perspective: 160 }}>
       <div className="animate-wing-l">{wing(false)}</div>
       <div className="animate-wing-r">{wing(true)}</div>
       <span className="absolute left-1/2 top-[18%] h-[62%] w-[3px] -translate-x-1/2 rounded-full bg-[#5B2C3A]" />
@@ -117,7 +118,7 @@ export default function Background() {
           className="absolute left-0 top-0"
           style={{ animation: `${b.path} ${b.dur} ease-in-out ${b.delay} infinite` }}
         >
-          <div className="animate-hover-bob" style={{ animationDelay: `${-i * 0.7}s` }}>
+          <div className="animate-hover-bob" style={{ animationDelay: `${-i * 1.4}s` }}>
             <Butterfly size={b.size} a={b.a} b={b.b} edge={b.edge} />
           </div>
         </div>

@@ -23,46 +23,56 @@ export const site = {
   arunikaa: 'https://www.instagram.com/arunikaa.makeup',
   cv: '/docs/Rizka-Amelia-CV.pdf',
   location: { en: 'Bandung, Indonesia', id: 'Bandung, Indonesia' } as L,
-  portrait: p('/images/profile/rizka.jpg', 'Portrait of Rizka Amelia', 'Potret Rizka Amelia', '62% 10%'),
+  /** Pre-cropped so the subject sits in the middle of the frame (arch = tall, circle = square). */
+  portrait: p('/images/profile/rizka-arch.jpg', 'Portrait of Rizka Amelia', 'Potret Rizka Amelia', '50% 30%'),
+  portraitCircle: p('/images/profile/rizka-circle.jpg', 'Portrait of Rizka Amelia', 'Potret Rizka Amelia', '50% 40%'),
   description: {
-    en: 'Portfolio of Rizka Amelia — makeup artist (Arunikaa Makeup), model, speaker and BNSP-certified instructor in Bandung; Cum Laude graduate of Universitas Pendidikan Indonesia.',
-    id: 'Portofolio Rizka Amelia — makeup artist (Arunikaa Makeup), model, pembicara, dan instruktur bersertifikat BNSP di Bandung; lulusan Cum Laude Universitas Pendidikan Indonesia.',
+    en: 'Portfolio of Rizka Amelia — Operational & Administrative Staff in Bandung with experience in daily operations, administration, data management, reporting and customer service; Cum Laude graduate of Universitas Pendidikan Indonesia.',
+    id: 'Portofolio Rizka Amelia — Staf Operasional & Administrasi di Bandung, berpengalaman dalam operasional harian, administrasi, pengelolaan data, pelaporan, dan layanan pelanggan; lulusan Cum Laude Universitas Pendidikan Indonesia.',
   } as L,
 };
 
 /* ---------------- HOME ---------------- */
 export const home = {
   hello: { en: "Hello, I'm", id: 'Halo, saya' },
-  tagline1: { en: 'Dream Bigger,', id: 'Bermimpi Lebih Besar,' },
-  tagline2: { en: 'Create More.', id: 'Berkarya Lebih Banyak.' },
+  headline: { en: 'Operational & Administrative Staff', id: 'Operational & Administrative Staff' },
   intro: {
-    en: 'Makeup artist, model and speaker from Bandung — bringing out the beauty in people, one face and one stage at a time.',
-    id: 'Makeup artist, model, dan pembicara dari Bandung — menghadirkan keindahan dalam diri setiap orang, satu wajah dan satu panggung setiap kalinya.',
+    en: 'Organized, detail-oriented, and adaptable professional with experience in daily operations, administrative tasks, data management, reporting, and customer service.',
+    id: 'Profesional yang terorganisir, teliti, dan mudah beradaptasi, berpengalaman dalam operasional harian, tugas administrasi, pengelolaan data, pelaporan, dan layanan pelanggan.',
   },
-  /** Scrolling ribbon under the hero. Creative roles lead; the day job stays a quiet footnote. */
+  interestsLabel: { en: 'Additional Interests', id: 'Minat Lainnya' },
+  interests: [
+    { label: { en: 'Makeup Artist', id: 'Makeup Artist' }, href: '/experience/makeup-artist' },
+    { label: { en: 'Model & Talent', id: 'Model & Talent' }, href: '/experience/model-talent' },
+    { label: { en: 'Public Speaking', id: 'Public Speaking' }, href: '/speaking' },
+  ],
+  /** Scrolling ribbon under the hero: the professional strengths an HR reader scans for. */
   roles: [
-    { en: 'Makeup Artist', id: 'Makeup Artist' },
-    { en: 'Model & Talent', id: 'Model & Talent' },
-    { en: 'Beauty Speaker', id: 'Pembicara Kecantikan' },
-    { en: 'BNSP-Certified Instructor', id: 'Instruktur Bersertifikat BNSP' },
-    { en: 'Cum Laude Graduate', id: 'Lulusan Cum Laude' },
+    { en: 'Daily Operations', id: 'Operasional Harian' },
+    { en: 'Administration', id: 'Administrasi' },
+    { en: 'Data Management', id: 'Pengelolaan Data' },
+    { en: 'Reporting', id: 'Pelaporan' },
+    { en: 'Stock Management', id: 'Pengelolaan Stok' },
+    { en: 'Customer Service', id: 'Layanan Pelanggan' },
+    { en: 'Team Coordination', id: 'Koordinasi Tim' },
   ] as L[],
-  ctaPrimary: { en: 'Explore My Journey', id: 'Jelajahi Perjalanan Saya' },
-  ctaSecondary: { en: 'Get in Touch', id: 'Hubungi Saya' },
-  badge: { en: 'personal portfolio · Rizka Amelia · ', id: 'portofolio pribadi · Rizka Amelia · ' },
+  ctaPrimary: { en: 'View My Experience', id: 'Lihat Pengalaman Saya' },
+  ctaSecondary: { en: 'Download CV', id: 'Unduh CV' },
+  badge: { en: 'operations · admin · Rizka Amelia · ', id: 'operasional · admin · Rizka Amelia · ' },
   worksTitle: { en: 'Selected Works', id: 'Karya Pilihan' },
-  worksSub: { en: 'A collection of my best works.', id: 'Kumpulan karya terbaik saya.' },
-  worksAll: { en: 'View All Works', id: 'Lihat Semua Karya' },
+  worksSub: { en: 'Operations and administration first — creative work alongside.', id: 'Operasional dan administrasi di depan — karya kreatif menyertai.' },
+  worksAll: { en: 'View All Experience', id: 'Lihat Semua Pengalaman' },
   works: [
+    { href: '/experience/i-love-emas', label: { en: 'Operations', id: 'Operasional' }, photo: p('/images/work/ilove-emas-3.jpg', 'Serving a customer at the I Love Emas counter', 'Melayani pelanggan di konter I Love Emas') },
+    { href: '/experience/agronesia-bmc', label: { en: 'Reporting & QC', id: 'Laporan & QC' }, photo: p('/images/internship/agronesia-1.jpg', 'PT Agronesia production floor', 'Area produksi PT Agronesia') },
     { href: '/experience/makeup-artist', label: { en: 'Makeup', id: 'Makeup' }, photo: p('/images/makeup/mua-5.jpg', 'Sundanese bridal makeup by Arunikaa', 'Riasan pengantin Sunda oleh Arunikaa', '50% 22%') },
-    { href: '/speaking', label: { en: 'Speaking', id: 'Pembicara' }, photo: p('/images/speaking/unpad-2.jpg', 'Speaking on stage at FMIPA UNPAD', 'Menjadi pembicara di FMIPA UNPAD', '40% 78%') },
-    { href: '/projects/momies-bakery', label: { en: 'Modelling', id: 'Modeling' }, photo: p('/images/model/momies-3.jpg', 'Momies Bakery campaign portrait', 'Potret kampanye Momies Bakery', '50% 30%') },
-    { href: '/organization', label: { en: 'Community', id: 'Komunitas' }, photo: p('/images/organization/himagrin.jpg', 'With fellow organization members', 'Bersama rekan organisasi') },
+    { href: '/speaking', label: { en: 'Speaking', id: 'Pembicara' }, photo: p('/images/speaking/unpad-2-speaker.jpg', 'Speaking on stage at FMIPA UNPAD', 'Menjadi pembicara di FMIPA UNPAD', '50% 35%') },
   ],
   footnote: {
-    en: 'By day I also keep operations running as an Operational Staff — the calm, organised side of the same person.',
-    id: 'Di siang hari saya juga menjaga operasional tetap berjalan sebagai Operational Staff — sisi tenang dan rapi dari orang yang sama.',
+    en: 'Outside office hours I also work freelance as a makeup artist (Arunikaa), model and speaker — the creative side of the same organised person.',
+    id: 'Di luar jam kerja, saya juga aktif secara freelance sebagai makeup artist (Arunikaa), model, dan pembicara — sisi kreatif dari pribadi yang sama-sama rapi.',
   },
+  footnoteLink: { en: 'See the creative work', id: 'Lihat karya kreatif' },
 };
 
 /* ---------------- ABOUT ---------------- */
@@ -83,8 +93,8 @@ export const about = {
   journeyEyebrow: { en: 'My journey', id: 'Perjalanan saya' },
   journeyTitle: [{ en: 'Turning passion', id: 'Mengubah passion' }, { en: 'into purpose.', id: 'menjadi tujuan.' }] as [L, L],
   journey: {
-    en: 'A Cum Laude graduate in Agroindustrial Technology Education from Universitas Pendidikan Indonesia, with a thesis on developing an SOP for hedonic testing. Today I run daily operations, administration and reporting as an Operational Staff, and serve customers in person and online. Beyond the office, I am the makeup artist behind Arunikaa, a freelance model, and a speaker on grooming and beauty.',
-    id: 'Lulusan Cum Laude Pendidikan Teknologi Agroindustri, Universitas Pendidikan Indonesia, dengan skripsi tentang pengembangan SOP uji hedonik. Kini saya mengelola operasional harian, administrasi, dan pelaporan sebagai Operational Staff, serta melayani pelanggan secara langsung maupun online. Di luar kantor, saya adalah makeup artist di balik Arunikaa, model freelance, dan pembicara seputar grooming dan kecantikan.',
+    en: 'I work as an Operational & Administrative Staff: I run daily operations to SOP, handle administration and data processing, prepare daily, weekly and monthly reports, keep track of stock, coordinate with the team and serve customers in person and online. I am a Cum Laude graduate in Agroindustrial Technology Education from Universitas Pendidikan Indonesia, with a thesis on developing an SOP for hedonic testing. Beyond the office, I am the makeup artist behind Arunikaa, a freelance model, and a speaker on grooming and beauty.',
+    id: 'Saya bekerja sebagai Staf Operasional & Administrasi: menjalankan operasional harian sesuai SOP, menangani administrasi dan pengolahan data, menyusun laporan harian, mingguan, dan bulanan, memantau stok, berkoordinasi dengan tim, serta melayani pelanggan secara langsung maupun online. Saya lulusan Cum Laude Pendidikan Teknologi Agroindustri, Universitas Pendidikan Indonesia, dengan skripsi tentang pengembangan SOP uji hedonik. Di luar kantor, saya adalah makeup artist di balik Arunikaa, model freelance, dan pembicara seputar grooming dan kecantikan.',
   },
   cv: { en: 'Download CV', id: 'Unduh CV' },
   photos: [
@@ -142,6 +152,8 @@ export type Experience = {
   period: L;
   type: L;
   summary: L;
+  /** Key areas shown as chips on the role card and detail page. */
+  focus?: L[];
   points: L[];
   cover: Photo;
   gallery: Photo[];
@@ -149,12 +161,80 @@ export type Experience = {
 
 export const experiencePage = {
   eyebrow: { en: 'Experience', id: 'Pengalaman' },
-  title: [{ en: 'Turning ideas', id: 'Mengubah ide' }, { en: 'into impact.', id: 'menjadi dampak.' }] as [L, L],
-  desc: { en: 'A journey of growth, creativity, and meaningful contributions.', id: 'Perjalanan bertumbuh, berkreasi, dan berkontribusi.' },
+  title: [{ en: 'Organised work,', id: 'Kerja rapi,' }, { en: 'real impact.', id: 'dampak nyata.' }] as [L, L],
+  desc: {
+    en: 'Operations, administration, data and reporting first — with freelance creative work alongside.',
+    id: 'Operasional, administrasi, data, dan pelaporan di depan — ditemani karya kreatif freelance.',
+  },
   cta: { en: 'View Details', id: 'Lihat Detail' },
+  focusTitle: { en: 'Key responsibilities', id: 'Fokus pekerjaan' },
+  docsTitle: { en: 'Work documentation', id: 'Dokumentasi pekerjaan' },
 };
 
 export const experiences: Experience[] = [
+  {
+    slug: 'i-love-emas',
+    role: { en: 'Operational & Administrative Staff', id: 'Staf Operasional & Administrasi' },
+    org: { en: 'PT Muara Logam Indonesia · I Love Emas', id: 'PT Muara Logam Indonesia · I Love Emas' },
+    period: { en: 'Apr 2025 – Present', id: 'Apr 2025 – Sekarang' },
+    type: { en: 'Full-time', id: 'Penuh waktu' },
+    summary: {
+      en: 'Administration, data processing, daily/weekly/monthly reports, stock monitoring and team coordination — with customer service in store and online.',
+      id: 'Administrasi, pengolahan data, laporan harian/mingguan/bulanan, pemantauan stok, dan koordinasi tim — serta layanan pelanggan di toko dan online.',
+    },
+    focus: [
+      { en: 'Administration', id: 'Administrasi' },
+      { en: 'Data processing', id: 'Pengolahan data' },
+      { en: 'Reporting', id: 'Pembuatan laporan' },
+      { en: 'Stock management', id: 'Pengelolaan stok' },
+      { en: 'Operational coordination', id: 'Koordinasi operasional' },
+    ],
+    points: [
+      { en: 'Administration — handled day-to-day administration and kept operational records in line with company SOP.', id: 'Administrasi — menangani administrasi harian dan menjaga arsip operasional sesuai SOP perusahaan.' },
+      { en: 'Data processing — recorded and processed operational data accurately for daily use and evaluation.', id: 'Pengolahan data — mencatat dan mengolah data operasional secara akurat untuk kebutuhan harian dan evaluasi.' },
+      { en: 'Reporting — prepared daily, weekly and monthly reports for management.', id: 'Pembuatan laporan — menyusun laporan harian, mingguan, dan bulanan untuk manajemen.' },
+      { en: 'Stock management — monitored stock, facilities and supplies so the store kept running smoothly.', id: 'Pengelolaan stok — memantau stok, fasilitas, dan perlengkapan agar operasional toko berjalan lancar.' },
+      { en: 'Operational coordination — coordinated with the team on schedules and daily operations.', id: 'Koordinasi operasional — berkoordinasi dengan tim terkait jadwal dan operasional harian.' },
+      { en: 'Customer service — served customers in person and online, handling inquiries and complaints.', id: 'Layanan pelanggan — melayani pelanggan secara langsung dan online, menangani pertanyaan dan keluhan.' },
+      { en: 'Social media — planned, scheduled and evaluated content.', id: 'Media sosial — merencanakan, menjadwalkan, dan mengevaluasi konten.' },
+    ],
+    cover: p('/images/work/ilove-emas-1.jpg', 'The I Love Emas store team', 'Tim toko I Love Emas'),
+    gallery: [
+      p('/images/work/ilove-emas-1.jpg', 'The I Love Emas store team', 'Tim toko I Love Emas'),
+      p('/images/work/ilove-emas-2.jpg', 'With the store team', 'Bersama tim toko'),
+      p('/images/work/ilove-emas-3.jpg', 'Serving a customer at the counter', 'Melayani pelanggan di konter'),
+    ],
+  },
+  {
+    slug: 'agronesia-bmc',
+    role: { en: 'Operational Intern', id: 'Magang Operasional' },
+    org: { en: 'PT Agronesia · Unit Bandoengsche Melk Centrale', id: 'PT Agronesia · Unit Bandoengsche Melk Centrale' },
+    period: { en: 'Oct 2023 – Jan 2024', id: 'Okt 2023 – Jan 2024' },
+    type: { en: 'Internship', id: 'Magang' },
+    summary: {
+      en: 'Accurate production reports, Quality Control before distribution, and monitoring processes against standards.',
+      id: 'Laporan produksi yang akurat, Quality Control sebelum distribusi, dan pemantauan proses sesuai standar.',
+    },
+    focus: [
+      { en: 'Production reports', id: 'Laporan produksi' },
+      { en: 'Quality Control', id: 'Quality Control' },
+      { en: 'Process monitoring', id: 'Pemantauan proses' },
+      { en: 'Cross-division coordination', id: 'Koordinasi lintas divisi' },
+    ],
+    points: [
+      { en: 'Prepared accurate, timely production reports for evaluation and decisions.', id: 'Menyusun laporan produksi yang akurat dan tepat waktu untuk evaluasi dan pengambilan keputusan.' },
+      { en: 'Ensured every product passed Quality Control before distribution.', id: 'Memastikan setiap produk lolos Quality Control sebelum didistribusikan.' },
+      { en: 'Monitored operational processes against established standards.', id: 'Memantau proses operasional agar sesuai standar.' },
+      { en: 'Worked across divisions and contributed ideas to improve operations.', id: 'Bekerja lintas divisi dan menyumbang ide perbaikan operasional.' },
+    ],
+    cover: p('/images/internship/agronesia-1.jpg', 'PT Agronesia production floor', 'Area produksi PT Agronesia'),
+    gallery: [
+      p('/images/internship/agronesia-1.jpg', 'PT Agronesia production floor', 'Area produksi PT Agronesia'),
+      p('/images/internship/agronesia-2.jpg', 'Visit to DKPP Jawa Barat', 'Kunjungan ke DKPP Jawa Barat'),
+      p('/images/internship/agronesia-3.jpg', 'Visit to Jabar Command Center', 'Kunjungan ke Jabar Command Center'),
+      p('/images/internship/agronesia-4.jpg', 'Visit to Dinas Sosial Jawa Barat', 'Kunjungan ke Dinas Sosial Jawa Barat'),
+    ],
+  },
   {
     slug: 'makeup-artist',
     role: { en: 'Makeup Artist', id: 'Makeup Artist' },
@@ -162,12 +242,12 @@ export const experiences: Experience[] = [
     period: { en: 'Jan 2024 – Feb 2025', id: 'Jan 2024 – Feb 2025' },
     type: { en: 'Freelance', id: 'Freelance' },
     summary: {
-      en: 'Makeup for weddings, photoshoots and commercial events; scheduling and team delegation.',
-      id: 'Makeup untuk pernikahan, photoshoot, dan acara komersial; penjadwalan dan pembagian tugas tim.',
+      en: 'Makeup for weddings, photoshoots and commercial events; client scheduling and team delegation.',
+      id: 'Makeup untuk pernikahan, photoshoot, dan acara komersial; penjadwalan klien dan pembagian tugas tim.',
     },
     points: [
       { en: 'Ran an independent makeup service for weddings, photoshoots and commercial events, tailored to each client.', id: 'Menjalankan jasa makeup mandiri untuk pernikahan, photoshoot, dan acara komersial sesuai kebutuhan klien.' },
-      { en: "Planned project schedules and delegated jobs by each team member's strengths.", id: 'Merencanakan jadwal proyek dan membagi tugas sesuai keahlian anggota tim.' },
+      { en: 'Planned client and project schedules and delegated jobs by each team member’s strengths.', id: 'Merencanakan jadwal klien dan proyek serta membagi tugas sesuai keahlian anggota tim.' },
     ],
     cover: p('/images/makeup/mua-5.jpg', 'Sundanese bridal makeup with siger', 'Makeup pengantin Sunda dengan siger'),
     gallery: [
@@ -193,62 +273,12 @@ export const experiences: Experience[] = [
       { en: 'Took on model and talent roles for photoshoot, fashion and commercial projects.', id: 'Menjadi model dan talent untuk proyek photoshoot, fashion, dan komersial.' },
       { en: 'Adapted to varied concepts and worked professionally with creative teams.', id: 'Beradaptasi dengan berbagai konsep dan bekerja profesional bersama tim kreatif.' },
     ],
-    cover: p('/images/model/momies-3.jpg', 'Momies Bakery campaign portrait', 'Potret kampanye Momies Bakery', '50% 25%'),
+    cover: p('/images/model/momies-3.jpg', 'Momies Bakery campaign shoot', 'Sesi kampanye Momies Bakery', '50% 35%'),
     gallery: [
-      p('/images/model/momies-11.jpg', 'Lifestyle set at the bakery table', 'Set lifestyle di meja bakery'),
-      p('/images/model/momies-3.jpg', 'Marigold beauty look', 'Tampilan beauty marigold', '50% 25%'),
-      p('/images/model/momies-6.jpg', 'Blush cardigan look', 'Tampilan cardigan blush', '50% 25%'),
-      p('/images/model/momies-8.jpg', 'Orchid beauty look', 'Tampilan beauty anggrek', '50% 25%'),
-      p('/images/model/momies-5.jpg', 'Gerbera beauty look', 'Tampilan beauty gerbera', '50% 25%'),
-      p('/images/model/momies-12.jpg', 'Tasting the bakes on set', 'Mencicipi kue di lokasi'),
-    ],
-  },
-  {
-    slug: 'i-love-emas',
-    role: { en: 'Operational Staff', id: 'Staf Operasional' },
-    org: { en: 'PT Muara Logam Indonesia · I Love Emas', id: 'PT Muara Logam Indonesia · I Love Emas' },
-    period: { en: 'Apr 2025 – Present', id: 'Apr 2025 – Sekarang' },
-    type: { en: 'Full-time', id: 'Penuh waktu' },
-    summary: {
-      en: 'Daily operations to SOP, periodic reports, customer service in store and online, and social-media content.',
-      id: 'Operasional harian sesuai SOP, laporan berkala, layanan pelanggan di toko dan online, serta konten media sosial.',
-    },
-    points: [
-      { en: 'Managed and monitored daily operations in line with company SOP.', id: 'Mengelola dan memantau operasional harian sesuai SOP perusahaan.' },
-      { en: 'Handled administration, data processing and daily, weekly and monthly reports to management.', id: 'Menangani administrasi, pengolahan data, serta laporan harian, mingguan, dan bulanan kepada manajemen.' },
-      { en: 'Served customers in person and online, handling inquiries and complaints.', id: 'Melayani pelanggan secara langsung dan online, menangani pertanyaan dan keluhan.' },
-      { en: 'Coordinated with teams and supervised stock, facilities and operational schedules.', id: 'Berkoordinasi dengan tim serta mengawasi stok, fasilitas, dan jadwal operasional.' },
-      { en: 'Managed social media: planning, scheduling and evaluating content.', id: 'Mengelola media sosial: merencanakan, menjadwalkan, dan mengevaluasi konten.' },
-    ],
-    cover: p('/images/work/ilove-emas-1.jpg', 'The I Love Emas store team', 'Tim toko I Love Emas'),
-    gallery: [
-      p('/images/work/ilove-emas-1.jpg', 'The I Love Emas store team', 'Tim toko I Love Emas'),
-      p('/images/work/ilove-emas-2.jpg', 'With the store team', 'Bersama tim toko'),
-      p('/images/work/ilove-emas-3.jpg', 'Serving a customer at the counter', 'Melayani pelanggan di konter'),
-    ],
-  },
-  {
-    slug: 'agronesia-bmc',
-    role: { en: 'Operational Intern', id: 'Magang Operasional' },
-    org: { en: 'PT Agronesia · Unit Bandoengsche Melk Centrale', id: 'PT Agronesia · Unit Bandoengsche Melk Centrale' },
-    period: { en: 'Oct 2023 – Jan 2024', id: 'Okt 2023 – Jan 2024' },
-    type: { en: 'Internship', id: 'Magang' },
-    summary: {
-      en: 'Quality Control before distribution, accurate production reports and process monitoring.',
-      id: 'Quality Control sebelum distribusi, laporan produksi yang akurat, dan pemantauan proses.',
-    },
-    points: [
-      { en: 'Ensured every product passed Quality Control before distribution.', id: 'Memastikan setiap produk lolos Quality Control sebelum didistribusikan.' },
-      { en: 'Prepared accurate, timely production reports for evaluation and decisions.', id: 'Menyusun laporan produksi yang akurat dan tepat waktu untuk evaluasi dan pengambilan keputusan.' },
-      { en: 'Monitored operational processes against established standards.', id: 'Memantau proses operasional agar sesuai standar.' },
-      { en: 'Worked across divisions and contributed ideas to improve operations.', id: 'Bekerja lintas divisi dan menyumbang ide perbaikan operasional.' },
-    ],
-    cover: p('/images/internship/agronesia-1.jpg', 'PT Agronesia production floor', 'Area produksi PT Agronesia'),
-    gallery: [
-      p('/images/internship/agronesia-1.jpg', 'PT Agronesia production floor', 'Area produksi PT Agronesia'),
-      p('/images/internship/agronesia-2.jpg', 'Visit to DKPP Jawa Barat', 'Kunjungan ke DKPP Jawa Barat'),
-      p('/images/internship/agronesia-3.jpg', 'Visit to Jabar Command Center', 'Kunjungan ke Jabar Command Center'),
-      p('/images/internship/agronesia-4.jpg', 'Visit to Dinas Sosial Jawa Barat', 'Kunjungan ke Dinas Sosial Jawa Barat'),
+      p('/images/model/momies-3.jpg', 'Presenting the bakes for Momies Bakery', 'Menampilkan kue untuk Momies Bakery', '50% 35%'),
+      p('/images/model/momies-4.jpg', 'Tasting the bakes on set', 'Mencicipi kue di lokasi'),
+      p('/images/model/momies-1.jpg', 'Concept briefing with the creative team', 'Briefing konsep bersama tim kreatif'),
+      p('/images/model/momies-2.jpg', 'Going through the shot list', 'Membahas daftar foto'),
     ],
   },
 ];
@@ -259,6 +289,44 @@ export const makeupPage = {
   desc: { en: 'Makeup for every moment, with love and care — as Arunikaa Makeup.', id: 'Makeup untuk setiap momen, dengan cinta dan perhatian — bersama Arunikaa Makeup.' },
   cta: { en: 'Book Now', id: 'Pesan Sekarang' },
   galleryTitle: { en: 'The portfolio', id: 'Portofolio' },
+  looksTitle: { en: 'Freelance beauty shoot', id: 'Sesi beauty freelance' },
+  looksSub: {
+    en: 'Studio beauty looks I created as a freelance makeup artist. Frames of the same look are stacked — hover to fan them out, tap to see every frame.',
+    id: 'Tampilan beauty studio yang saya kerjakan sebagai makeup artist freelance. Bingkai dari tampilan yang sama ditumpuk — arahkan kursor untuk membukanya, ketuk untuk melihat semua.',
+  },
+  /** Freelance beauty-shoot documentation (mua-6 … mua-13), grouped by look. */
+  looks: [
+    {
+      title: { en: 'Blush cardigan', id: 'Cardigan blush' },
+      note: { en: 'Soft pink, dewy skin', id: 'Merah muda lembut, kulit dewy' },
+      photos: [
+        p('/images/makeup/mua-6.jpg', 'Blush makeup look', 'Riasan blush', '50% 25%'),
+        p('/images/makeup/mua-10.jpg', 'Blush makeup look, close frame', 'Riasan blush, bingkai dekat', '50% 25%'),
+      ],
+    },
+    {
+      title: { en: 'Marigold', id: 'Marigold' },
+      note: { en: 'Warm peach glow', id: 'Kilau peach hangat' },
+      photos: [
+        p('/images/makeup/mua-7.jpg', 'Marigold makeup look', 'Riasan marigold', '50% 25%'),
+        p('/images/makeup/mua-9.jpg', 'Marigold makeup look with a pink gerbera', 'Riasan marigold dengan gerbera merah muda', '50% 25%'),
+      ],
+    },
+    {
+      title: { en: 'Gerbera', id: 'Gerbera' },
+      note: { en: 'One look, three moods', id: 'Satu riasan, tiga suasana' },
+      photos: [
+        p('/images/makeup/mua-8.jpg', 'Gerbera makeup look', 'Riasan gerbera', '50% 25%'),
+        p('/images/makeup/mua-11.jpg', 'Gerbera makeup look, smiling', 'Riasan gerbera, tersenyum', '50% 25%'),
+        p('/images/makeup/mua-13.jpg', 'Gerbera makeup look, side glance', 'Riasan gerbera, melirik', '50% 25%'),
+      ],
+    },
+    {
+      title: { en: 'Orchid', id: 'Anggrek' },
+      note: { en: 'Magenta accents', id: 'Aksen magenta' },
+      photos: [p('/images/makeup/mua-12.jpg', 'Orchid makeup look', 'Riasan anggrek', '50% 25%')],
+    },
+  ],
   stats: [
     { value: { en: '13 mo', id: '13 bln' }, label: { en: 'Freelance, Jan 2024 – Feb 2025', id: 'Freelance, Jan 2024 – Feb 2025' } },
     { value: { en: '2', id: '2' }, label: { en: 'Beauty classes taught', id: 'Kelas kecantikan dibawakan' } },
@@ -271,17 +339,17 @@ export const skillsPage = {
   eyebrow: { en: 'Skills', id: 'Keahlian' },
   title: [{ en: 'My skills', id: 'Keahlian' }, { en: 'and expertise.', id: 'dan kemampuan.' }] as [L, L],
   desc: {
-    en: 'A combination of operational, communication, creative and technical skills to bring ideas to life.',
-    id: 'Perpaduan kemampuan operasional, komunikasi, kreatif, dan teknis untuk mewujudkan ide.',
+    en: 'Operational and administrative skills first, backed by communication, technical and creative strengths.',
+    id: 'Kemampuan operasional dan administrasi di depan, didukung kemampuan komunikasi, teknis, dan kreatif.',
   },
   featured: [
-    { icon: 'mic', name: { en: 'Communication', id: 'Komunikasi' }, items: [{ en: 'Public speaking', id: 'Public speaking' }, { en: 'Customer service', id: 'Layanan pelanggan' }, { en: 'Complaint handling', id: 'Penanganan keluhan' }] },
-    { icon: 'brush', name: { en: 'Beauty & Creative', id: 'Kecantikan & Kreatif' }, items: [{ en: 'Makeup artistry', id: 'Tata rias' }, { en: 'Modelling', id: 'Modeling' }, { en: 'Grooming classes', id: 'Kelas grooming' }] },
-    { icon: 'laptop', name: { en: 'Technical', id: 'Teknis' }, items: [{ en: 'Canva', id: 'Canva' }, { en: 'CapCut', id: 'CapCut' }, { en: 'Microsoft Office', id: 'Microsoft Office' }, { en: 'Google Workspace', id: 'Google Workspace' }] },
+    { icon: 'compass', name: { en: 'Operations', id: 'Operasional' }, items: [{ en: 'Daily operations', id: 'Operasional harian' }, { en: 'SOP implementation', id: 'Penerapan SOP' }, { en: 'Stock management', id: 'Pengelolaan stok' }, { en: 'Scheduling & coordination', id: 'Penjadwalan & koordinasi' }] },
+    { icon: 'file', name: { en: 'Admin & Reporting', id: 'Administrasi & Laporan' }, items: [{ en: 'Data processing', id: 'Pengolahan data' }, { en: 'Daily/weekly/monthly reports', id: 'Laporan harian/mingguan/bulanan' }, { en: 'Minutes', id: 'Notulensi' }, { en: 'Correspondence', id: 'Korespondensi' }] },
+    { icon: 'laptop', name: { en: 'Technical', id: 'Teknis' }, items: [{ en: 'Microsoft Office', id: 'Microsoft Office' }, { en: 'Google Workspace', id: 'Google Workspace' }, { en: 'Canva', id: 'Canva' }, { en: 'CapCut', id: 'CapCut' }] },
   ],
   more: [
-    { icon: 'compass', name: { en: 'Operations', id: 'Operasional' }, items: [{ en: 'Daily operations', id: 'Operasional harian' }, { en: 'SOP implementation', id: 'Penerapan SOP' }, { en: 'Monitoring', id: 'Monitoring' }, { en: 'Scheduling', id: 'Penjadwalan' }] },
-    { icon: 'file', name: { en: 'Admin & Reporting', id: 'Administrasi & Laporan' }, items: [{ en: 'Data processing', id: 'Pengolahan data' }, { en: 'Reports', id: 'Laporan' }, { en: 'Minutes', id: 'Notulensi' }, { en: 'Correspondence', id: 'Korespondensi' }] },
+    { icon: 'mic', name: { en: 'Communication', id: 'Komunikasi' }, items: [{ en: 'Customer service', id: 'Layanan pelanggan' }, { en: 'Complaint handling', id: 'Penanganan keluhan' }, { en: 'Public speaking', id: 'Public speaking' }] },
+    { icon: 'brush', name: { en: 'Beauty & Creative', id: 'Kecantikan & Kreatif' }, items: [{ en: 'Makeup artistry', id: 'Tata rias' }, { en: 'Modelling', id: 'Modeling' }, { en: 'Grooming classes', id: 'Kelas grooming' }] },
     { icon: 'flask', name: { en: 'Quality & Research', id: 'Mutu & Riset' }, items: [{ en: 'QC monitoring', id: 'Monitoring QC' }, { en: 'SOP development', id: 'Pengembangan SOP' }, { en: 'Hedonic testing', id: 'Uji hedonik' }] },
     { icon: 'globe', name: { en: 'Marketing & Language', id: 'Pemasaran & Bahasa' }, items: [{ en: 'Social media', id: 'Media sosial' }, { en: 'Content planning', id: 'Perencanaan konten' }, { en: 'Indonesian (native)', id: 'Indonesia (bahasa ibu)' }, { en: 'English (intermediate)', id: 'Inggris (menengah)' }] },
   ],
@@ -321,7 +389,8 @@ export const speakingPage = {
   title: [{ en: 'Sharing ideas,', id: 'Berbagi ide,' }, { en: 'inspiring others.', id: 'menginspirasi sesama.' }] as [L, L],
   desc: { en: 'Sharing knowledge and experiences through talks, workshops, and classes.', id: 'Berbagi ilmu dan pengalaman lewat talkshow, workshop, dan kelas.' },
   cta: { en: 'View Events', id: 'Lihat Acara' },
-  hero: p('/images/speaking/unpad-2.jpg', 'Speaking on stage at FMIPA UNPAD', 'Menjadi pembicara di FMIPA UNPAD', '40% 78%'),
+  // Pre-cropped from unpad-2.jpg so the speaker sits in the middle of the arch.
+  hero: p('/images/speaking/unpad-2-speaker.jpg', 'Speaking on stage at FMIPA UNPAD', 'Menjadi pembicara di FMIPA UNPAD', '50% 30%'),
   highlightsTitle: { en: 'Event highlights', id: 'Sorotan acara' },
   highlights: [
     p('/images/speaking/sman1-subang-1.jpg', 'With SMAN 1 Subang students', 'Bersama siswa SMAN 1 Subang'),
@@ -421,10 +490,10 @@ export const projects: Project[] = [
     kicker: { en: 'Campaign · Model · Momies Bakery', id: 'Kampanye · Model · Momies Bakery' },
     title: [{ en: 'Momies Bakery', id: 'Momies Bakery' }, { en: 'campaign lookbook.', id: 'lookbook kampanye.' }],
     summary: {
-      en: 'From the concept briefing to four studio beauty looks and the lifestyle set — twelve frames, grouped by look.',
-      id: 'Dari briefing konsep, empat tampilan beauty di studio, hingga set lifestyle — dua belas bingkai, dikelompokkan per tampilan.',
+      en: 'From the concept briefing with the creative team to the lifestyle set at the bakery table — grouped by moment.',
+      id: 'Dari briefing konsep bersama tim kreatif hingga set lifestyle di meja bakery — dikelompokkan per momen.',
     },
-    cover: p('/images/model/momies-11.jpg', 'Lifestyle shoot for Momies Bakery', 'Sesi foto lifestyle Momies Bakery'),
+    cover: p('/images/model/momies-3.jpg', 'Lifestyle shoot for Momies Bakery', 'Sesi foto lifestyle Momies Bakery', '50% 35%'),
     gallery: [],
     looks: [
       {
@@ -436,41 +505,11 @@ export const projects: Project[] = [
         ],
       },
       {
-        title: { en: 'Blush cardigan', id: 'Cardigan blush' },
-        note: { en: 'Soft pink, hands to face', id: 'Merah muda lembut, tangan di wajah' },
-        photos: [
-          p('/images/model/momies-10.jpg', 'Blush cardigan look', 'Tampilan cardigan blush', '50% 25%'),
-          p('/images/model/momies-6.jpg', 'Blush cardigan, close frame', 'Cardigan blush, bingkai dekat', '50% 25%'),
-        ],
-      },
-      {
-        title: { en: 'Marigold', id: 'Marigold' },
-        note: { en: 'Yellow blooms framing the face', id: 'Bunga kuning membingkai wajah' },
-        photos: [
-          p('/images/model/momies-3.jpg', 'Marigold look', 'Tampilan marigold', '50% 25%'),
-          p('/images/model/momies-4.jpg', 'Marigold look with a pink gerbera', 'Tampilan marigold dengan gerbera merah muda', '50% 25%'),
-        ],
-      },
-      {
-        title: { en: 'Gerbera', id: 'Gerbera' },
-        note: { en: 'One flower, three moods', id: 'Satu bunga, tiga suasana' },
-        photos: [
-          p('/images/model/momies-5.jpg', 'Gerbera look', 'Tampilan gerbera', '50% 25%'),
-          p('/images/model/momies-7.jpg', 'Gerbera look, smiling', 'Tampilan gerbera, tersenyum', '50% 25%'),
-          p('/images/model/momies-9.jpg', 'Gerbera look, side glance', 'Tampilan gerbera, melirik', '50% 25%'),
-        ],
-      },
-      {
-        title: { en: 'Orchid', id: 'Anggrek' },
-        note: { en: 'Magenta sprays, the closing frame', id: 'Rangkaian magenta, bingkai penutup' },
-        photos: [p('/images/model/momies-8.jpg', 'Orchid look', 'Tampilan anggrek', '50% 25%')],
-      },
-      {
         title: { en: 'At the table', id: 'Di meja' },
         note: { en: 'Lifestyle set with the bakes', id: 'Set lifestyle bersama kue' },
         photos: [
-          p('/images/model/momies-11.jpg', 'Sharing the bakes', 'Berbagi kue'),
-          p('/images/model/momies-12.jpg', 'Tasting at the bakery table', 'Mencicipi di meja bakery'),
+          p('/images/model/momies-3.jpg', 'Presenting the bakes', 'Menampilkan kue', '50% 35%'),
+          p('/images/model/momies-4.jpg', 'Tasting at the bakery table', 'Mencicipi di meja bakery'),
         ],
       },
     ],
