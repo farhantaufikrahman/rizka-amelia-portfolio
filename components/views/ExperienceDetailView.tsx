@@ -7,7 +7,7 @@ import { ui } from '@/lib/i18n';
 import { useT } from '@/lib/store';
 import { Card, Container, Eyebrow, PillLink, SerifTitle } from '@/components/ui/primitives';
 import { Reveal } from '@/components/ui/Reveal';
-import { Halo, MaskedImage } from '@/components/decor/Decor';
+import { Halo, MaskedImage, OrgLogo } from '@/components/decor/Decor';
 import { TulipCorner } from '@/components/decor/TulipCluster';
 import { Lightbox, LookStack, PhotoGrid, PhotoTile } from '@/components/sections/Gallery';
 import SectionHero from '@/components/sections/SectionHero';
@@ -126,7 +126,10 @@ export default function ExperienceDetailView({ slug }: { slug: string }) {
       />
       <Container className="grid gap-10 pb-10 lg:grid-cols-12">
         <Reveal kind="left" className="flex flex-col gap-4 lg:col-span-5">
-          <Eyebrow>{t(e.org)}</Eyebrow>
+          <div className="flex items-center gap-3">
+            {e.logo && <OrgLogo logo={e.logo} size={56} />}
+            <Eyebrow>{t(e.org)}</Eyebrow>
+          </div>
           <SerifTitle as="h2" size="md" lines={[t(e.role), t(e.period)]} accent />
           {e.focus && (
             <div>

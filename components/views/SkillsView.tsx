@@ -10,7 +10,7 @@ import SectionHero from '@/components/sections/SectionHero';
 import FooterCTA from '@/components/layout/FooterCTA';
 
 const ease = [0.22, 0.61, 0.36, 1] as const;
-type Icon = 'mic' | 'brush' | 'laptop' | 'compass' | 'file' | 'flask' | 'globe';
+type Icon = 'mic' | 'brush' | 'laptop' | 'compass' | 'file' | 'flask' | 'globe' | 'people';
 
 /** Reference layout: one row per skill group — line icon, group name, chips. */
 export default function SkillsView() {

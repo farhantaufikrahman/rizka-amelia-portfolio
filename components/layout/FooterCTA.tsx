@@ -1,8 +1,8 @@
 'use client';
 
-import Link from 'next/link';
+import { MessageCircle } from 'lucide-react';
 import { ui } from '@/lib/i18n';
-import { navItems, site } from '@/lib/content';
+import { site } from '@/lib/content';
 import { useT } from '@/lib/store';
 import { Body, Container, Eyebrow, PillLink } from '@/components/ui/primitives';
 import { Reveal } from '@/components/ui/Reveal';
@@ -33,25 +33,17 @@ export default function FooterCTA() {
         </Reveal>
 
         <Reveal kind="blur" delay={0.1} className="mt-24">
-          <div className="flex flex-col gap-5 rounded-[22px] border border-white/70 bg-card/80 px-5 py-4 backdrop-blur-md dark:border-white/10 lg:flex-row lg:items-center">
-            <Link href="/" className="font-serif text-xl italic text-ink">
-              {site.shortName}
-            </Link>
-            <nav aria-label={t({ en: 'Footer', id: 'Footer' })} className="flex flex-1 flex-wrap gap-x-4 gap-y-1">
-              {[...navItems, { key: 'contact' as const, href: '/contact' }].map((n) => (
-                <Link key={n.key} href={n.href} className="text-[13px] text-muted transition-colors hover:text-rose">
-                  {t(ui.nav[n.key])}
-                </Link>
-              ))}
-            </nav>
-            <div className="flex gap-2">
-              <a href={site.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="flex h-9 w-9 items-center justify-center rounded-full border border-line text-ink transition-all hover:-translate-y-0.5 hover:text-rose">
-                <LineIcon name="linkedin" size={16} />
+          {/* Only the social links here — the page navigation already lives in the top navbar. */}
+          <div className="flex gap-3">
+            {[
+              { href: site.linkedin, label: 'LinkedIn', icon: <LineIcon name="linkedin" size={18} /> },
+              { href: site.instagram, label: 'Instagram', icon: <LineIcon name="instagram" size={18} /> },
+              { href: site.whatsapp, label: 'WhatsApp', icon: <MessageCircle size={18} strokeWidth={1.5} /> },
+            ].map((s) => (
+              <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label} className="flex h-11 w-11 items-center justify-center rounded-full border border-line bg-card/80 text-ink backdrop-blur-md transition-all hover:-translate-y-0.5 hover:border-rose hover:text-rose">
+                {s.icon}
               </a>
-              <a href={site.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="flex h-9 w-9 items-center justify-center rounded-full border border-line text-ink transition-all hover:-translate-y-0.5 hover:text-rose">
-                <LineIcon name="instagram" size={16} />
-              </a>
-            </div>
+            ))}
           </div>
           <p className="mt-4 text-xs text-muted">
             © {new Date().getFullYear()} {site.name}. {t(ui.footer.rights)}

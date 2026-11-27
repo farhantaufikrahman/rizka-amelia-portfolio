@@ -7,7 +7,7 @@ import type { L } from '@/lib/i18n';
 import { useT } from '@/lib/store';
 import { Body, Card, Container, Eyebrow, PillLink, SerifTitle } from '@/components/ui/primitives';
 import { Reveal } from '@/components/ui/Reveal';
-import { LineIcon, Polaroid } from '@/components/decor/Decor';
+import { LineIcon, OrgLogo, Polaroid } from '@/components/decor/Decor';
 import { BookStack, Diploma, LabGlass } from '@/components/decor/Illustrations';
 import { TulipCorner } from '@/components/decor/TulipCluster';
 import SectionHero from '@/components/sections/SectionHero';
@@ -67,7 +67,10 @@ export default function EducationView() {
                   <Card className="grid items-center gap-5 p-5 sm:grid-cols-[1fr_200px] sm:p-6">
                     <div>
                       <p className="font-serif text-sm italic text-rose">{t(item.period)}</p>
-                      <h2 className="mt-1 font-serif text-[26px] italic leading-tight text-ink">{t(item.title)}</h2>
+                      <div className="mt-1 flex items-center gap-3">
+                        {item.logo && <OrgLogo logo={item.logo} size={48} />}
+                        <h2 className="font-serif text-[26px] italic leading-tight text-ink">{t(item.title)}</h2>
+                      </div>
                       <p className="mt-2 text-sm leading-relaxed text-muted">{t(item.sub)}</p>
                     </div>
                     {item.photo ? (

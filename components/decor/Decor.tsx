@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import { useEffect, useRef, useState } from 'react';
 import { motion, type MotionStyle } from 'framer-motion';
 import { cx } from '@/components/ui/primitives';
 
@@ -73,6 +74,36 @@ export function MaskedImage({
     >
       <Image src={src} alt={alt} fill sizes={sizes} priority={priority} className="object-cover" style={{ objectPosition }} />
     </motion.div>
+  );
+}
+
+/**
+ * Round logo badge for an institution or company. Shows the file at `src` when it exists
+ * (drop it into /public/images/logos/), otherwise falls back to a monogram so the layout never breaks.
+ */
+export function OrgLogo({ logo, size = 44, className }: { logo: { src: string; name: string; mono: string }; size?: number; className?: string }) {
+  const [failed, setFailed] = useState(false);
+  const img = useRef<HTMLImageElement>(null);
+  // A missing file can fail before hydration attaches onError, so check once on mount too.
+  useEffect(() => {
+    const el = img.current;
+    if (el && el.complete && el.naturalWidth === 0) setFailed(true);
+  }, []);
+  return (
+    <span
+      title={logo.name}
+      className={cx('flex flex-none items-center justify-center overflow-hidden rounded-full border border-line bg-white shadow-[var(--shadow-soft)]', className)}
+      style={{ width: size, height: size }}
+    >
+      {failed ? (
+        <span aria-label={logo.name} className="font-serif text-[0.95em] font-semibold italic text-rose" style={{ fontSize: size * 0.34 }}>
+          {logo.mono}
+        </span>
+      ) : (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img ref={img} src={logo.src} alt={logo.name} className="h-[78%] w-[78%] object-contain" onError={() => setFailed(true)} />
+      )}
+    </span>
   );
 }
 
