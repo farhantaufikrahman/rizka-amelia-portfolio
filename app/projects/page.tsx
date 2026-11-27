@@ -3,7 +3,7 @@ import { pageMetadata } from '@/lib/seo';
 
 export const metadata = pageMetadata({
   title: 'Projects',
-  description: 'Projects by Rizka Amelia — a thesis developing an SOP for hedonic testing at FPTI UPI and the Momis Bakery campaign shoot.',
+  description: 'Projects by Rizka Amelia — an SOP for hedonic testing developed as a thesis at FPTI UPI, plus a creative campaign shoot for Momis Bakery.',
   path: '/projects',
 });
 

@@ -10,12 +10,15 @@ import { TulipCorner } from '@/components/decor/TulipCluster';
 import { PhotoGrid } from '@/components/sections/Gallery';
 import SectionHero from '@/components/sections/SectionHero';
 import FooterCTA from '@/components/layout/FooterCTA';
+import BackLink from '@/components/ui/BackLink';
+import { ui } from '@/lib/i18n';
 
 /** Reference layout: speaker portrait in a spotlit circle → talks → event highlights. */
 export default function SpeakingView() {
   const { t } = useT();
   return (
     <>
+      <BackLink href="/experience#creative" label={ui.nav.experience} />
       <SectionHero
         eyebrow={t(s.eyebrow)}
         title={[t(s.title[0]), t(s.title[1])]}

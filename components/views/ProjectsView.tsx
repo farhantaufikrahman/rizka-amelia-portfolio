@@ -18,11 +18,11 @@ const ease = [0.22, 0.61, 0.36, 1] as const;
 /** Reference layout: project cards (cover, title, kicker, arrow) → plum case-study banner. */
 export default function ProjectsView() {
   const { t } = useT();
-  const [thesis, momies] = projects;
-  const cards = [
-    { p: momies, img: momies.looks![1].photos[1] },
-    { p: thesis, img: thesis.cover },
-  ];
+  const thesis = projects.find((p) => p.slug === 'sop-hedonic-testing')!;
+  // Professional projects first; creative ones last, with a label.
+  const cards = [...projects]
+    .sort((a, b) => (a.category === b.category ? 0 : a.category === 'professional' ? -1 : 1))
+    .map((p) => ({ p, img: p.cover }));
   return (
     <>
       <SectionHero
@@ -34,7 +34,7 @@ export default function ProjectsView() {
         visualClassName="h-[420px] sm:h-[540px]"
         visual={
           <div className="relative h-full">
-            <Polaroid src={momies.cover.src} alt={t(momies.cover.alt)} rotate={-5} drift={0} caption="Momis Bakery" className="absolute left-[6%] top-[4%] z-[2]" imgClassName="h-[230px] w-[170px] sm:h-[290px] sm:w-[220px]" />
+            <Polaroid src={thesis.steps![1].photos[0].src} alt={t(thesis.steps![1].photos[0].alt)} rotate={-5} drift={0} caption={t({ en: 'SOP draft', id: 'Draf SOP' })} className="absolute left-[6%] top-[4%] z-[2]" imgClassName="h-[230px] w-[170px] sm:h-[290px] sm:w-[220px]" />
             <Polaroid src={thesis.steps![0].photos[1].src} alt={t(thesis.steps![0].photos[1].alt)} rotate={5} drift={2.2} caption={t({ en: 'Thesis · 2024', id: 'Skripsi · 2024' })} className="absolute right-[6%] top-[22%]" imgClassName="h-[190px] w-[160px] sm:h-[240px] sm:w-[200px]" />
             <LabGlass className="animate-bob absolute bottom-[2%] right-[34%] z-[3] w-28" />
             <TulipCorner side="right" scale={0.3} className="-bottom-6 right-0 z-10" gustDelay={1.3} />
@@ -63,7 +63,12 @@ export default function ProjectsView() {
                     <span className="block font-serif text-[26px] italic leading-tight text-ink transition-colors group-hover:text-rose">
                       {t(p.title[0])} {t(p.title[1])}
                     </span>
-                    <span className="mt-1 block text-[13px] text-muted">{t(p.kicker)}</span>
+                    <span className="mt-1 flex flex-wrap items-center gap-2 text-[13px] text-muted">
+                      {p.category === 'creative' && (
+                        <span className="rounded-full border border-rose/30 bg-rose/10 px-2 py-0.5 text-[11px] font-medium text-ink">{t(pp.creativeLabel)}</span>
+                      )}
+                      {t(p.kicker)}
+                    </span>
                   </span>
                   <ArrowCircle />
                 </span>

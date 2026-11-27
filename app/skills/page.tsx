@@ -3,7 +3,7 @@ import { pageMetadata } from '@/lib/seo';
 
 export const metadata = pageMetadata({
   title: 'Skills',
-  description: 'Skills of Rizka Amelia — operations, SOP implementation, administration and reporting, quality control, customer service, makeup artistry, digital marketing and Microsoft Office.',
+  description: 'Skills of Rizka Amelia — operations, SOP implementation, administration and reporting, customer service, quality control, digital marketing, Microsoft Office and Google Workspace.',
   path: '/skills',
 });
 

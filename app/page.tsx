@@ -5,7 +5,7 @@ export const metadata = {
   ...pageMetadata({
     title: 'Rizka Amelia — Operational & Administrative Staff | Bandung',
     description:
-      'Rizka Amelia is an Operation & Administration Staff in Bandung, a Cum Laude graduate of Universitas Pendidikan Indonesia, freelance makeup artist (Arunikaa Makeup), model and speaker.',
+      'Operational & Administrative Staff in Bandung with experience in daily operations, SOP implementation, reporting, data processing, and customer service.',
     path: '/',
   }),
   title: { absolute: 'Rizka Amelia — Operational & Administrative Staff | Bandung' },

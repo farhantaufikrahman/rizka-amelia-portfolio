@@ -12,6 +12,7 @@ import { TulipCorner } from '@/components/decor/TulipCluster';
 import { Lightbox, LookStack, PhotoGrid, PhotoTile } from '@/components/sections/Gallery';
 import SectionHero from '@/components/sections/SectionHero';
 import FooterCTA from '@/components/layout/FooterCTA';
+import BackLink from '@/components/ui/BackLink';
 
 /** Reference layout "Makeup Artist": round beauty portrait hero → 3 × 2 grid of looks → stats. */
 function MakeupView() {
@@ -21,6 +22,7 @@ function MakeupView() {
   const close = useCallback(() => setIndex(null), []);
   return (
     <>
+      <BackLink href="/experience#creative" label={ui.nav.experience} />
       <SectionHero
         eyebrow={t(makeupPage.eyebrow)}
         title={[t(makeupPage.title[0]), t(makeupPage.title[1])]}
@@ -105,11 +107,7 @@ export default function ExperienceDetailView({ slug }: { slug: string }) {
 
   return (
     <>
-      <Container className="pt-10">
-        <Link href="/experience" className="group inline-flex items-center gap-2 text-[13px] text-muted hover:text-rose">
-          <span aria-hidden className="transition-transform group-hover:-translate-x-1">←</span> {t(ui.nav.experience)}
-        </Link>
-      </Container>
+      <BackLink href={`/experience#${e.group}`} label={ui.nav.experience} />
       <SectionHero
         eyebrow={`${t(e.type)} · ${t(e.period)}`}
         title={[t(e.role), t(e.org).split(' · ')[0]]}

@@ -86,6 +86,46 @@ export default function ProjectDetailView({ slug }: { slug: string }) {
         </div>
       </Container>
 
+      {p.caseStudy && (
+        <Container className="pb-12">
+          <div className="grid gap-5 md:grid-cols-2">
+            {(['overview', 'aim', 'role'] as const).map((k, i) => (
+              <Reveal key={k} kind="tilt" delay={i * 0.08} className={k === 'role' ? 'md:col-span-2' : undefined}>
+                <Card className="h-full">
+                  <p className="font-serif text-sm italic text-rose">{t(projectsPage.caseLabels[k])}</p>
+                  <p className="mt-2 text-[15px] leading-relaxed text-ink">{t(p.caseStudy![k])}</p>
+                </Card>
+              </Reveal>
+            ))}
+            <Reveal kind="tilt" delay={0.2}>
+              <Card className="h-full">
+                <p className="font-serif text-sm italic text-rose">{t(projectsPage.caseLabels.outputs)}</p>
+                <ul className="mt-2 list-disc space-y-1.5 pl-5 text-[15px] leading-relaxed text-ink marker:text-rose">
+                  {p.caseStudy.outputs.map((o) => (
+                    <li key={o.en}>{t(o)}</li>
+                  ))}
+                </ul>
+              </Card>
+            </Reveal>
+            <Reveal kind="tilt" delay={0.25}>
+              <Card className="h-full">
+                <p className="font-serif text-sm italic text-rose">{t(projectsPage.caseLabels.skills)}</p>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {p.caseStudy.skills.map((s) => (
+                    <span key={s.en} className="rounded-full border border-rose/30 bg-rose/10 px-3 py-1 text-[13px] font-medium text-ink">
+                      {t(s)}
+                    </span>
+                  ))}
+                </div>
+              </Card>
+            </Reveal>
+          </div>
+          <Reveal>
+            <h2 className="mb-2 mt-14 font-serif text-[clamp(1.8rem,3vw,2.3rem)] italic">{t(projectsPage.caseLabels.process)}</h2>
+          </Reveal>
+        </Container>
+      )}
+
       <Container className="pb-6">
         {steps && (
           <ol className="flex flex-col gap-14">

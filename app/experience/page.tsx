@@ -3,7 +3,7 @@ import { pageMetadata } from '@/lib/seo';
 
 export const metadata = pageMetadata({
   title: 'Experience',
-  description: 'Work experience of Rizka Amelia — Operational Staff at I Love Emas, operational intern at PT Agronesia (BMC), freelance makeup artist and model.',
+  description: 'Experience of Rizka Amelia — Operational Staff at I Love Emas, operational internship at PT Agronesia (BMC), secretary roles in student organizations, and freelance creative work.',
   path: '/experience',
 });
 

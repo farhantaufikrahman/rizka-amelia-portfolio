@@ -9,7 +9,7 @@ import { Reveal } from '@/components/ui/Reveal';
 import { LineIcon } from '@/components/decor/Decor';
 import { TulipCorner } from '@/components/decor/TulipCluster';
 
-/** "Let's grow together" closing band + the footer navigation strip from the reference. */
+/** Closing "Let's connect" band (Contact Me + Download CV) and the social icons. */
 export default function FooterCTA() {
   const { t } = useT();
   return (
@@ -27,9 +27,12 @@ export default function FooterCTA() {
             <span className="text-shimmer">{t(ui.footer.title2)}</span>
           </h2>
           <Body>{t(ui.footer.body)}</Body>
-          <PillLink href="/contact" className="mt-2">
-            {t(ui.footer.cta)}
-          </PillLink>
+          <div className="mt-2 flex flex-wrap gap-3">
+            <PillLink href="/contact">{t(ui.footer.cta)}</PillLink>
+            <PillLink href={site.cv} variant="outline">
+              {t(ui.footer.cv)}
+            </PillLink>
+          </div>
         </Reveal>
 
         <Reveal kind="blur" delay={0.1} className="mt-24">
@@ -37,8 +40,8 @@ export default function FooterCTA() {
           <div className="flex gap-3">
             {[
               { href: site.linkedin, label: 'LinkedIn', icon: <LineIcon name="linkedin" size={18} /> },
-              { href: site.instagram, label: 'Instagram', icon: <LineIcon name="instagram" size={18} /> },
               { href: site.whatsapp, label: 'WhatsApp', icon: <MessageCircle size={18} strokeWidth={1.5} /> },
+              { href: site.instagram, label: 'Instagram', icon: <LineIcon name="instagram" size={18} /> },
             ].map((s) => (
               <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label} className="flex h-11 w-11 items-center justify-center rounded-full border border-line bg-card/80 text-ink backdrop-blur-md transition-all hover:-translate-y-0.5 hover:border-rose hover:text-rose">
                 {s.icon}
